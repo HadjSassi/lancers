@@ -10,6 +10,8 @@ import { ToastService } from 'src/app/services/toast/toast.service';
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage implements OnInit {
+  skills: string[] = ['HTML', 'CSS', 'JavaScript', 'Angular', 'Ionic', 'Firebase'];
+  porotfolios: string[] = [];
 
   // @ts-ignore
   edit_profile_form: FormGroup;
@@ -27,7 +29,8 @@ export class EditPage implements OnInit {
     // Setup form
     this.edit_profile_form = this.formBuilder.group({
       name_first: ['', Validators.required],
-      name_last: ['', Validators.required]
+      name_last: ['', Validators.required],
+      email: ['', Validators.required]
     });
 
     // DEBUG: Prefill inputs

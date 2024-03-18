@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="dark">
+  <ion-toolbar color="light">
     <ion-buttons slot="end">
       <ion-button color="secondary" routerLink="/signup">
         Sign up
@@ -9,7 +9,14 @@
 </ion-header>
 
 <ion-content>
+  <div class="header-1-kvJ">
+    <div class="rectangle-24-Jgv"></div>
+    <p class="have-good-day-dDQ">Welcome Back !</p>
+    <ion-img class="rectangle-24-hFL" src=".\assets\icon\rectangle-29.png"></ion-img>
 
+    <ion-img class="vector-8AA" src=".\assets\icon\vector-cXG.png"></ion-img>
+    <ion-img class="logo-1-euC" src=".\assets\icon\logo-1-Kkz.png"></ion-img>
+  </div>
   <div class="ion-padding ion-full-height ion-flex ion-flex-center">
 
     <div class="logo-container">
@@ -39,21 +46,38 @@
         <ion-input color="secondary" formControlName="password" type="password" placeholder="Your password"></ion-input>
       </ion-item>
 
-      <ion-button class="ion-margin-top" type="submit" expand="block" size="large" color="secondary">
+      <ion-button  class="ion-margin-top" type="submit" expand="block" size="large" color="secondary">
         Sign in
       </ion-button>
 
-      <ion-button color="light" fill="clear" expand="block" class="ion-button-small ion-margin-top-medium" routerLink="/password-reset">
+      <ion-button color="secondary" fill="clear" expand="block" class="ion-button-small ion-margin-top-medium" routerLink="/password-reset">
         Forgot password?
       </ion-button>
     </form>
-
+  </div>
+  <div class="auto-group-1ssn-bmp">
+    <div class="rectangle-29-LjQ"></div>
+    <p class="or-sign-up-with-dCi">Or Sign in With</p>
+    <div class="rectangle-30-9gr"></div>
+  </div>
+  <div class="auto-group-xzg6-ThY">
+    <div class="auto-group-dkjn-yvn">
+      <ion-button class="google-button" expand="block" shape="round" color="danger" >googleSignIn</ion-button>
+       
+     
+      <ion-button class="github-button" expand="block" shape="round" color="dark" >
+        <ion-icon slot="start" name="logo-github"></ion-icon>
+        <ion-label>GitHub</ion-label>
+      </ion-button>
+    </div>
+   
+  </div>
     <div class="ion-text-center ion-margin-top">
       <ion-text color="medium">
         <small>&copy;{{current_year}} Firmino.dev</small>
       </ion-text>
     </div>
 
-  </div>
+
 
 </ion-content>

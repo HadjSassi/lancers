@@ -58,9 +58,31 @@
         </ion-label>
         <ion-input color="secondary" formControlName="name_last" placeholder="Last name"></ion-input>
       </ion-item>
+      <ion-item color="dark" class="animate__animated animate__fadeInUp">
+        <ion-label position="floating">
+          Email
+        </ion-label>
+        <ion-input color="secondary" formControlName="email" placeholder="email"></ion-input>
+      </ion-item>
 
     </form>
-
   </div>
+  <ion-toolbar color="primary">
+    <ion-title>Skills</ion-title>
+  </ion-toolbar>
+      <ion-list>
+        <ion-item *ngFor="let skill of skills">
+          <ion-label>{{ skill }}</ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-toolbar color="primary">
+        <ion-title>Portfolio</ion-title>
+      </ion-toolbar>
+          <ion-list>
+            <ion-item *ngFor="let porotfolio of porotfolios">
+              <ion-label>{{ porotfolio }}</ion-label>
+            </ion-item>
+          </ion-list>
+      
 
 </ion-content>
