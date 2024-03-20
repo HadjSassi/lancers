@@ -195,11 +195,36 @@ export class ChartsPage implements OnInit {
   public polarAreaChartType: ChartType = 'polarArea';
 
   content_loaded: boolean = false;
-
+  description!: string;
+  price!: string ;
+  skills!: string ;
+  submitForm() {
+    this.services.push({ description: this.description, price: this.price, skills: this.skills });
+    console.log('Description:', this.description);
+    console.log('Price:', this.price);
+    console.log('Skills:', this.skills);
+  }
   constructor(
-    private helperService: HelperService
-  ) { }
+    private helperService: HelperService 
+  ) { 
+    this.description ;
+    this.price ;
+    this.skills ;
+  }
+  services: { description: string, price: string, skills: string }[] = [];
+  editService(index: number) {
+    // Implementer la logique pour l'édition du service
+    // Par exemple, vous pouvez remplir le formulaire avec les données du service sélectionné pour l'édition
+    this.description = this.services[index].description;
+    this.price = this.services[index].price;
+    this.skills = this.services[index].skills;
+    this.services.splice(index, 1); // Supprimer le service de la liste après l'avoir récupéré pour l'édition
+  }
 
+  deleteService(index: number) {
+    // Implementer la logique pour la suppression du service
+    this.services.splice(index, 1);
+  }
   ngOnInit() {
     // Create bar chart
     this.createBarChart();
