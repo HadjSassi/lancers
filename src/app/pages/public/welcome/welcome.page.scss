@@ -3,10 +3,13 @@
 
 app-welcome {
   background-color: var(--ion-color-light);
+
 }
-app-welcome ion-content {
-  --background: linear-gradient(135deg, var(--ion-color-light), var(--ion-color-light-shade));
-}
+// app-welcome ion-content {
+//  // --background: linear-gradient(135deg, var(--ion-color-light), var(--ion-color-light-shade));
+//  // --ion-dynamic-font : var(--ion-default-dynamic-font);
+
+// }
 
 
 app-welcome .swiper-welcome {
@@ -69,6 +72,7 @@ app-welcome ion-footer {
 
 html {
 	font-size:62.5%;
+  font: var(--ion-dynamic-font);
 }
 * {
 	margin: 0;
@@ -83,7 +87,9 @@ input {
 body {
   width:  43rem;
   background-color: #ffffff;
+  
 }.page-1-mUA {
+  
   //box-sizing: border-box;
   //cursor: pointer;
   align-items: center;
@@ -224,15 +230,16 @@ body {
       }
     }
     .body-2-yGi {
-      box-shadow: 0.1rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1199999973);
-      background-color: #f2efef;
+     // box-shadow: 0.1rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1199999973);
+      background-color: #ffffff;
       flex-shrink: 0;
       display: flex;
       align-items: center;
-      width: 100%;
-      height: 6.5rem;
-      border-radius: 1.5rem;
-      box-sizing: border-box;
+      color: #595757;
+      //width: 100%;
+      //height: 6.5rem;
+      //border-radius: 1.5rem;
+      //box-sizing: border-box;
       padding-right: 3.8rem;
 
       .auto-group-jjz8-JZt {
@@ -242,9 +249,11 @@ body {
         font-size: 2.2rem;
         font-family: Outfit, 'Source Sans Pro';
         text-align: center;
-        color: #ffffff;
+        text-emphasis-color:#595757; ;
+        color: #595757;
         align-items: center;
-        background-color: #9aa3f7;
+        //background-color: #9aa3f7;
+        background-color:#ffffff;
         flex-shrink: 0;
         margin-right: 4rem;
         width: 19.7rem;
@@ -264,8 +273,56 @@ body {
         font-size: 2 rem;
         font-weight: 600;
       }
+      .sign-in-button{
+
+        margin-top: 0.1rem;
+        // font-family: Outfit, 'Source Sans Pro';
+         white-space: nowrap;
+         line-height: 1.26;
+         color:#464444;
+         flex-shrink: 0;
+         text-align: center;
+         font-size: 2 rem;
+         font-weight: 600;
+        
+
+
+      }
     }
   }
 }
+
+$base-percentage: 20%;
+
+
+:host {
+  body {
+    background-color: var(--ion-color-dark);
+  }
+  width: $base-percentage;
+  height: $base-percentage;
+  ion-content {
+      --background: linear-gradient(135deg, var(--ion-color-dark), var(--ion-color-primary));
+  }
+
+  ion-item {
+    --border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
+  .logo-container {
+    text-align: center;
+
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    p {
+      margin-bottom: 42px;
+    }
+  }
+}
+
 
 

@@ -1,9 +1,9 @@
-<ion-header collapse="fade" [translucent]="true">
+ <ion-header collapse="fade" [translucent]="true">
   <ion-toolbar color="dark">
     <ion-title color="light">
-      Payments
+      Chats
     </ion-title>
-    <ion-buttons slot="primary">
+   <ion-buttons slot="primary">
       <ion-button color="secondary" (click)="filter()">
         <ion-icon slot="icon-only" name="filter"></ion-icon>
       </ion-button>
@@ -17,9 +17,9 @@
       <ion-searchbar color="dark" showCancelButton="focus" placeholder="Company, category, expense ..."></ion-searchbar>
     </ion-toolbar>
   </ion-header>
-
+<!-- 
   <div class="ion-padding">
-    <!-- Skeletons -->
+   
     <ng-container *ngIf="!content_loaded">
 
       <ion-list-header class="ion-list-header-small">
@@ -135,5 +135,23 @@
     </ng-container>
 
   </div>
+-->
 
+
+<ion-content class="chat-content">
+  <ion-toolbar>
+    <ion-select placeholder="Sélectionner un contact" [(ngModel)]="selectedContact" (ionChange)="selectContact($event)">
+      <ion-select-option *ngFor="let contact of contacts" [value]="contact">{{ contact }}</ion-select-option>
+    </ion-select>
+    <ion-input placeholder="Saisir un message" [(ngModel)]="newMessage"></ion-input>
+    <ion-button slot="end" (click)="sendMessage()">Envoyer</ion-button>
+  </ion-toolbar>
+  <ion-list lines="none">
+   <ion-item *ngFor="let message of messages" [class]="message.type">
+      <div class="message">{{ message.text }}</div>
+    </ion-item> 
+  </ion-list>
 </ion-content>
+
+
+ 

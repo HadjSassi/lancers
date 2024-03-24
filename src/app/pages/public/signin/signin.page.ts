@@ -66,7 +66,7 @@ export class SigninPage implements OnInit {
       // Fake timeout
       setTimeout(async () => {
         // Sign in success
-        await this.router.navigate(['/menu']);
+        await this.router.navigate(['/home']);
         loading.dismiss();
       }, 2000);
 
