@@ -26,7 +26,7 @@ const routes: Routes = [
       },
       {
         path: 'contracts',
-        loadChildren: () => import('../pages/secure/styleguide/styleguide.module').then(m => m.StyleguidePageModule)
+        loadChildren: () => import('../pages/secure/contracts/contracts.module').then(m => m.ContractsPageModule)
       },
     ]
   }

@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: 'styleguide',
-    loadChildren: () => import('./styleguide/styleguide.module').then(m => m.StyleguidePageModule)
+    loadChildren: () => import('./contracts/contracts.module').then(m => m.ContractsPageModule)
   },
   {
     path: 'settings',
