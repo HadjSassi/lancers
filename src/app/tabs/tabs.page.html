@@ -7,30 +7,35 @@
       <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="charts">
+    <ion-tab-button tab="services">
       <ion-icon name="briefcase-outline"></ion-icon>
-      <ion-label>your services</ion-label>
+      <ion-label>Services</ion-label>
     </ion-tab-button>
 
     <!-- Placeholder for fab button -->
     <ion-tab-button class="ion-tab-button-placeholder">
     </ion-tab-button>
 
-    <ion-tab-button tab="payments">
+    <ion-tab-button tab="chat">
       <ion-icon name="chatbox-ellipses-outline"></ion-icon>
       <ion-label>Chat</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="styleguide">
-      <ion-icon name="color-palette-outline"></ion-icon>
-      <ion-label>Style</ion-label>
+    <ion-tab-button tab="contracts">
+      <ion-icon name="document-outline"></ion-icon>
+      <ion-label>Contracts</ion-label>
     </ion-tab-button>
 
   </ion-tab-bar>
 
   <ion-fab class="ion-fab-custom" vertical="bottom" horizontal="center" slot="fixed" (click)="selectAction()">
     <ion-fab-button color="dark">
-      <ion-icon name="add"></ion-icon>
+     <!--todo please check this Neirouz! : either seach for searching services,
+                or add for adding services
+                but if add then we need to change the second tabs services to seaching services!
+                  -->
+      <ion-icon name="search"></ion-icon>
+<!--      <ion-icon name="add"></ion-icon>-->
     </ion-fab-button>
   </ion-fab>
 
