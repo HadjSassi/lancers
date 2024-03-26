@@ -18,7 +18,7 @@ const routes: Routes = [
       },
       {
         path: 'charts',
-        loadChildren: () => import('../pages/secure/charts/charts.module').then(m => m.ChartsPageModule)
+        loadChildren: () => import('../pages/secure/services/services.module').then(m => m.ServicesPageModule)
       },
       {
         path: 'payments',

@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ChartsPageRoutingModule } from './charts-routing.module';
+import { ServicesPageRoutingModule } from './services-routing.module';
 
-import { ChartsPage } from './charts.page';
+import { ServicesPage } from './services-page.component';
 
 // NgCharts
 // import { NgChartsModule } from 'ng2-charts';
@@ -16,9 +16,9 @@ import { ChartsPage } from './charts.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ChartsPageRoutingModule,
+    ServicesPageRoutingModule,
     // NgChartsModule
   ],
-  declarations: [ChartsPage]
+  declarations: [ServicesPage]
 })
-export class ChartsPageModule {}
+export class ServicesPageModule {}
