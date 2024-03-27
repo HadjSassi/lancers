@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 // ReactiveForms
 import { ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from "@angular/common/http";
 
 // NgCharts
 // import { NgChartsModule } from 'ng2-charts';
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     IonicModule.forRoot(),
     ReactiveFormsModule,
     AppRoutingModule,
+    HttpClientModule
     // NgChartsModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

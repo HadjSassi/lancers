@@ -1,15 +1,11 @@
 from pymongo import MongoClient
 from mongo_setup import URL
 
-
 class AdministrateurService:
-    def __init__(self, data):
+    def __init__(self):
         self.client = MongoClient(URL)
-        database = data['database']
-        collection = data['collection']
-        cursor = self.client[database]
-        self.collection = cursor[collection]
-        self.data = data
+        self.database = self.client['Lancers']
+        self.collection = self.database['Administrateur']
 
     def read_all(self):
         documents = self.collection.find()
@@ -24,24 +20,17 @@ class AdministrateurService:
         else:
             return {'Status': 'Administrator not found.'}
 
-    def write(self, data):
-        new_document = data['Document']
+    def write(self, new_document):
         response = self.collection.insert_one(new_document)
-        output = {'Status': 'Successfully Inserted',
-                  'Document_ID': str(response.inserted_id)}
+        output = {'Status': 'Successfully Inserted', 'Document_ID': str(response.inserted_id)}
         return output
 
-    def update(self):
-        filt = self.data['Filter']
-        updated_data = {"$set": self.data['DataToBeUpdated']}
-        response = self.collection.update_one(filt, updated_data)
+    def update(self, filt, updated_data):
+        response = self.collection.update_one(filt, {"$set": updated_data})
         output = {'Status': 'Successfully Updated' if response.modified_count > 0 else "Nothing was updated."}
         return output
 
-    def delete(self, data):
-        filt = data['Filter']
+    def delete(self, filt):
         response = self.collection.delete_one(filt)
         output = {'Status': 'Successfully Deleted' if response.deleted_count > 0 else "Document not found."}
         return output
-
-

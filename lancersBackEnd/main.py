@@ -1,4 +1,5 @@
 from flask import Flask, request, json, Response
+from flask_cors import CORS
 from controller.Administrateur import *
 from controller.Commentaire import  *
 from controller.Contract import *
@@ -9,11 +10,12 @@ from controller.Restriction import *
 from controller.Services import *
 from controller.Skill import *
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "http://localhost:8100"}})
 
 
 @app.route('/')
 def base():
-    return Response(response=json.dumps({"Status": "UP"}),
+    return Response(response=json.dumps({"Application": "Lancers"}),
                     status=200,
                     mimetype='application/json')
 
@@ -362,4 +364,4 @@ def skill_delete_():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001, host='0.0.0.0')
+    app.run(debug=True, port=5000, host='0.0.0.0')

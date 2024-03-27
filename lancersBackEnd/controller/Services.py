@@ -1,101 +1,57 @@
-from flask import  request, json, Response
+from flask import request, json, Response
 from services.ServicesService import ServicesService
 
+services_service = ServicesService()
+
 def services_readall():
-    data = request.json
-    if data is None or data == {}:
-        return Response(response=json.dumps({"Error": "Please provide connection information"}),
-                        status=444,
-                        mimetype='application/json')
-    obj1 = ServicesService(data)
-    response = obj1.read_all()
-    return Response(response=json.dumps(response),
-                    status=200,
-                    mimetype='application/json')
+    response = services_service.read_all()
+    return Response(response=json.dumps(response), status=200, mimetype='application/json')
 
 def get_Service_By_Id():
-    data = request.json
-    if data is None or data == {} or 'id' not in data:
-        return Response(response=json.dumps({"Error": "Please provide connection information"}),
-                        status=400,
-                        mimetype='application/json')
-    obj1 = ServicesService(data)
-    response = obj1.get_service_by_id(data['id'])
-    return Response(response=json.dumps(response),
-                    status=201,
-                    mimetype='application/json')
+    id = request.args.get('id')
+    if id is None:
+        return Response(response=json.dumps({"Error": "Please provide a service ID"}), status=400, mimetype='application/json')
+    response = services_service.get_service_by_id(id)
+    return Response(response=json.dumps(response), status=200, mimetype='application/json')
 
 def get_Service_By_email():
-    data = request.json
-    if data is None or data == {} or 'email' not in data:
-        return Response(response=json.dumps({"Error": "Please provide connection information"}),
-                        status=400,
-                        mimetype='application/json')
-    obj1 = ServicesService(data)
-    response = obj1.get_services_by_owner_email(data['email'])
-    return Response(response=json.dumps(response),
-                    status=201,
-                    mimetype='application/json')
+    email = request.args.get('email')
+    if email is None:
+        return Response(response=json.dumps({"Error": "Please provide an email address"}), status=400, mimetype='application/json')
+    response = services_service.get_services_by_owner_email(email)
+    return Response(response=json.dumps(response), status=200, mimetype='application/json')
 
 def get_Service_By_email_and_approved():
-    data = request.json
-    if data is None or data == {} or 'email' not in data :
-        return Response(response=json.dumps({"Error": "Please provide connection information"}),
-                        status=400,
-                        mimetype='application/json')
-    obj1 = ServicesService(data)
-    response = obj1.get_services_by_owner_email_and_approved(data['email'])
-    return Response(response=json.dumps(response),
-                    status=201,
-                    mimetype='application/json')
+    email = request.args.get('email')
+    if email is None:
+        return Response(response=json.dumps({"Error": "Please provide an email address"}), status=400, mimetype='application/json')
+    response = services_service.get_services_by_owner_email_and_approved(email)
+    return Response(response=json.dumps(response), status=200, mimetype='application/json')
 
 def get_Service_By_email_and_not_approved():
-    data = request.json
-    if data is None or data == {} or 'email' not in data :
-        return Response(response=json.dumps({"Error": "Please provide connection information"}),
-                        status=400,
-                        mimetype='application/json')
-    obj1 = ServicesService(data)
-    response = obj1.get_services_by_owner_email_and_not_approved(data['email'])
-    return Response(response=json.dumps(response),
-                    status=201,
-                    mimetype='application/json')
+    email = request.args.get('email')
+    if email is None:
+        return Response(response=json.dumps({"Error": "Please provide an email address"}), status=400, mimetype='application/json')
+    response = services_service.get_services_by_owner_email_and_not_approved(email)
+    return Response(response=json.dumps(response), status=200, mimetype='application/json')
 
 def services_write():
     data = request.json
-    if data is None or data == {} or 'Document' not in data:
-        return Response(response=json.dumps({"Error": "Please provide connection information"}),
-                        status=400,
-                        mimetype='application/json')
-    obj1 = ServicesService(data)
-    response = obj1.write(data)
-    return Response(response=json.dumps(response),
-                    status=201,
-                    mimetype='application/json')
-
+    if data is None or 'Document' not in data:
+        return Response(response=json.dumps({"Error": "Please provide connection information"}), status=400, mimetype='application/json')
+    response = services_service.write(data['Document'])
+    return Response(response=json.dumps(response), status=201, mimetype='application/json')
 
 def services_update():
     data = request.json
-    if data is None or data == {} or 'DataToBeUpdated' not in data:
-        return Response(response=json.dumps({"Error": "Please provide connection information"}),
-                        status=400,
-                        mimetype='application/json')
-    obj1 = ServicesService(data)
-    response = obj1.update()
-    return Response(response=json.dumps(response),
-                    status=200,
-                    mimetype='application/json')
-
+    if data is None or 'DataToBeUpdated' not in data:
+        return Response(response=json.dumps({"Error": "Please provide connection information"}), status=400, mimetype='application/json')
+    response = services_service.update(data['Filter'],data['DataToBeUpdated'])
+    return Response(response=json.dumps(response), status=200, mimetype='application/json')
 
 def services_delete():
     data = request.json
-    if data is None or data == {} or 'Filter' not in data:
-        return Response(response=json.dumps({"Error": "Please provide connection information"}),
-                        status=400,
-                        mimetype='application/json')
-    obj1 = ServicesService(data)
-    response = obj1.delete(data)
-    return Response(response=json.dumps(response),
-                    status=202,
-                    mimetype='application/json')
-
+    if data is None or 'Filter' not in data:
+        return Response(response=json.dumps({"Error": "Please provide connection information"}), status=400, mimetype='application/json')
+    response = services_service.delete(data['Filter'])
+    return Response(response=json.dumps(response), status=202, mimetype='application/json')

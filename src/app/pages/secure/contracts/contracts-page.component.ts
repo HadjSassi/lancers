@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Contracts} from "../../../../model/Contracts";
+import {Contracts} from "../../../model/Contracts";
+import {AdministrateurService} from "../../../services/Administrateur/administrateur.service";
 
 @Component({
   selector: 'app-contracts',
@@ -13,20 +14,14 @@ export class ContractsPage implements OnInit {
   lancerContracts : Contracts[] = [];
   buyerContracts : Contracts[] = [];
 
-  constructor() { }
+  constructor(private adminService: AdministrateurService) { }
 
   ngOnInit() {
-    this.lancerContracts.push(
-      new Contracts("test")
-    );
-    this.buyerContracts.push(
-      new Contracts("test")
-    );
-    this.buyerContracts.push(
-      new Contracts("test")
-    );
-    this.buyerContracts.push(
-      new Contracts("test")
+    console.log("this is the contracts component !");
+    this.adminService.admin_read_all_().subscribe(
+      (result)=>{
+        console.log(result);
+      }
     );
   }
 
