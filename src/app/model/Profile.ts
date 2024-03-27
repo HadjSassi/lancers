@@ -1,164 +1,157 @@
-enum Sexe {
-  Male,
-  Female,
-  Other
-}
+import { Sexe } from "./Sexe";
 
-export class Profile{
-  private _isAdmin !: boolean;
-  private _email !: string;
-  private _password !: string;
-  private _nom !: string;
-  private _prenom !: string;
-  private _phone !: number;
-  private _adresse !: string;
-  private _fonction !: string;
-  private _birthday !: Date ;
-  private _sexe !: Sexe ;
-  private _facebook !: string;
-  private _linkedin !: string;
-  private _github !: string;
-  private _liens !: string[];
-  private _photoProfile !: string;
+export class Profile {
+  private isAdmin!: boolean;
+  private email!: string;
+  private password!: string;
+  private nom!: string;
+  private prenom!: string;
+  private phone!: number;
+  private adresse!: string;
+  private fonction!: string;
+  private birthday!: Date;
+  private sexe!: Sexe;
+  private facebook!: string;
+  private linkedin!: string;
+  private github!: string;
+  private liens!: string[];
+  private photoProfile!: string;
 
-
-  constructor(isAdmin: boolean, email: string, password: string, nom: string, prenom: string, phone: number, adresse: string, fonction: string, birthday:Date, sexe: Sexe, facebook: string, linkedin: string, github: string, liens: string[], photoProfile: string) {
-    this._isAdmin = isAdmin;
-    this._email = email;
-    this._password = password;
-    this._nom = nom;
-    this._prenom = prenom;
-    this._phone = phone;
-    this._adresse = adresse;
-    this._fonction = fonction;
-    this._birthday = birthday;
-    this._sexe = sexe;
-    this._facebook = facebook;
-    this._linkedin = linkedin;
-    this._github = github;
-    this._liens = liens;
-    this._photoProfile = photoProfile;
+  constructor(isAdmin: boolean, email: string, password: string, nom: string, prenom: string, phone: number, adresse: string, fonction: string, birthday: Date, sexe: Sexe, facebook: string, linkedin: string, github: string, liens: string[], photoProfile: string) {
+    this.isAdmin = isAdmin;
+    this.email = email;
+    this.password = password;
+    this.nom = nom;
+    this.prenom = prenom;
+    this.phone = phone;
+    this.adresse = adresse;
+    this.fonction = fonction;
+    this.birthday = birthday;
+    this.sexe = sexe;
+    this.facebook = facebook;
+    this.linkedin = linkedin;
+    this.github = github;
+    this.liens = liens;
+    this.photoProfile = photoProfile;
   }
 
-
-  get isAdmin(): boolean {
-    return this._isAdmin;
+  getIsAdmin(): boolean {
+    return this.isAdmin;
   }
 
-  set isAdmin(value: boolean) {
-    this._isAdmin = value;
+  setIsAdmin(value: boolean) {
+    this.isAdmin = value;
   }
 
-  get email(): string {
-    return this._email;
+  getEmail(): string {
+    return this.email;
   }
 
-  set email(value: string) {
-    this._email = value;
+  setEmail(value: string) {
+    this.email = value;
   }
 
-  get password(): string {
-    return this._password;
+  getPassword(): string {
+    return this.password;
   }
 
-  set password(value: string) {
-    this._password = value;
+  setPassword(value: string) {
+    this.password = value;
   }
 
-  get nom(): string {
-    return this._nom;
+  getNom(): string {
+    return this.nom;
   }
 
-  set nom(value: string) {
-    this._nom = value;
+  setNom(value: string) {
+    this.nom = value;
   }
 
-  get prenom(): string {
-    return this._prenom;
+  getPrenom(): string {
+    return this.prenom;
   }
 
-  set prenom(value: string) {
-    this._prenom = value;
+  setPrenom(value: string) {
+    this.prenom = value;
   }
 
-  get phone(): number {
-    return this._phone;
+  getPhone(): number {
+    return this.phone;
   }
 
-  set phone(value: number) {
-    this._phone = value;
+  setPhone(value: number) {
+    this.phone = value;
   }
 
-  get adresse(): string {
-    return this._adresse;
+  getAdresse(): string {
+    return this.adresse;
   }
 
-  set adresse(value: string) {
-    this._adresse = value;
+  setAdresse(value: string) {
+    this.adresse = value;
   }
 
-  get fonction(): string {
-    return this._fonction;
+  getFonction(): string {
+    return this.fonction;
   }
 
-  set fonction(value: string) {
-    this._fonction = value;
+  setFonction(value: string) {
+    this.fonction = value;
   }
 
-  get birthday(): Date {
-    return this._birthday;
+  getBirthday(): Date {
+    return this.birthday;
   }
 
-  set birthday(value: Date) {
-    this._birthday = value;
+  setBirthday(value: Date) {
+    this.birthday = value;
   }
 
-  get sexe(): Sexe {
-    return this._sexe;
+  getSexe(): Sexe {
+    return this.sexe;
   }
 
-  set sexe(value: Sexe) {
-    this._sexe = value;
+  setSexe(value: Sexe) {
+    this.sexe = value;
   }
 
-  get facebook(): string {
-    return this._facebook;
+  getFacebook(): string {
+    return this.facebook;
   }
 
-  set facebook(value: string) {
-    this._facebook = value;
+  setFacebook(value: string) {
+    this.facebook = value;
   }
 
-  get linkedin(): string {
-    return this._linkedin;
+  getLinkedin(): string {
+    return this.linkedin;
   }
 
-  set linkedin(value: string) {
-    this._linkedin = value;
+  setLinkedin(value: string) {
+    this.linkedin = value;
   }
 
-  get github(): string {
-    return this._github;
+  getGithub(): string {
+    return this.github;
   }
 
-  set github(value: string) {
-    this._github = value;
+  setGithub(value: string) {
+    this.github = value;
   }
 
-  get liens(): string[] {
-    return this._liens;
+  getLiens(): string[] {
+    return this.liens;
   }
 
-  set liens(value: string[]) {
-    this._liens = value;
+  setLiens(value: string[]) {
+    this.liens = value;
   }
 
-  get photoProfile(): string {
-    return this._photoProfile;
+  getPhotoProfile(): string {
+    return this.photoProfile;
   }
 
-  set photoProfile(value: string) {
-    this._photoProfile = value;
+  setPhotoProfile(value: string) {
+    this.photoProfile = value;
   }
 }
-

@@ -23,11 +23,18 @@ export class AdministrateurService {
   }
 
   public admin_write_(Administrateur: Administrateur): Observable<Administrateur> {
-    return this.http.post<Administrateur>(`${this.apiServeurUrl}/admin`, Administrateur);
+    const body: Object = {
+        "Document": Administrateur
+      };
+    return this.http.post<Administrateur>(`${this.apiServeurUrl}/admin`, body);
   }
 
-  public admin_update_(Administrateur: Administrateur): Observable<Administrateur> {
-    return this.http.put<Administrateur>(`${this.apiServeurUrl}/admin`, Administrateur);
+  public admin_update_(filter: string, Administrateur: Administrateur): Observable<Administrateur> {
+    const body: Object = {
+      "Filter": {"email":filter},
+      "DataToBeUpdated": Administrateur
+    };
+    return this.http.put<Administrateur>(`${this.apiServeurUrl}/admin`, body);
   }
 
   public admin_delete_(email: string): Observable<void> {

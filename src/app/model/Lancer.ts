@@ -1,49 +1,47 @@
-import {Skill} from "./Skill";
+import { Skill } from "./Skill";
 
-export class Lancer{
-  private _email !: string ;
-  private _score !: number;
-  private _skills !: Skill;
-  private _description !: string;
-
+export class Lancer {
+  private email!: string;
+  private score!: number;
+  private skills!: Skill;
+  private description!: string;
 
   constructor(email: string, score: number, skills: Skill, description: string) {
-    this._email = email;
-    this._score = score;
-    this._skills = skills;
-    this._description = description;
+    this.email = email;
+    this.score = score;
+    this.skills = skills;
+    this.description = description;
   }
 
-
-  get email(): string {
-    return this._email;
+  get getEmail(): string {
+    return this.email;
   }
 
-  set email(value: string) {
-    this._email = value;
+  set setEmail(value: string) {
+    this.email = value;
   }
 
-  get score(): number {
-    return this._score;
+  get getScore(): number {
+    return this.score;
   }
 
-  set score(value: number) {
-    this._score = value;
+  set setScore(value: number) {
+    this.score = value;
   }
 
-  get skills(): Skill {
-    return this._skills;
+  get getSkills(): Skill {
+    return this.skills;
   }
 
-  set skills(value: Skill) {
-    this._skills = value;
+  set setSkills(value: Skill) {
+    this.skills = value;
   }
 
-  get description(): string {
-    return this._description;
+  get getDescription(): string {
+    return this.description;
   }
 
-  set description(value: string) {
-    this._description = value;
+  set setDescription(value: string) {
+    this.description = value;
   }
 }

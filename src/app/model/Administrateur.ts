@@ -1,42 +1,32 @@
-enum Previliege {
-  tous,
-  validerContract,
-  attribuerScoreLancer,
-  attribuerScoreService,
-  deverouillerLancer,
-  restreindreLancer,
-  supprimerLancer,
-  validerService,
-  modifierService,
-  supprimerService
-}
+import {Previliege} from "./Previliege";
 
 export class Administrateur{
-  private _email !: string;
-  private _privileges !: Previliege[]
+  private email !: string;
+  private privileges !: Previliege[]
 
 
   constructor(email: string, privileges: Previliege[]) {
-    this._email = email;
-    this._privileges = privileges;
+    this.email = email;
+    this.privileges = privileges;
   }
 
 
-  get email(): string {
-    return this._email;
+  get getEmail(): string {
+    return this.email;
   }
 
-  set email(value: string) {
-    this._email = value;
+  set setEmail(value: string) {
+    this.email = value;
   }
 
-  get privileges(): Previliege[] {
-    return this._privileges;
+  get getPrivileges(): Previliege[] {
+    return this.privileges;
   }
 
-  set privileges(value: Previliege[]) {
-    this._privileges = value;
+  set setPrivileges(value: Previliege[]) {
+    this.privileges = value;
   }
 }
+
 
 

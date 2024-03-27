@@ -1,108 +1,105 @@
-
 export class Services {
-  private _idService !: number;
-  private _ownerEmail !: string;
-  private _name !: string;
-  private _description !: string ;
-  private _score !: number;
-  private _approved !: boolean;
-  private _datePublication !: Date;
-  private _prix !: number ;
-  private _durre !: string;
-  private _hidden !: boolean;
-
+  private idService!: number;
+  private ownerEmail!: string;
+  private name!: string;
+  private description!: string ;
+  private score!: number;
+  private approved!: boolean;
+  private datePublication!: Date;
+  private prix!: number ;
+  private durre!: string;
+  private hidden!: boolean;
 
   constructor(idService: number, ownerEmail: string, name: string, description: string, score: number, approved: boolean, datePublication: Date, prix: number, durre: string, hidden: boolean) {
-    this._idService = idService;
-    this._ownerEmail = ownerEmail;
-    this._name = name;
-    this._description = description;
-    this._score = score;
-    this._approved = approved;
-    this._datePublication = datePublication;
-    this._prix = prix;
-    this._durre = durre;
-    this._hidden = hidden;
+    this.idService = idService;
+    this.ownerEmail = ownerEmail;
+    this.name = name;
+    this.description = description;
+    this.score = score;
+    this.approved = approved;
+    this.datePublication = datePublication;
+    this.prix = prix;
+    this.durre = durre;
+    this.hidden = hidden;
   }
 
-
-  get idService(): number {
-    return this._idService;
+  get getIdService(): number {
+    return this.idService;
   }
 
-  set idService(value: number) {
-    this._idService = value;
+  set setIdService(value: number) {
+    this.idService = value;
   }
 
-  get ownerEmail(): string {
-    return this._ownerEmail;
+  get getOwnerEmail(): string {
+    return this.ownerEmail;
   }
 
-  set ownerEmail(value: string) {
-    this._ownerEmail = value;
+  set setOwnerEmail(value: string) {
+    this.ownerEmail = value;
   }
 
-  get name(): string {
-    return this._name;
+  get getName(): string {
+    return this.name;
   }
 
-  set name(value: string) {
-    this._name = value;
+  set setName(value: string) {
+    this.name = value;
   }
 
-  get description(): string {
-    return this._description;
+  get getDescription(): string {
+    return this.description;
   }
 
-  set description(value: string) {
-    this._description = value;
+  set setDescription(value: string) {
+    this.description = value;
   }
 
-  get score(): number {
-    return this._score;
+  get getScore(): number {
+    return this.score;
   }
 
-  set score(value: number) {
-    this._score = value;
+  set setScore(value: number) {
+    this.score = value;
   }
 
-  get approved(): boolean {
-    return this._approved;
+  get getApproved(): boolean {
+    return this.approved;
   }
 
-  set approved(value: boolean) {
-    this._approved = value;
+  set setApproved(value: boolean) {
+    this.approved = value;
   }
 
-  get datePublication(): Date {
-    return this._datePublication;
+  get getDatePublication(): Date {
+    return this.datePublication;
   }
 
-  set datePublication(value: Date) {
-    this._datePublication = value;
+  set setDatePublication(value: Date) {
+    this.datePublication = value;
   }
 
-  get prix(): number {
-    return this._prix;
+  get getPrix(): number {
+    return this.prix;
   }
 
-  set prix(value: number) {
-    this._prix = value;
+  set setPrix(value: number) {
+    this.prix = value;
   }
 
-  get durre(): string {
-    return this._durre;
+  get getDurre(): string {
+    return this.durre;
   }
 
-  set durre(value: string) {
-    this._durre = value;
+  set setDurre(value: string) {
+    this.durre = value;
   }
 
-  get hidden(): boolean {
-    return this._hidden;
+  get getHidden(): boolean {
+    return this.hidden;
   }
 
-  set hidden(value: boolean) {
-    this._hidden = value;
+  set setHidden(value: boolean) {
+    this.hidden = value;
   }
 }

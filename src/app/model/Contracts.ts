@@ -1,87 +1,80 @@
-enum Etat {
-  Attente,
-  EnCours,
-  Fini,
-  Retard,
-  Rejected,
-  Approved
-}
+import { Etat } from "./Etat";
 
 export class Contracts {
 
-  private _id !: number;
-  private _email !: string;
-  private _idService !: number;
-  private _dateDebut !: Date;
-  private _dateLivraison !: Date;
-  private _prix !: number;
-  private _etat !: Etat;
+  private contractId!: number;
+  private email!: string;
+  private idService!: number;
+  private dateDebut!: Date;
+  private dateLivraison!: Date;
+  private prix!: number;
+  private etat!: Etat;
 
 
   constructor(id: number, email: string, idService: number, dateDebut: Date, dateLivraison: Date, prix: number, etat: Etat) {
-    this._id = id;
-    this._email = email;
-    this._idService = idService;
-    this._dateDebut = dateDebut;
-    this._dateLivraison = dateLivraison;
-    this._prix = prix;
-    this._etat = etat;
+    this.contractId = id;
+    this.email = email;
+    this.idService = idService;
+    this.dateDebut = dateDebut;
+    this.dateLivraison = dateLivraison;
+    this.prix = prix;
+    this.etat = etat;
   }
 
 
-  get id(): number {
-    return this._id;
+  get getId(): number {
+    return this.contractId;
   }
 
-  set id(value: number) {
-    this._id = value;
+  set setId(value: number) {
+    this.contractId = value;
   }
 
-  get email(): string {
-    return this._email;
+  get getEmail(): string {
+    return this.email;
   }
 
-  set email(value: string) {
-    this._email = value;
+  set setEmail(value: string) {
+    this.email = value;
   }
 
-  get idService(): number {
-    return this._idService;
+  get getIdService(): number {
+    return this.idService;
   }
 
-  set idService(value: number) {
-    this._idService = value;
+  set setIdService(value: number) {
+    this.idService = value;
   }
 
-  get dateDebut(): Date {
-    return this._dateDebut;
+  get getDateDebut(): Date {
+    return this.dateDebut;
   }
 
-  set dateDebut(value: Date) {
-    this._dateDebut = value;
+  set setDateDebut(value: Date) {
+    this.dateDebut = value;
   }
 
-  get dateLivraison(): Date {
-    return this._dateLivraison;
+  get getDateLivraison(): Date {
+    return this.dateLivraison;
   }
 
-  set dateLivraison(value: Date) {
-    this._dateLivraison = value;
+  set setDateLivraison(value: Date) {
+    this.dateLivraison = value;
   }
 
-  get prix(): number {
-    return this._prix;
+  get getPrix(): number {
+    return this.prix;
   }
 
-  set prix(value: number) {
-    this._prix = value;
+  set setPrix(value: number) {
+    this.prix = value;
   }
 
-  get etat(): Etat {
-    return this._etat;
+  get getEtat(): Etat {
+    return this.etat;
   }
 
-  set etat(value: Etat) {
-    this._etat = value;
+  set setEtat(value: Etat) {
+    this.etat = value;
   }
 }

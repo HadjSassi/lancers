@@ -1,79 +1,75 @@
-import {images, link} from "ionicons/icons";
-
-export class Project{
-  private _idProject !: number;
-  private _ownerEmail !: string;
-  private _name !: string;
-  private _description !: string;
-  private _link !: string[];
-  private _images !: string[];
-  private _iframes !: string[];
-
+export class Project {
+  private idProject!: number;
+  private ownerEmail!: string;
+  private name!: string;
+  private description!: string;
+  private link!: string[];
+  private images!: string[];
+  private iframes!: string[];
 
   constructor(idProject: number, ownerEmail: string, name: string, description: string, link: string[], images: string[], iframes: string[]) {
-    this._idProject = idProject;
-    this._ownerEmail = ownerEmail;
-    this._name = name;
-    this._description = description;
-    this._link = link;
-    this._images = images;
-    this._iframes = iframes;
+    this.idProject = idProject;
+    this.ownerEmail = ownerEmail;
+    this.name = name;
+    this.description = description;
+    this.link = link;
+    this.images = images;
+    this.iframes = iframes;
   }
 
-
-  get idProject(): number {
-    return this._idProject;
+  get getIdProject(): number {
+    return this.idProject;
   }
 
-  set idProject(value: number) {
-    this._idProject = value;
+  set setIdProject(value: number) {
+    this.idProject = value;
   }
 
-  get ownerEmail(): string {
-    return this._ownerEmail;
+  get getOwnerEmail(): string {
+    return this.ownerEmail;
   }
 
-  set ownerEmail(value: string) {
-    this._ownerEmail = value;
+  set setOwnerEmail(value: string) {
+    this.ownerEmail = value;
   }
 
-  get name(): string {
-    return this._name;
+  get getName(): string {
+    return this.name;
   }
 
-  set name(value: string) {
-    this._name = value;
+  set setName(value: string) {
+    this.name = value;
   }
 
-  get description(): string {
-    return this._description;
+  get getDescription(): string {
+    return this.description;
   }
 
-  set description(value: string) {
-    this._description = value;
+  set setDescription(value: string) {
+    this.description = value;
   }
 
-  get link(): string[] {
-    return this._link;
+  get getLink(): string[] {
+    return this.link;
   }
 
-  set link(value: string[]) {
-    this._link = value;
+  set setLink(value: string[]) {
+    this.link = value;
   }
 
-  get images(): string[] {
-    return this._images;
+  get getImages(): string[] {
+    return this.images;
   }
 
-  set images(value: string[]) {
-    this._images = value;
+  set setImages(value: string[]) {
+    this.images = value;
   }
 
-  get iframes(): string[] {
-    return this._iframes;
+  get getIframes(): string[] {
+    return this.iframes;
   }
 
-  set iframes(value: string[]) {
-    this._iframes = value;
+  set setIframes(value: string[]) {
+    this.iframes = value;
   }
 }

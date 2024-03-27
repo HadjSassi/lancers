@@ -1,48 +1,45 @@
-
-export class Commentaire{
-  private _email !: string;
-  private _idService !: number;
-  private _contenu !: string;
-  private _dateComment !: Date;
-
+export class Commentaire {
+  private email!: string;
+  private idService!: number;
+  private contenu!: string;
+  private dateComment!: Date;
 
   constructor(email: string, idService: number, contenu: string, dateComment: Date) {
-    this._email = email;
-    this._idService = idService;
-    this._contenu = contenu;
-    this._dateComment = dateComment;
+    this.email = email;
+    this.idService = idService;
+    this.contenu = contenu;
+    this.dateComment = dateComment;
   }
 
-
-  get email(): string {
-    return this._email;
+  get getEmail(): string {
+    return this.email;
   }
 
-  set email(value: string) {
-    this._email = value;
+  set setEmail(value: string) {
+    this.email = value;
   }
 
-  get idService(): number {
-    return this._idService;
+  get getIdService(): number {
+    return this.idService;
   }
 
-  set idService(value: number) {
-    this._idService = value;
+  set setIdService(value: number) {
+    this.idService = value;
   }
 
-  get contenu(): string {
-    return this._contenu;
+  get getContenu(): string {
+    return this.contenu;
   }
 
-  set contenu(value: string) {
-    this._contenu = value;
+  set setContenu(value: string) {
+    this.contenu = value;
   }
 
-  get dateComment(): Date {
-    return this._dateComment;
+  get getDateComment(): Date {
+    return this.dateComment;
   }
 
-  set dateComment(value: Date) {
-    this._dateComment = value;
+  set setDateComment(value: Date) {
+    this.dateComment = value;
   }
 }

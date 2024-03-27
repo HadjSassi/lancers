@@ -1,3 +1,5 @@
+#to execute this file enter this "flask --app main.py run"
+
 from flask import Flask, request, json, Response
 from flask_cors import CORS
 from controller.Administrateur import *

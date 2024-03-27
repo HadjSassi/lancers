@@ -1,67 +1,65 @@
-export class Restriction{
-  private _idRestriction !: number;
-  private _lancerEmail !: string;
-  private _debut !: Date;
-  private _fin !: Date;
-  private _raison !: string;
-  private _enExecution !: boolean;
-
+export class Restriction {
+  private idRestriction!: number;
+  private lancerEmail!: string;
+  private debut!: Date;
+  private fin!: Date;
+  private raison!: string;
+  private enExecution!: boolean;
 
   constructor(idRestriction: number, lancerEmail: string, debut: Date, fin: Date, raison: string, enExecution: boolean) {
-    this._idRestriction = idRestriction;
-    this._lancerEmail = lancerEmail;
-    this._debut = debut;
-    this._fin = fin;
-    this._raison = raison;
-    this._enExecution = enExecution;
+    this.idRestriction = idRestriction;
+    this.lancerEmail = lancerEmail;
+    this.debut = debut;
+    this.fin = fin;
+    this.raison = raison;
+    this.enExecution = enExecution;
   }
 
-
-  get idRestriction(): number {
-    return this._idRestriction;
+  get getIdRestriction(): number {
+    return this.idRestriction;
   }
 
-  set idRestriction(value: number) {
-    this._idRestriction = value;
+  set setIdRestriction(value: number) {
+    this.idRestriction = value;
   }
 
-  get lancerEmail(): string {
-    return this._lancerEmail;
+  get getLancerEmail(): string {
+    return this.lancerEmail;
   }
 
-  set lancerEmail(value: string) {
-    this._lancerEmail = value;
+  set setLancerEmail(value: string) {
+    this.lancerEmail = value;
   }
 
-  get debut(): Date {
-    return this._debut;
+  get getDebut(): Date {
+    return this.debut;
   }
 
-  set debut(value: Date) {
-    this._debut = value;
+  set setDebut(value: Date) {
+    this.debut = value;
   }
 
-  get fin(): Date {
-    return this._fin;
+  get getFin(): Date {
+    return this.fin;
   }
 
-  set fin(value: Date) {
-    this._fin = value;
+  set setFin(value: Date) {
+    this.fin = value;
   }
 
-  get raison(): string {
-    return this._raison;
+  get getRaison(): string {
+    return this.raison;
   }
 
-  set raison(value: string) {
-    this._raison = value;
+  set setRaison(value: string) {
+    this.raison = value;
   }
 
-  get enExecution(): boolean {
-    return this._enExecution;
+  get getEnExecution(): boolean {
+    return this.enExecution;
   }
 
-  set enExecution(value: boolean) {
-    this._enExecution = value;
+  set setEnExecution(value: boolean) {
+    this.enExecution = value;
   }
 }
