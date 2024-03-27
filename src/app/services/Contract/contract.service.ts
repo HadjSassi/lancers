@@ -33,27 +33,27 @@ export class ContractService {
   }
 
   public get_contract_by_service_(serviceId: string): Observable<Contracts[]> {
-    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/service?id=${serviceId}`);
+    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/service?service=${serviceId}`);
   }
 
-  public get_contract_by_service_and_date_(serviceId: string, date: string): Observable<Contracts[]> {
-    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/service/date?id=${serviceId}&date=${date}`);
+  public get_contract_by_service_and_date_(serviceId: number, date: string): Observable<Contracts[]> {
+    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/service/date?service=${serviceId}&date=${date}`);
   }
 
-  public get_contract_by_service_and_etat_(serviceId: string, state: string): Observable<Contracts[]> {
-    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/service/etat?id=${serviceId}&etat=${state}`);
+  public get_contract_by_service_and_etat_(serviceId: number, state: string): Observable<Contracts[]> {
+    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/service/etat?service=${serviceId}&etat=${state}`);
   }
 
-  public get_contract_by_service_and_email_(serviceId: string, email: string): Observable<Contracts[]> {
-    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/service/email?id=${serviceId}&email=${email}`);
+  public get_contract_by_service_and_email_(serviceId: number, email: string): Observable<Contracts[]> {
+    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/service/email?service=${serviceId}&email=${email}`);
   }
 
-  public get_contract_by_service_and_email_and_date_(serviceId: string, email: string, date: string): Observable<Contracts[]> {
-    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/service/email/date?id=${serviceId}&email=${email}&date=${date}`);
+  public get_contract_by_service_and_email_and_date_(serviceId: number, email: string, date: string): Observable<Contracts[]> {
+    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/service/email/date?service=${serviceId}&email=${email}&date=${date}`);
   }
 
-  public get_contract_by_service_and_email_and_etat_(serviceId: string, email: string, state: string): Observable<Contracts[]> {
-    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/service/email/etat?id=${serviceId}&email=${email}&etat=${state}`);
+  public get_contract_by_service_and_email_and_etat_(serviceId: number, email: string, state: string): Observable<Contracts[]> {
+    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/service/email/etat?service=${serviceId}&email=${email}&etat=${state}`);
   }
 
   public contract_write_(contract: Contracts): Observable<Contracts> {
@@ -68,6 +68,7 @@ export class ContractService {
       "Filter": {"id":id},
       "DataToBeUpdated": contract
     };
+    console.log(body);
     return this.http.put<Contracts>(`${this.apiUrl}/contract`,  body);
   }
 

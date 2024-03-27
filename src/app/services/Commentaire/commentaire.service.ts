@@ -24,20 +24,20 @@ export class CommentaireService {
     return this.http.get<Commentaire[]>(`${this.apiUrl}/comment/email/date?email=${email}&date=${date}`);
   }
 
-  public get_comments_by_service_id_(serviceId: string): Observable<Commentaire[]> {
-    return this.http.get<Commentaire[]>(`${this.apiUrl}/comment/service?id=${serviceId}`);
+  public get_comments_by_service_id_(serviceId: number): Observable<Commentaire[]> {
+    return this.http.get<Commentaire[]>(`${this.apiUrl}/comment/service?service_id=${serviceId}`);
   }
 
   public get_comments_by_service_id_and_date_(serviceId: string, date: string): Observable<Commentaire[]> {
-    return this.http.get<Commentaire[]>(`${this.apiUrl}/comment/service/date?id=${serviceId}&date=${date}`);
+    return this.http.get<Commentaire[]>(`${this.apiUrl}/comment/service/date?service_id=${serviceId}&date=${date}`);
   }
 
   public get_comments_by_service_id_and_email_(serviceId: string, email: string): Observable<Commentaire[]> {
-    return this.http.get<Commentaire[]>(`${this.apiUrl}/comment/service/email?id=${serviceId}&email=${email}`);
+    return this.http.get<Commentaire[]>(`${this.apiUrl}/comment/service/email?service_id=${serviceId}&email=${email}`);
   }
 
   public get_comments_by_service_id_and_email_and_date_(serviceId: string, email: string, date: string): Observable<Commentaire[]> {
-    return this.http.get<Commentaire[]>(`${this.apiUrl}/comment/service/email/date?id=${serviceId}&email=${email}&date=${date}`);
+    return this.http.get<Commentaire[]>(`${this.apiUrl}/comment/service/email/date?service_id=${serviceId}&email=${email}&date=${date}`);
   }
 
   public comment_write_(commentaire: Commentaire): Observable<Commentaire> {

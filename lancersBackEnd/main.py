@@ -13,6 +13,7 @@ from controller.Services import *
 from controller.Skill import *
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:8100"}})
+CORS(app, resources={r"/*": {"origins": "http://localhost:4200"}})
 
 
 @app.route('/')

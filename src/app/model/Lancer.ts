@@ -3,10 +3,10 @@ import { Skill } from "./Skill";
 export class Lancer {
   private email!: string;
   private score!: number;
-  private skills!: Skill;
+  private skills!: Skill[];
   private description!: string;
 
-  constructor(email: string, score: number, skills: Skill, description: string) {
+  constructor(email: string, score: number, skills: Skill[], description: string) {
     this.email = email;
     this.score = score;
     this.skills = skills;
@@ -29,11 +29,11 @@ export class Lancer {
     this.score = value;
   }
 
-  get getSkills(): Skill {
+  get getSkills(): Skill[] {
     return this.skills;
   }
 
-  set setSkills(value: Skill) {
+  set setSkills(value: Skill[]) {
     this.skills = value;
   }
 

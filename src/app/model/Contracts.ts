@@ -2,7 +2,7 @@ import { Etat } from "./Etat";
 
 export class Contracts {
 
-  private contractId!: number;
+  private id!: number;
   private email!: string;
   private idService!: number;
   private dateDebut!: Date;
@@ -12,7 +12,7 @@ export class Contracts {
 
 
   constructor(id: number, email: string, idService: number, dateDebut: Date, dateLivraison: Date, prix: number, etat: Etat) {
-    this.contractId = id;
+    this.id = id;
     this.email = email;
     this.idService = idService;
     this.dateDebut = dateDebut;
@@ -23,11 +23,11 @@ export class Contracts {
 
 
   get getId(): number {
-    return this.contractId;
+    return this.id;
   }
 
   set setId(value: number) {
-    this.contractId = value;
+    this.id = value;
   }
 
   get getEmail(): string {
