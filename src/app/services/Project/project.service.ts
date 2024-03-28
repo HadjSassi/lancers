@@ -16,9 +16,9 @@ export class ProjectService {
     return this.http.get<Project[]>(`${this.apiUrl}/project`);
   }
 
-  public get_project_by_id_(): Observable<Project> {
+  public get_project_by_id_(id:number): Observable<Project> {
     // Adjust the method parameters according to your endpoint requirements
-    return this.http.get<Project>(`${this.apiUrl}/project/id`);
+    return this.http.get<Project>(`${this.apiUrl}/project/id?id=${id}`);
   }
 
   public get_project_by_email_(email: string): Observable<Project[]> {

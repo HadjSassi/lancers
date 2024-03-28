@@ -15,6 +15,7 @@ class ServicesService:
 
         # Get service by id
     def get_service_by_id(self, service_id):
+        service_id = int(service_id)
         document = self.collection.find_one({"idService": service_id})
         if document:
             output = {item: document[item] for item in document if item != '_id'}
@@ -30,13 +31,13 @@ class ServicesService:
 
     # Get services by email of owner and approved
     def get_services_by_owner_email_and_approved(self, owner_email):
-        documents = self.collection.find({"ownerEmail": owner_email, "approved": "true"})
+        documents = self.collection.find({"ownerEmail": owner_email, "approved": True})
         output = [{item: data[item] for item in data if item != '_id'} for data in documents]
         return output
 
     # Get services by email of owner and not approved
     def get_services_by_owner_email_and_not_approved(self, owner_email):
-        documents = self.collection.find({"ownerEmail": owner_email, "approved": "false"})
+        documents = self.collection.find({"ownerEmail": owner_email, "approved": False})
         output = [{item: data[item] for item in data if item != '_id'} for data in documents]
         return output
 

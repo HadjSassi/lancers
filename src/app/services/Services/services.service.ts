@@ -16,23 +16,23 @@ export class ServicesService {
     return this.http.get<Services[]>(`${this.apiUrl}/services`);
   }
 
-  public get_services_by_id_(): Observable<Services> {
+  public get_services_by_id_(id:number): Observable<Services> {
     // Adjust the method parameters according to your endpoint requirements
-    return this.http.get<Services>(`${this.apiUrl}/services/id`);
+    return this.http.get<Services>(`${this.apiUrl}/services/id?id=${id}`);
   }
 
   public get_services_by_email_(email: string): Observable<Services[]> {
     return this.http.get<Services[]>(`${this.apiUrl}/services/email?email=${email}`);
   }
 
-  public get_services_by_email_approved_(): Observable<Services[]> {
+  public get_services_by_email_approved_(email: string): Observable<Services[]> {
     // Adjust the method parameters according to your endpoint requirements
-    return this.http.get<Services[]>(`${this.apiUrl}/services/email/approved`);
+    return this.http.get<Services[]>(`${this.apiUrl}/services/email/approved?email=${email}`);
   }
 
-  public get_services_by_email_not_approved_(): Observable<Services[]> {
+  public get_services_by_email_not_approved_(email: string): Observable<Services[]> {
     // Adjust the method parameters according to your endpoint requirements
-    return this.http.get<Services[]>(`${this.apiUrl}/services/email/notapproved`);
+    return this.http.get<Services[]>(`${this.apiUrl}/services/email/notapproved?email=${email}`);
   }
 
   public services_write_(service: Services): Observable<Services> {
