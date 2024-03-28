@@ -12,47 +12,83 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Become a Seller</ion-title>
+  <ion-header>
+    <ion-toolbar class="toolbar-search">
+      <ion-searchbar color="dark" showCancelButton="focus"
+                     placeholder="Search for your service by name !"></ion-searchbar>
+      <ion-buttons slot="end">
+        <ion-button color="secondary" (click)="addService()">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
+  <ion-row class="filter-bar ion-padding ion-justify-content-center">
+    <ion-col size="auto" class="filter-col">
+      <ion-label>Score:</ion-label>
+      <ion-select [(ngModel)]="scoreFilter" interface="popover">
+        <ion-select-option value="highest">Highest</ion-select-option>
+        <ion-select-option value="lowest">Lowest</ion-select-option>
+        <ion-select-option value="none">None</ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="auto" class="filter-col">
+      <ion-label>Approval:</ion-label>
+      <ion-select [(ngModel)]="approvalFilter" interface="popover">
+        <ion-select-option value="approved">Approved</ion-select-option>
+        <ion-select-option value="not-approved">Not Approved</ion-select-option>
+        <ion-select-option value="none">None</ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="auto" class="filter-col">
+      <ion-label>Date:</ion-label>
+      <ion-select [(ngModel)]="dateFilter" interface="popover">
+        <ion-select-option value="recent">Recent</ion-select-option>
+        <ion-select-option value="oldest">Oldest</ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="auto" class="filter-col">
+      <ion-label>Price:</ion-label>
+      <ion-select [(ngModel)]="priceFilter" interface="popover">
+        <ion-select-option value="highest">Highest</ion-select-option>
+        <ion-select-option value="lowest">Lowest</ion-select-option>
+        <ion-select-option value="none">None</ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="auto" class="filter-col">
+      <ion-label>Hidden:</ion-label>
+      <ion-select [(ngModel)]="hiddenFilter" interface="popover">
+        <ion-select-option value="true">True</ion-select-option>
+        <ion-select-option value="false">False</ion-select-option>
+        <ion-select-option value="both">Both</ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+
   <div class="ion-padding">
-    <ion-card color="primary" class="ion-no-margin ion-card-chart animate__animated animate__fadeIn">
-      <!-- Form -->
-      <form (submit)="submitForm()" ngForm #forma="ngForm" >
-        <ion-item>
-          <ion-label position="floating">Service</ion-label>
-          <ion-input type="text" [(ngModel)]="serviceName" name="skills" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Description</ion-label>
-          <ion-input type="text" [(ngModel)]="description" name="description" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Price</ion-label>
-          <ion-input type="number" [(ngModel)]="price" name="price" required></ion-input>
-        </ion-item>
-
-        <ion-button type="submit" expand="full" [disabled]="forma.invalid" color="secondary">add service</ion-button>
-      </form>
-    </ion-card>
-    <ion-list>
-      <ion-item   *ngFor="let service of services; let i = index">
-          <ion-label>
-              <h2>{{ service.servicesNames }}</h2>
-
-              <p>{{ service.description }}</p>
-              <p>{{ service.price }}</p>
-          </ion-label>
-          <ion-buttons slot="end">
-              <ion-button (click)="editService(i)">Edit</ion-button>
-              <ion-button (click)="deleteService(i)">Delete</ion-button>
-          </ion-buttons>
+    <ion-list *ngIf="services.length !== 0">
+      <ion-item *ngFor="let service of services; let i = index" (click)="consultService(service)">
+        <ion-label>
+          <h2>{{ service.name }} (Score : {{ service.score }})</h2>
+          <p>Approved: {{ service.approved ? 'Yes' : 'No' }} | Hidden: {{ service.hidden ? 'Yes' : 'No' }}</p>
+          <p *ngIf="service.prix !== 0">{{ service.prix }}</p>
+          <p *ngIf="service.prix === 0">FREE</p>
+        </ion-label>
       </ion-item>
-  </ion-list>
+    </ion-list>
 
+    <ion-card *ngIf="services.length === 0">
+      <ion-card-header class="ion-text-center">
+        <ion-card-title><h1>No Service Yet!</h1></ion-card-title>
+        <ion-card-subtitle><h4>You haven't published any services yet!</h4></ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content class="ion-text-center">
+        <h1>You want to add a service !
+          <ion-button>Just Press Me</ion-button>
+        </h1>
+      </ion-card-content>
+    </ion-card>
   </div>
-
 </ion-content>
