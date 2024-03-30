@@ -16,14 +16,14 @@ export class RestrictionService {
     return this.http.get<Restriction[]>(`${this.apiUrl}/restriction`);
   }
 
-  public get_restriction_by_id_(): Observable<Restriction> {
+  public get_restriction_by_id_(id:number): Observable<Restriction> {
     // Adjust the method parameters according to your endpoint requirements
-    return this.http.get<Restriction>(`${this.apiUrl}/restriction/id`);
+    return this.http.get<Restriction>(`${this.apiUrl}/restriction/id?id=${id}`);
   }
 
-  public get_restriction_by_email_(): Observable<Restriction[]> {
+  public get_restriction_by_email_(email:string): Observable<Restriction[]> {
     // Adjust the method parameters according to your endpoint requirements
-    return this.http.get<Restriction[]>(`${this.apiUrl}/restriction/email`);
+    return this.http.get<Restriction[]>(`${this.apiUrl}/restriction/email?email=${email}`);
   }
 
   public get_restriction_by_email_and_date_(email: string, date: string): Observable<Restriction[]> {
@@ -39,14 +39,14 @@ export class RestrictionService {
 
   public restriction_update_(filter:number ,restriction: Restriction): Observable<Restriction> {
     const body: Object = {
-      "Filter": {"idRestricition":filter},
+      "Filter": {"idRestriction":filter},
       "DataToBeUpdated": restriction
     };
     return this.http.put<Restriction>(`${this.apiUrl}/restriction`, body);
   }
 
-  public restriction_delete_(idRestricition:number, restrictionId: string): Observable<void> {
-    const body = { Filter: { idRestricition } };
+  public restriction_delete_(idRestriction:number): Observable<void> {
+    const body = { Filter: { idRestriction } };
     return this.http.delete<void>(`${this.apiUrl}/restriction`, { body });
   }
 }

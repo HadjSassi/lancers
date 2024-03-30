@@ -1,0 +1,12 @@
+.duration-input {
+  display: flex;
+  align-items: center;
+}
+
+.duration-unit {
+  flex: 1;
+}
+
+.duration-value {
+  flex: 2; /* Adjust flex ratio as needed */
+}

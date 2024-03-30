@@ -1,8 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Contracts} from "../../../model/Contracts";
-import {ProfileService} from "../../../services/Profile/profile.service";
-import {Profile} from "../../../model/Profile";
 import {Sexe} from "../../../model/Sexe";
+import {ProjectService} from "../../../services/Project/project.service";
+import {Project} from "../../../model/Project";
+import {RestrictionService} from "../../../services/Restriction/restriction.service";
+import {Restriction} from "../../../model/Restriction";
+import {ServicesService} from "../../../services/Services/services.service";
+import {Services} from "../../../model/Services";
 
 @Component({
   selector: 'app-contracts',
@@ -16,12 +20,13 @@ export class ContractsPage implements OnInit {
   lancerContracts : Contracts[] = [];
   buyerContracts : Contracts[] = [];
 
-  constructor(private service: ProfileService) { }
+  constructor(private service: ServicesService) { }
 
   ngOnInit() {
     console.log("this is the contracts component !");
+/*
 
-    /*// const admin: Administrateur = new Administrateur(
+    // const admin: Administrateur = new Administrateur(
     //   "test5@test.test",
     //   []
     // );
@@ -40,9 +45,9 @@ export class ContractsPage implements OnInit {
 
     // this.service.admin_get_by_email_(email).subscribe((result)=>{console.log(result);});
 
-    // this.service.admin_read_all_().subscribe((result)=>{console.log(result);});*/
+    // this.service.admin_read_all_().subscribe((result)=>{console.log(result);});
 
-    /*const comment :Commentaire = new Commentaire(
+    const comment :Commentaire = new Commentaire(
       "test5@test.test",
       5,
       "helloWorld again!",
@@ -63,9 +68,8 @@ export class ContractsPage implements OnInit {
     // ).subscribe((result)=>{console.log(result);});
 
     // this.service.comment_delete_(5,"test5@test.test",new Date(12,12,2022)).subscribe((result)=>{console.log(result);});
-*/
 
-    /*// this.service.contract_read_all_().subscribe(
+    // this.service.contract_read_all_().subscribe(
     //   (result)=>{console.log(result);}
     // );
 
@@ -85,9 +89,9 @@ export class ContractsPage implements OnInit {
 
     // this.service.contract_delete_(6).subscribe(
     //   (result)=>{console.log(result);}
-    // );*/
+    // );
 
-    /*// this.service.lancer_read_all_().subscribe(
+    // this.service.lancer_read_all_().subscribe(
     //   (result)=>{console.log(result);}
     // );
 
@@ -104,9 +108,8 @@ export class ContractsPage implements OnInit {
     // this.service.get_lancer_by_email_("test1@test.test").subscribe((result)=>{console.log(result);});
 
     // this.service.lancer_delete_("test1@test.test").subscribe((res)=>{console.log(res);});
-*/
 
-    /*// this.service.profile_read_all_().subscribe(
+    // this.service.profile_read_all_().subscribe(
     //   (result)=>{console.log(result);}
     // );
 
@@ -134,11 +137,87 @@ export class ContractsPage implements OnInit {
 
     // this.service.profile_get_by_email_("test1@test.test").subscribe((result)=>{console.log(result);});
 
-    // this.service.profile_delete_("test1@test.test").subscribe((res)=>{console.log(res);});*/
+    // this.service.profile_delete_("test1@test.test").subscribe((res)=>{console.log(res);});
 
-    //todo project, Restriction, Services, and skill if you want
-    //todo make the services works perfectly
-    //todo make the contracts works perfectly
+    // this.service.project_read_all_().subscribe(
+    //   (result)=>{console.log(result);}
+    // );
+
+    const lancer : Project = new Project(
+      5,
+      "test1@test.test",
+      "test",
+      "test",
+      ["haha"],
+      ["haha"],
+      ["haha","haha"]
+      );
+
+    // this.service.project_write_(lancer).subscribe(
+    //   (result)=>{console.log(result);}
+    // );
+
+    // this.service.project_update_(5,lancer).subscribe((result)=>{console.log(result);});
+
+    // this.service.get_project_by_email_("test1@test.test").subscribe((result)=>{console.log(result);});
+    // this.service.get_project_by_id_(12).subscribe((result)=>{console.log(result);});
+
+    // this.service.project_delete_(5).subscribe((res)=>{console.log(res);});
+
+    // this.service.restriction_read_all_().subscribe(
+    //   (result)=>{console.log(result);}
+    // );
+
+    const lancer : Restriction = new Restriction(
+      5,
+      "test1@test.test",
+      new Date(),
+      new Date(),
+      "hahahhahahaha",
+      true
+      );
+
+    // this.service.restriction_write_(lancer).subscribe(
+    //   (result)=>{console.log(result);}
+    // );
+
+    // this.service.restriction_update_(5,lancer).subscribe((result)=>{console.log(result);});
+
+    // this.service.get_restriction_by_email_("test1@test.test").subscribe((result)=>{console.log(result);});
+    // this.service.get_restriction_by_id_(5).subscribe((result)=>{console.log(result);});
+
+    // this.service.restriction_delete_(5).subscribe((res)=>{console.log(res);});
+
+    // this.service.services_read_all_().subscribe(
+    //   (result)=>{console.log(result);}
+    // );
+
+    const lancer : Services = new Services(
+      5,
+      "test1@test.test",
+      "test",
+      "test",
+      15,
+      true,
+      new Date(),
+      255,
+      "5 h",
+      true
+    );
+
+    // this.service.services_write_(lancer).subscribe(
+    //   (result)=>{console.log(result);}
+    // );
+
+    // this.service.services_update_(5,lancer).subscribe((result)=>{console.log(result);});
+
+    // this.service.get_services_by_email_approved_("test1@test.test").subscribe((result)=>{console.log(result);});
+    // this.service.get_services_by_id_(5).subscribe((result)=>{console.log(result);});
+
+    // this.service.services_delete_(5).subscribe((res)=>{console.log(res);});
+
+*/
+
 
 
 

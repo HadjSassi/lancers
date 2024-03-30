@@ -14,7 +14,8 @@ class RestrictionService:
         return output
 
     def get_Restriction_by_id(self, id):
-        document = self.collection.find_one({"idRestricition": id})
+        id = int(id)
+        document = self.collection.find_one({"idRestriction": id})
         if document:
             output = {item: document[item] for item in document if item != '_id'}
             return output

@@ -4,7 +4,11 @@
   }
 
   ion-content {
+<<<<<<< HEAD
     --background: linear-gradient(0deg, var(--ion-color-dark), var(--ion-color-primary));
+=======
+    --background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-dark));
+>>>>>>> fa0c03491ff39f07e433e4291aedce31e1ac8d5c
   }
 
   ion-list {
@@ -20,10 +24,17 @@
 
    ion-item {
      background-color: var(--ion-color-primary);
+<<<<<<< HEAD
   }
   ion-button {
     margin-top: 20px;
 
+=======
+   }
+
+  ion-row{
+    background-color: #1a1a1a;
+>>>>>>> fa0c03491ff39f07e433e4291aedce31e1ac8d5c
   }
 }
 

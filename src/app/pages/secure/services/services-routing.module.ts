@@ -6,6 +6,18 @@ const routes: Routes = [
   {
     path: '',
     component: ServicesPage
+  },
+  {
+    path: 'add-service',
+    loadChildren: () => import('./add-service/add-service.module').then( m => m.AddServicePageModule)
+  },
+  {
+    path: 'consult-service/:id',
+    loadChildren: () => import('./consult-service/consult-service.module').then( m => m.ConsultServicePageModule)
+  },
+  {
+    path: 'edit-service',
+    loadChildren: () => import('./edit-service/edit-service.module').then( m => m.EditServicePageModule)
   }
 ];
 

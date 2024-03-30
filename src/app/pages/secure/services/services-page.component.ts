@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { HelperService } from 'src/app/services/helper/helper.service';
 import { AlertController } from '@ionic/angular';
+import {Services} from "../../../model/Services";
+import {ServicesService} from "../../../services/Services/services.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -8,38 +11,76 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './services.page.html',
   styleUrls: ['./services.page.scss'],
 })
-export class ServicesPage {
+export class ServicesPage implements OnInit{
 
   content_loaded: boolean = false;
-  description: string = "";
-  price: string = "";
-  serviceName: string = "";
 
-  constructor(
-    private helperService: HelperService,
-    private alertController: AlertController
-  ) {
-    this.description = "";
-    this.price = "";
-    this.serviceName = "";
+  ownerMail : string = "test@test.test";
+  services: Services[] = [];
+  currentService: Services = new Services(
+    0,
+    this.ownerMail,
+    "",
+    "",
+    0,
+    false,
+    new Date(),
+    0,
+    "",
+    false
+  );
+  scoreFilter: any = "none";
+  approvalFilter: any = "none";
+  dateFilter: any= "recent";
+  priceFilter: any= "none";
+  hiddenFilter: any = "both";
+
+  constructor(private helperService: HelperService,private alertController: AlertController,
+              private service:ServicesService,private routes: Router) {
   }
 
+  ngOnInit() {
+    //todo if faut get the current mail of the user and by that mail we search
+    //todo lett's suppose that the current mail is test@test.test but you need to make it after the sign in
+    this.service.get_services_by_email_(this.ownerMail).subscribe(
+      (result)=>{
+        this.services = result;}
+    );
+  }
 
-  services: { description: string, price: string, servicesNames: string }[] = [];
+  initialiseService():void{
+    this.currentService = new Services(
+      0,
+      this.ownerMail,
+      "",
+      "",
+      0,
+      false,
+      new Date(),
+      0,
+      "",
+      false
+    );
+  }
 
   submitForm() {
-    this.services.push({ description: this.description, price: this.price, servicesNames: this.serviceName });
-    this.description = "";
-    this.serviceName = "";
-    this.price = "";
+    //todo you need to check the auto increment for the id of the service
+    this.service.services_write_(this.currentService).subscribe(
+      (result)=>{
+        this.services.push(this.currentService);
+        this.initialiseService();
+      }
+    );
+
   }
   editService(index: number) {
-    // Implementer la logique pour l'édition du service
-    // Par exemple, vous pouvez remplir le formulaire avec les données du service sélectionné pour l'édition
-    this.description = this.services[index].description;
-    this.price = this.services[index].price;
-    this.serviceName = this.services[index].servicesNames;
-    this.services.splice(index, 1); // Supprimer le service de la liste après l'avoir récupéré pour l'édition
+    // this.service.services_update_(this.currentService.idService,this.currentService).subscribe(
+    //   (result)=>{
+    //    todo if it press on the edit normally it will open a pop up for modification
+    //   }
+    // );
+    this.currentService = this.services[index];
+    this.services.splice(index, 1);
   }
 
   async deleteService(index: number) {
@@ -54,8 +95,12 @@ export class ServicesPage {
         }, {
           text: 'Delete',
           handler: () => {
-            // If user confirms deletion, delete the service
-            this.services.splice(index, 1);
+            this.service.services_delete_(this.currentService.idService).subscribe(
+              (result)=>{
+                this.services.splice(index, 1);
+              }
+            );
+
           }
         }
       ]
@@ -64,4 +109,11 @@ export class ServicesPage {
     await alert.present();
   }
 
+  addService() {
+    this.routes.navigate(['services/add-service']);
+  }
+
+  consultService(service: Services) {
+    this.routes.navigate([`services/consult-service/${service.idService}`],);
+  }
 }
