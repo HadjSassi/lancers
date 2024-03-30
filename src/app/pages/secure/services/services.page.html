@@ -1,7 +1,7 @@
 <ion-header collapse="fade" [translucent]="true">
   <ion-toolbar color="dark">
-    <ion-title color="light">
-      Become a Freelance Seller
+    <ion-title color="secondary">
+     services
     </ion-title>
     <ion-buttons slot="primary">
       <ion-button color="secondary" routerLink="/settings">
@@ -12,13 +12,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Become a Seller</ion-title>
-    </ion-toolbar>
-  </ion-header>
+ 
 
   <div class="ion-padding">
+    <ion-title size="large"color="secondary" >Become a Seller</ion-title>
+
     <ion-card color="primary" class="ion-no-margin ion-card-chart animate__animated animate__fadeIn">
       <!-- Form -->
       <form (submit)="submitForm()" ngForm #forma="ngForm" >
@@ -35,7 +33,7 @@
           <ion-input type="number" [(ngModel)]="price" name="price" required></ion-input>
         </ion-item>
 
-        <ion-button type="submit" expand="full" [disabled]="forma.invalid" color="secondary">add service</ion-button>
+        <ion-button type="submit" expand="full" [disabled]="forma.invalid" color="light">add service</ion-button>
       </form>
     </ion-card>
     <ion-list>
@@ -47,8 +45,9 @@
               <p>{{ service.price }}</p>
           </ion-label>
           <ion-buttons slot="end">
-              <ion-button (click)="editService(i)">Edit</ion-button>
-              <ion-button (click)="deleteService(i)">Delete</ion-button>
+            <ion-button class="button-margin" (click)="editService(i)">Edit</ion-button>
+<ion-button class="button-margin" (click)="deleteService(i)">Delete</ion-button>
+
           </ion-buttons>
       </ion-item>
   </ion-list>

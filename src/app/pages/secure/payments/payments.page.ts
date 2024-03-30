@@ -2,12 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 import { FilterPage } from './filter/filter.page';
 
-
-
-
-  
-
-
 @Component({
   selector: 'app-payments',
   templateUrl: './payments.page.html',

@@ -159,8 +159,7 @@
    * iOS Dark Theme
    * -------------------------------------------
    */
-
-  .ios body {
+   .ios body {
     --ion-background-color: #000000;
     --ion-background-color-rgb: 0,0,0;
 
@@ -203,8 +202,7 @@
    * Material Design Dark Theme
    * -------------------------------------------
    */
-
-  .md body {
+   .md body {
     --ion-background-color: #121212;
     --ion-background-color-rgb: 18,18,18;
 
@@ -241,6 +239,7 @@
 
     --ion-card-background: #1e1e1e;
   }
+
 }
 
 html {

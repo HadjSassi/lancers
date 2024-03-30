@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-tabs',
@@ -9,7 +11,8 @@ import { ActionSheetController } from '@ionic/angular';
 export class TabsPage {
 
   constructor(
-    private actionSheetController: ActionSheetController
+    private actionSheetController: ActionSheetController ,
+    private router: Router
   ) {}
 
   // Select action
@@ -20,30 +23,24 @@ export class TabsPage {
       cssClass: 'custom-action-sheet',
       buttons: [
         {
-          text: 'Add something',
-          icon: 'wallet',
+          text: 'search service',
+          icon: 'search',
           handler: () => {
             // Put in logic ...
+            this.router.navigate(['/searchservice'], { queryParams: { search: 'service' } });
+
           }
         },
         {
-          text: 'Change something',
-          icon: 'swap-horizontal-outline',
+          text: 'search lancer',
+          icon: 'search',
           handler: () => {
             // Put in logic ...
+            this.router.navigate(['/searchlancer'], { queryParams: { search: 'lancer' } });
+
           }
         },
-        {
-          text: 'Set something',
-          icon: 'calculator',
-          handler: () => {
-            // Put in logic ...
-          }
-        }, {
-          text: 'Cancel',
-          icon: 'close',
-          role: 'cancel'
-        }]
+       ]
     });
     await actionSheet.present();
   }

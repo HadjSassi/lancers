@@ -38,6 +38,20 @@ const routes: Routes = [
     path: 'menu',
     loadChildren: () => import('./pages/public/menu/menu.module').then( m => m.MenuPageModule)
   },
+  {
+    path: 'searchservice',
+    loadChildren: () => import('./pages/searchservice/nom-de-la-page.module').then( m => m.NomDeLaPagePageModule)
+  },
+  {
+    path: 'filterserv',
+    loadChildren: () => import('./pages/searchservice/filterserv/filterserv.module').then( m => m.FilterservPageModule)
+  },  {
+    path: 'searchlancer',
+    loadChildren: () => import('./searchlancer/searchlancer.module').then( m => m.SearchlancerPageModule)
+  },
+
+
+
   
 ];
 @NgModule({
