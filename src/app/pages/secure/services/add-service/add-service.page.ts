@@ -26,7 +26,7 @@ export class AddServicePage implements OnInit {
   );
   dureeUnit : string = "days";
   dureeTime : number = 0 ;
-  constructor(private service:ServicesService,private routes: Router) { }
+  constructor(private service:ServicesService,private router: Router) { }
 
   ngOnInit() {
     console.log("I need to get the owner mail");
@@ -34,11 +34,12 @@ export class AddServicePage implements OnInit {
 
   submitForm() {
     //todo the auto increment for the id of the service
-    this.newService.durre = this.dureeTime+" "+this.dureeUnit
+    this.newService.durre = this.dureeTime+" "+this.dureeUnit;
     this.service.services_write_(this.newService).subscribe(
       (result)=>{
-        this.routes.navigate(['services']);//todo redirect to the page of the service
+        this.router.navigate(['services'], { queryParams: { updated: 'true' } });//todo redirecting to the eding page
       }
     );
   }
+
 }

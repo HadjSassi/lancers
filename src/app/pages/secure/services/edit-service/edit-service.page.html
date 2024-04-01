@@ -1,13 +1,64 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>EditService</ion-title>
+<ion-header collapse="fade" [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button color="secondary" text="Back" defaultHref="/home">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">
+      Become a Freelance Seller
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button color="secondary" routerLink="/settings">
+        <ion-icon slot="icon-only" name="cog"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">EditService</ion-title>
-    </ion-toolbar>
+  <ion-header>
+    <ion-title>
+      <h5>Updating Service: <br>{{updateService.name}}</h5>
+    </ion-title>
   </ion-header>
+
+  <div class="ion-padding">
+    <form #serviceForm="ngForm">
+      <ion-item>
+        <ion-label position="stacked"><h1>Name</h1></ion-label>
+        <ion-input type="text"  maxlength="35" placeholder="Please Enter the Service Name!" [(ngModel)]="updateService.name" name="serviceName" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked"><h1>Description</h1></ion-label>
+        <ion-textarea placeholder="Please Enter the Service Description!" [(ngModel)]="updateService.description" name="serviceDescription" required></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Price</ion-label>
+        <ion-input type="number" placeholder="Please Enter the Service Price!" [(ngModel)]="updateService.prix" name="servicePrice" required></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked"><h1>Duration</h1></ion-label>
+        <div class="duration-input">
+          <ion-select [(ngModel)]="dureeUnit" class="duration-unit" name="durationUnit" required>
+            <ion-select-option value="minutes">Minutes</ion-select-option>
+            <ion-select-option value="hours">Hours</ion-select-option>
+            <ion-select-option value="days">Days</ion-select-option>
+            <ion-select-option value="weeks">Weeks</ion-select-option>
+            <ion-select-option value="months">Months</ion-select-option>
+          </ion-select>
+          <ion-input type="number" placeholder="Please Enter the Duration!" [(ngModel)]="dureeTime" class="duration-value" name="durationValue" required></ion-input>
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Hidden</ion-label>
+        <ion-checkbox [(ngModel)]="updateService.hidden" name="hidden" required></ion-checkbox>
+      </ion-item>
+
+      <ion-button expand="block" [disabled]="!serviceForm.valid" (click)="submitForm()" color="secondary">Submit</ion-button>
+    </form>
+  </div>
 </ion-content>

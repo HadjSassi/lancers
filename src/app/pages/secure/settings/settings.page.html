@@ -1,23 +1,23 @@
 <ion-header collapse="fade" [translucent]="true">
   <ion-toolbar color="dark">
     <ion-buttons slot="start">
-      <ion-back-button color="secondary" text="Back" defaultHref="/menu">
+      <ion-back-button color="secondary" text="Back" defaultHref="/home">
       </ion-back-button>
     </ion-buttons>
 
     <ion-title color="light">
       Settings
     </ion-title>
-  
-  
-    
-      
+
+
+
+
       <ion-buttons slot="end">
         <ion-toggle [(ngModel)]="dark" (ionChange)="toggleDarkMode($event)"></ion-toggle>
         <ion-icon name="moon-outline"></ion-icon>
       </ion-buttons>
     </ion-toolbar>
-  
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -76,10 +76,10 @@
           <h3>job successfuly done </h3>
         </ion-label>
       </ion-item>
-  
+
     </ion-list>
 
-    
+
     <hr class="hr-medium">
 
     <ion-list-header class="ion-list-header-small">

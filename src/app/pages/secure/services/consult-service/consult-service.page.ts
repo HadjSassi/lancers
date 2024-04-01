@@ -16,7 +16,7 @@ import {AlertController} from "@ionic/angular";
 })
 export class ConsultServicePage implements OnInit {
 
-  isOwner: boolean = false;
+  isOwner: boolean = true;
 
   currentService: Services = new Services(
     0,
@@ -56,7 +56,7 @@ export class ConsultServicePage implements OnInit {
     ""
   );
 
-  constructor(private service: ServicesService, private routes: Router, private route: ActivatedRoute,
+  constructor(private service: ServicesService, private router: Router, private route: ActivatedRoute,
               private lancerService: LancerService, private profileService: ProfileService,
               private alertController: AlertController) {
   }
@@ -84,7 +84,11 @@ export class ConsultServicePage implements OnInit {
   }
 
   viewLancer() {
-    this.routes.navigate([`Lancers/${this.lancer.email}`]);
+    this.router.navigate([`Lancers/${this.lancer.email}`]);
+  }
+
+  editService(){
+    this.router.navigate([`services/edit-service/${this.currentService.idService}`]);
   }
 
   async deleteService() {
@@ -101,7 +105,7 @@ export class ConsultServicePage implements OnInit {
           handler: () => {
             this.service.services_delete_(this.currentService.idService).subscribe(
               (result) => {
-                this.routes.navigate([`services`]);
+                this.router.navigate(['services'], { queryParams: { updated: 'true' } });
                 // window.location().reload();
               }
             );
@@ -113,4 +117,32 @@ export class ConsultServicePage implements OnInit {
 
     await alert.present();
   }
+
+  updateHidden() {
+    this.service.services_update_(this.currentService.idService,this.currentService).subscribe();
+  }
+
+  async requestService() {
+    const alert = await this.alertController.create({
+      header: 'Confirm Request',
+      message: 'Are you sure you want to request this service?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Request',
+          handler: () => {
+
+            console.log("service requested");
+            //todo to add a new contract and navigate to that contract
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 }

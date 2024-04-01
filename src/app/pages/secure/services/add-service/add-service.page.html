@@ -1,7 +1,7 @@
 <ion-header collapse="fade" [translucent]="true">
   <ion-toolbar color="dark">
     <ion-buttons slot="start">
-      <ion-back-button color="secondary" text="Back" defaultHref="/menu">
+      <ion-back-button color="secondary" text="Back" defaultHref="/home">
       </ion-back-button>
     </ion-buttons>
     <ion-title color="light">
@@ -26,7 +26,7 @@
     <form #serviceForm="ngForm">
       <ion-item>
         <ion-label position="stacked"><h1>Name</h1></ion-label>
-        <ion-input type="text" placeholder="Please Enter the Service Name!" [(ngModel)]="newService.name" name="serviceName" required></ion-input>
+        <ion-input type="text" maxlength="35" placeholder="Please Enter the Service Name!" [(ngModel)]="newService.name" name="serviceName" required></ion-input>
       </ion-item>
 
       <ion-item>

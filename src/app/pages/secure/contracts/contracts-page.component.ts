@@ -1,12 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Contracts} from "../../../model/Contracts";
-import {Sexe} from "../../../model/Sexe";
-import {ProjectService} from "../../../services/Project/project.service";
-import {Project} from "../../../model/Project";
-import {RestrictionService} from "../../../services/Restriction/restriction.service";
-import {Restriction} from "../../../model/Restriction";
-import {ServicesService} from "../../../services/Services/services.service";
-import {Services} from "../../../model/Services";
+import {Lancer} from "../../../model/Lancer";
+import {LancerService} from "../../../services/Lancer/lancer.service";
+import {Skill} from "../../../model/Skill";
 
 @Component({
   selector: 'app-contracts',
@@ -20,11 +16,87 @@ export class ContractsPage implements OnInit {
   lancerContracts : Contracts[] = [];
   buyerContracts : Contracts[] = [];
 
-  constructor(private service: ServicesService) { }
+  constructor(private service: LancerService) { }
 
   ngOnInit() {
     console.log("this is the contracts component !");
 /*
+// this.service.lancer_read_all_().subscribe(
+    //   (result)=>{console.log(result);}
+    // );
+    //
+    // const lancer : Lancer = new Lancer("test@test.test",20,
+    //   [new Skill("Taekwondo")],""
+    // );
+    //
+    // this.service.lancer_write_(lancer).subscribe(
+    //   (result)=>{console.log(result);}
+    // );
+    //
+    // this.service.lancer_update_("test1@test.test",lancer).subscribe((result)=>{console.log(result);});
+    //
+    // this.service.get_lancer_by_email_("test1@test.test").subscribe((result)=>{console.log(result);});
+    //
+    // this.service.lancer_delete_("test1@test.test").subscribe((res)=>{console.log(res);});
+    //
+    // this.service.profile_read_all_().subscribe(
+    //   (result)=>{console.log(result);}
+    // );
+
+    // const lancer : Profile = new Profile(
+    //   false,
+    //   "test@test.test",
+    //   "test",
+    //   "test",
+    //   "test",
+    //   51907825,
+    //   "",
+    //   "Stuent",
+    //   new Date(2000 , 5 , 9),
+    //   Sexe.Male,
+    //   "","","",
+    //   ["bla bla"],
+    //   ""
+    // );
+    //
+    // this.service.profile_write_(lancer).subscribe(
+    //   (result)=>{console.log(result);}
+    // );
+
+    // this.service.profile_update_("test1@test.test",lancer).subscribe((result)=>{console.log(result);});
+    //
+    // this.service.profile_get_by_email_("test1@test.test").subscribe((result)=>{console.log(result);});
+    //
+    // this.service.profile_delete_("test1@test.test").subscribe((res)=>{console.log(res);});
+ // this.service.services_read_all_().subscribe(
+    //   (result) => {
+    //     console.log(result);
+    //   }
+    //   );
+
+    // const lancers : Services = new Services(
+    //   5,
+    //   "test1@test.test",
+    //   "test",
+    //   "test",
+    //   15,
+    //   true,
+    //   new Date(),
+    //   255,
+    //   "6 h",
+    //   true
+    // );
+
+    // this.service.services_write_(lancer).subscribe(
+    //   (result)=>{console.log(result);}
+    // );
+
+    // this.service.services_update_(5,lancer).subscribe((result)=>{console.log(result);});
+
+    // this.service.get_services_by_email_approved_("test1@test.test").subscribe((result)=>{console.log(result);});
+    // this.service.get_services_by_id_(5).subscribe((result)=>{console.log(result);});
+
+    // this.service.services_delete_(5).subscribe((res)=>{console.log(res);});
 
     // const admin: Administrateur = new Administrateur(
     //   "test5@test.test",
@@ -219,35 +291,12 @@ export class ContractsPage implements OnInit {
 */
 
 
-    // // this.service.services_read_all_().subscribe(
-    // //   (result) => {
-    // //     console.log(result);
-    // //   }
-    // //   );
-    //
-    // const lancer : Services = new Services(
-    //   5,
-    //   "test1@test.test",
-    //   "test",
-    //   "test",
-    //   15,
-    //   true,
-    //   new Date(),
-    //   255,
-    //   "6 h",
-    //   true
-    // );
-    //
-    // // this.service.services_write_(lancer).subscribe(
-    // //   (result)=>{console.log(result);}
-    // // );
-    //
-    // // this.service.services_update_(5,lancer).subscribe((result)=>{console.log(result);});
-    //
-    // // this.service.get_services_by_email_approved_("test1@test.test").subscribe((result)=>{console.log(result);});
-    // // this.service.get_services_by_id_(5).subscribe((result)=>{console.log(result);});
-    //
-    // // this.service.services_delete_(5).subscribe((res)=>{console.log(res);});
+
+
+
+
+
+
 
   }
 

@@ -35,3 +35,13 @@
   }
 }
 
+.filter-col {
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+.filter-label {
+  margin-right: 5px; /* Adjust the spacing between the label and the select options */
+}
+
+

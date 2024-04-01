@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./consult-service/consult-service.module').then( m => m.ConsultServicePageModule)
   },
   {
-    path: 'edit-service',
+    path: 'edit-service/:id',
     loadChildren: () => import('./edit-service/edit-service.module').then( m => m.EditServicePageModule)
   }
 ];
