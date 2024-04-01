@@ -22,7 +22,8 @@
       </ion-list-header>
     </h2>
 
-    <hr class="hr-medium">
+    <hr >
+
     <ion-card color="primary" *ngFor="let contract of lancerContracts">
       <ion-card-header>
         <ion-card-title>{{contract}}</ion-card-title>
@@ -41,7 +42,9 @@
   </div>
 
   <div style="display: flex; justify-content: center;">
-    <ion-item-divider style="width: 50%"></ion-item-divider>
+<!--    <ion-item-divider style="width: 50%; "></ion-item-divider>-->
+    <hr>
+<!--    todo add hr-->
   </div>
 
   <div class="ion-padding" *ngIf="buyerContracts.length !== 0" >

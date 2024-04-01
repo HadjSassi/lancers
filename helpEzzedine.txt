@@ -1,0 +1,4 @@
+Hey Ezzeddine enter this command each time you face problem as file watcher limited in generating the ionic app
+
+sudo sysctl fs.inotify.max_user_watches=524288
+

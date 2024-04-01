@@ -219,7 +219,35 @@ export class ContractsPage implements OnInit {
 */
 
 
-
+    // // this.service.services_read_all_().subscribe(
+    // //   (result) => {
+    // //     console.log(result);
+    // //   }
+    // //   );
+    //
+    // const lancer : Services = new Services(
+    //   5,
+    //   "test1@test.test",
+    //   "test",
+    //   "test",
+    //   15,
+    //   true,
+    //   new Date(),
+    //   255,
+    //   "6 h",
+    //   true
+    // );
+    //
+    // // this.service.services_write_(lancer).subscribe(
+    // //   (result)=>{console.log(result);}
+    // // );
+    //
+    // // this.service.services_update_(5,lancer).subscribe((result)=>{console.log(result);});
+    //
+    // // this.service.get_services_by_email_approved_("test1@test.test").subscribe((result)=>{console.log(result);});
+    // // this.service.get_services_by_id_(5).subscribe((result)=>{console.log(result);});
+    //
+    // // this.service.services_delete_(5).subscribe((res)=>{console.log(res);});
 
   }
 
