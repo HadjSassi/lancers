@@ -4,6 +4,7 @@ import {AlertController} from '@ionic/angular';
 import {Services} from "../../../model/Services";
 import {ServicesService} from "../../../services/Services/services.service";
 import {NavigationEnd, Router} from "@angular/router";
+import {Storage} from "@ionic/storage-angular";
 
 
 @Component({
@@ -38,10 +39,12 @@ export class ServicesPage implements OnInit {
   searchQuery: any = "";
 
   constructor(private helperService: HelperService, private alertController: AlertController,
-              private service: ServicesService, private router: Router) {
+              private service: ServicesService, private router: Router, private storage: Storage) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.storage.create();
+    this.ownerMail = await this.storage.get('mail');
     this.initialiseService();
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
@@ -54,8 +57,6 @@ export class ServicesPage implements OnInit {
   }
 
   initialiseService() {
-    //todo if faut get the current mail of the user and by that mail we search
-    //todo lett's suppose that the current mail is test@test.test but you need to make it after the sign in
     this.service.get_services_by_email_(this.ownerMail).subscribe(
       (result) => {
         this.services = result;

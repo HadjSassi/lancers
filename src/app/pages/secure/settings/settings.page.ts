@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import {Component} from '@angular/core';
+import {AuthService} from 'src/app/services/auth/auth.service';
+import {Storage} from "@ionic/storage-angular";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
 })
-export class SettingsPage  {
+export class SettingsPage {
   dark = true;
 
-  constructor(    private authService: AuthService
-    ) {
+  constructor(private authService: AuthService, private router: Router, private storage: Storage) {
   }
+
   toggleDarkMode($event: { detail: { checked: any; }; }) {
     if ($event.detail.checked) {
       document.documentElement.style.setProperty('--ion-background-color', 'var(--ion-background-color-dark)');
@@ -31,10 +33,11 @@ export class SettingsPage  {
   }
 
 
-
   // Sign out
-  signOut() {
-    this.authService.signOut();
+  async signOut() {
+    // await this.storage.create();
+    await this.storage.remove('mail');
+    this.router.navigate(['/signin']);
   }
 
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Storage} from "@ionic/storage-angular";
 
 @Component({
   selector: 'app-home',
@@ -9,14 +10,17 @@ export class HomePage implements OnInit {
 
   content_loaded: boolean = false;
 
-  constructor() { }
+  constructor(
+    private storage: Storage
+  ) {
+  }
 
-  ngOnInit() {
+  async ngOnInit() {
 
-    // Fake timeout
-    setTimeout(() => {
-      this.content_loaded = true;
-    }, 2000);
+    await this.storage.create();
+    const storedEmail = await this.storage.get('mail');
+    console.log(storedEmail);
+
   }
 
 }

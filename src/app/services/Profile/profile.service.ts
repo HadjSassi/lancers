@@ -22,7 +22,7 @@ export class ProfileService {
     return this.http.get<Profile>(`${this.apiServeurUrl}/profile/email?email=${email}`);
   }
 
-  public profile_write_(profile: Profile): Observable<Profile> {
+  public profile_write_(profile: Profile): Observable<any> {
     const body: Object = {
       "Document": profile
     };
