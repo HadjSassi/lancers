@@ -40,6 +40,10 @@ export class ServicesPage implements OnInit{
   }
 
   ngOnInit() {
+    this.initialiseService();
+  }
+
+  initialiseService(){
     //todo if faut get the current mail of the user and by that mail we search
     //todo lett's suppose that the current mail is test@test.test but you need to make it after the sign in
     this.service.get_services_by_email_(this.ownerMail).subscribe(
@@ -47,6 +51,8 @@ export class ServicesPage implements OnInit{
         this.services = result;}
     );
   }
+
+/*
 
   initialiseService():void{
     this.currentService = new Services(
@@ -108,6 +114,7 @@ export class ServicesPage implements OnInit{
 
     await alert.present();
   }
+*/
 
   addService() {
     this.routes.navigate(['services/add-service']);

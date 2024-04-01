@@ -16,7 +16,7 @@ import {AlertController} from "@ionic/angular";
 })
 export class ConsultServicePage implements OnInit {
 
-  isOwner: boolean = true;
+  isOwner: boolean = false;
 
   currentService: Services = new Services(
     0,
@@ -102,6 +102,7 @@ export class ConsultServicePage implements OnInit {
             this.service.services_delete_(this.currentService.idService).subscribe(
               (result) => {
                 this.routes.navigate([`services`]);
+                // window.location().reload();
               }
             );
 
