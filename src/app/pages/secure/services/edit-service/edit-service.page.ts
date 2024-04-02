@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Services} from "../../../../model/Services";
-import {Lancer} from "../../../../model/Lancer";
-import {Profile} from "../../../../model/Profile";
-import {Sexe} from "../../../../model/Sexe";
 import {ServicesService} from "../../../../services/Services/services.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {LancerService} from "../../../../services/Lancer/lancer.service";
-import {ProfileService} from "../../../../services/Profile/profile.service";
 import {AlertController} from "@ionic/angular";
+import {Storage} from "@ionic/storage-angular";
 
 @Component({
   selector: 'app-edit-service',
@@ -17,7 +13,7 @@ import {AlertController} from "@ionic/angular";
 export class EditServicePage implements OnInit {
 
   isOwner: boolean = true;
-  currentMail : string = "test@test.test";//todo this should be proper of the user of the app after singing in
+  currentMail : string = "";
 
 
   updateService: Services = new Services(
@@ -39,14 +35,19 @@ export class EditServicePage implements OnInit {
 
 
   constructor(private service: ServicesService, private router: Router, private route: ActivatedRoute,
-              private alertController: AlertController) {
+              private alertController: AlertController, private storage: Storage) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.storage.create();
+    this.currentMail = await this.storage.get('mail');
     this.route.params.subscribe(params => {
       this.updateService.idService = params['id'];
       this.service.get_services_by_id_(this.updateService.idService).subscribe(
         (result) => {
+          console.log(this.currentMail);
+          console.log(result.ownerEmail);
+          console.log(this.currentMail === result.ownerEmail);
           if (result.ownerEmail !== this.currentMail)
             this.router.navigate([`services/consult-service/${result.idService}`]);
           this.dureeUnit = result.durre.split(' ')[1].toLowerCase();

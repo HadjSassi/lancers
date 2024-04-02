@@ -19,7 +19,6 @@ export class HomePage implements OnInit {
 
     await this.storage.create();
     const storedEmail = await this.storage.get('mail');
-    console.log(storedEmail);
 
   }
 

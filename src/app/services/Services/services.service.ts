@@ -35,7 +35,7 @@ export class ServicesService {
     return this.http.get<Services[]>(`${this.apiUrl}/services/email/notapproved?email=${email}`);
   }
 
-  public services_write_(service: Services): Observable<Services> {
+  public services_write_(service: Services): Observable<any> {
     const body: Object = {
       "Document": service
     };

@@ -8,6 +8,7 @@ import {ProfileService} from "../../../../services/Profile/profile.service";
 import {Profile} from "../../../../model/Profile";
 import {Sexe} from "../../../../model/Sexe";
 import {AlertController} from "@ionic/angular";
+import {Storage} from "@ionic/storage-angular";
 
 @Component({
   selector: 'app-consult-service',
@@ -16,7 +17,7 @@ import {AlertController} from "@ionic/angular";
 })
 export class ConsultServicePage implements OnInit {
 
-  isOwner: boolean = true;
+  isOwner: boolean = false;
 
   currentService: Services = new Services(
     0,
@@ -58,10 +59,12 @@ export class ConsultServicePage implements OnInit {
 
   constructor(private service: ServicesService, private router: Router, private route: ActivatedRoute,
               private lancerService: LancerService, private profileService: ProfileService,
-              private alertController: AlertController) {
+              private alertController: AlertController, private storage: Storage) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.storage.create();
+    const storedEmail = await this.storage.get('mail');
     this.route.params.subscribe(params => {
       this.currentService.idService = params['id'];
       this.service.get_services_by_id_(this.currentService.idService).subscribe(
@@ -72,8 +75,11 @@ export class ConsultServicePage implements OnInit {
               this.lancer = res;
               this.profileService.profile_get_by_email_(this.currentService.ownerEmail).subscribe(
                 (re) => {
+                  console.log(storedEmail);
+                  console.log(result.ownerEmail);
+                  console.log(storedEmail === result.ownerEmail);
                   this.profile = re;
-                  //todo check if the current user is the same owner of this service by simply modify the variable isOwner
+                  this.isOwner = storedEmail==re.email;
                 }
               )
             }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Services} from "../../../../model/Services";
 import {ServicesService} from "../../../../services/Services/services.service";
 import {Router} from "@angular/router";
+import {Storage} from "@ionic/storage-angular";
 
 @Component({
   selector: 'app-add-service',
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
 })
 export class AddServicePage implements OnInit {
 
-  ownerMail : string = "test@test.test";//todo this should be proper of the user of the app after singing in
+  ownerMail : string = "";
 
   newService: Services = new Services(
     0,
@@ -26,18 +27,19 @@ export class AddServicePage implements OnInit {
   );
   dureeUnit : string = "days";
   dureeTime : number = 0 ;
-  constructor(private service:ServicesService,private router: Router) { }
+  constructor(private service:ServicesService,private router: Router, private storage: Storage) { }
 
-  ngOnInit() {
-    console.log("I need to get the owner mail");
+  async ngOnInit() {
+    await this.storage.create();
+    this.ownerMail = await this.storage.get('mail');
+    this.newService.ownerEmail = this.ownerMail;
   }
 
   submitForm() {
-    //todo the auto increment for the id of the service
     this.newService.durre = this.dureeTime+" "+this.dureeUnit;
     this.service.services_write_(this.newService).subscribe(
-      (result)=>{
-        this.router.navigate(['services'], { queryParams: { updated: 'true' } });//todo redirecting to the eding page
+      (result: { Status: string,Document_ID:string })=>{
+        this.router.navigate([`services/consult-service/${result.Document_ID}`]);
       }
     );
   }
