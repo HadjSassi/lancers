@@ -19,4 +19,3 @@ SKILLS = "Skill"
 
 def global_init():
     mongoengine.register_connection(alias='lancers', name='Lancers')
-
