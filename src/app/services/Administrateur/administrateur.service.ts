@@ -22,7 +22,7 @@ export class AdministrateurService {
     return this.http.get<Administrateur>(`${this.apiServeurUrl}/admin/email?email=${email}`);
   }
 
-  public admin_write_(Administrateur: Administrateur): Observable<Administrateur> {
+  public admin_write_(Administrateur: Administrateur): Observable<any> {
     const body: Object = {
         "Document": Administrateur
       };

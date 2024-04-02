@@ -30,7 +30,7 @@ export class RestrictionService {
     return this.http.get<Restriction[]>(`${this.apiUrl}/restriction/email/date?email=${email}&date=${date}`);
   }
 
-  public restriction_write_(restriction: Restriction): Observable<Restriction> {
+  public restriction_write_(restriction: Restriction): Observable<any> {
     const body: Object = {
       "Document": restriction
     };

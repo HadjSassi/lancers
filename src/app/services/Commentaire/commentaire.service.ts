@@ -40,7 +40,7 @@ export class CommentaireService {
     return this.http.get<Commentaire[]>(`${this.apiUrl}/comment/service/email/date?service_id=${serviceId}&email=${email}&date=${date}`);
   }
 
-  public comment_write_(commentaire: Commentaire): Observable<Commentaire> {
+  public comment_write_(commentaire: Commentaire): Observable<any> {
     const body: Object = {
       "Document": commentaire
     };

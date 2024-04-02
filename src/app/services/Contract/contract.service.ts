@@ -56,7 +56,7 @@ export class ContractService {
     return this.http.get<Contracts[]>(`${this.apiUrl}/contract/service/email/etat?service=${serviceId}&email=${email}&etat=${state}`);
   }
 
-  public contract_write_(contract: Contracts): Observable<Contracts> {
+  public contract_write_(contract: Contracts): Observable<any> {
     const body: Object = {
       "Document": contract
     };

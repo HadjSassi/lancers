@@ -9,6 +9,9 @@ import {Profile} from "../../../../model/Profile";
 import {Sexe} from "../../../../model/Sexe";
 import {AlertController} from "@ionic/angular";
 import {Storage} from "@ionic/storage-angular";
+import {ContractService} from "../../../../services/Contract/contract.service";
+import {Contracts} from "../../../../model/Contracts";
+import {Etat} from "../../../../model/Etat";
 
 @Component({
   selector: 'app-consult-service',
@@ -18,6 +21,7 @@ import {Storage} from "@ionic/storage-angular";
 export class ConsultServicePage implements OnInit {
 
   isOwner: boolean = false;
+  userMail : string = "";
 
   currentService: Services = new Services(
     0,
@@ -57,14 +61,25 @@ export class ConsultServicePage implements OnInit {
     ""
   );
 
+  contrat: Contracts = new Contracts(
+    0,
+    "",
+    0,
+    new Date(),
+    new Date(),
+    0,
+    Etat.Attente
+  );
+
   constructor(private service: ServicesService, private router: Router, private route: ActivatedRoute,
               private lancerService: LancerService, private profileService: ProfileService,
-              private alertController: AlertController, private storage: Storage) {
+              private alertController: AlertController, private storage: Storage,
+              private contractService: ContractService) {
   }
 
   async ngOnInit() {
     await this.storage.create();
-    const storedEmail = await this.storage.get('mail');
+    this.userMail = await this.storage.get('mail');
     this.route.params.subscribe(params => {
       this.currentService.idService = params['id'];
       this.service.get_services_by_id_(this.currentService.idService).subscribe(
@@ -75,11 +90,8 @@ export class ConsultServicePage implements OnInit {
               this.lancer = res;
               this.profileService.profile_get_by_email_(this.currentService.ownerEmail).subscribe(
                 (re) => {
-                  console.log(storedEmail);
-                  console.log(result.ownerEmail);
-                  console.log(storedEmail === result.ownerEmail);
                   this.profile = re;
-                  this.isOwner = storedEmail==re.email;
+                  this.isOwner = this.userMail==re.email;
                 }
               )
             }
@@ -129,6 +141,42 @@ export class ConsultServicePage implements OnInit {
   }
 
   async requestService() {
+    function parseDuration(durre:string) {
+      const parts = durre.split(' ');
+      const value = parseInt(parts[0]); // Extract numeric value
+      const unit = parts[1].toLowerCase(); // Extract duration unit and convert to lowercase
+      let multiplier = 1; // Default multiplier for milliseconds (1 millisecond)
+
+      switch(unit) {
+        case 'year':
+        case 'years':
+          multiplier = 1000 * 60 * 60 * 24 * 365;
+          break;
+        case 'month':
+        case 'months':
+          multiplier = 1000 * 60 * 60 * 24 * 30; // Assuming a month has 30 days
+          break;
+        case 'week':
+        case 'weeks':
+          multiplier = 1000 * 60 * 60 * 24 * 7;
+          break;
+        case 'day':
+        case 'days':
+          multiplier = 1000 * 60 * 60 * 24;
+          break;
+        case 'hour':
+        case 'hours':
+          multiplier = 1000 * 60 * 60;
+          break;
+        case 'minute':
+        case 'minutes':
+          multiplier = 1000 * 60;
+          break;
+      }
+
+      return value * multiplier; // Calculate total milliseconds
+    }
+
     const alert = await this.alertController.create({
       header: 'Confirm Request',
       message: 'Are you sure you want to request this service?',
@@ -142,7 +190,16 @@ export class ConsultServicePage implements OnInit {
           handler: () => {
 
             console.log("service requested");
-            //todo to add a new contract and navigate to that contract
+            this.contrat.dateDebut = new Date();
+            this.contrat.dateLivraison = new Date(new Date().getTime()+parseDuration(this.currentService.durre));
+            this.contrat.idService = this.currentService.idService;
+            this.contrat.email = this.userMail;
+            this.contrat.prix = this.currentService.prix;
+            this.contractService.contract_write_(this.contrat).subscribe(
+              (result: { Status: string,Document_ID:string })=>{
+                  console.log(result.Document_ID, result);
+              }
+            );
           }
         }
       ]

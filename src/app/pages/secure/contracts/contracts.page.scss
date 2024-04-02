@@ -5,9 +5,9 @@
 
 
 
-  
 
-  
+
+
  ion-content{
     --background: linear-gradient(0deg, var(--ion-color-dark), var(--ion-color-primary));
 
@@ -15,4 +15,13 @@
 
 
 
+}
+
+hr {
+  height: 0.5% !important;
+  width: 50% !important;
+  background: var(--ion-item-background) !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }

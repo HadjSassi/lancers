@@ -25,7 +25,7 @@ export class ProjectService {
     return this.http.get<Project[]>(`${this.apiUrl}/project/email?email=${email}`);
   }
 
-  public project_write_(project: Project): Observable<Project> {
+  public project_write_(project: Project): Observable<any> {
     const body: Object = {
       "Document": project
     };

@@ -20,7 +20,7 @@ export class LancerService {
     return this.http.get<Lancer>(`${this.apiUrl}/lancer/email?email=${email}`);
   }
 
-  public lancer_write_(lancer: Lancer): Observable<Lancer> {
+  public lancer_write_(lancer: Lancer): Observable<any> {
     const body: Object = {
       "Document": lancer
     };

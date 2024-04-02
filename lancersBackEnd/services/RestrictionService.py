@@ -7,6 +7,11 @@ class RestrictionService:
         self.client = MongoClient(URL)
         self.database = self.client['Lancers']
         self.collection = self.database['Restricition']
+        self.id_collection = self.database['Indexes']
+
+    def get_next_id(self):
+      doc = self.id_collection.find_one_and_update({}, {'$inc': {'restriction_id': 1}}, upsert=True, return_document=True)
+      return doc['restriction_id']
 
     def read_all(self):
         documents = self.collection.find()
@@ -33,6 +38,7 @@ class RestrictionService:
         return output
 
     def write(self, new_document):
+        new_document['idRestriction'] = self.get_next_id()
         response = self.collection.insert_one(new_document)
         output = {'Status': 'Successfully Inserted', 'Document_ID': str(response.inserted_id)}
         return output

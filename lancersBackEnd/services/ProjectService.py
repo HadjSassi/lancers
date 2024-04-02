@@ -7,6 +7,11 @@ class ProjectService:
         self.client = MongoClient(URL)
         self.database = self.client['Lancers']
         self.collection = self.database['Project']
+        self.id_collection = self.database['Indexes']
+
+    def get_next_id(self):
+      doc = self.id_collection.find_one_and_update({}, {'$inc': {'project_id': 1}}, upsert=True, return_document=True)
+      return doc['project_id']
 
     def read_all(self):
         documents = self.collection.find()
@@ -29,6 +34,7 @@ class ProjectService:
         return output
 
     def write(self, new_document):
+        new_document['idProject'] = self.get_next_id()
         response = self.collection.insert_one(new_document)
         output = {'Status': 'Successfully Inserted', 'Document_ID': str(response.inserted_id)}
         return output
