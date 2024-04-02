@@ -49,7 +49,7 @@ class ServicesService:
     def write(self, new_document):
         new_document['idService'] = self.get_next_id()
         response = self.collection.insert_one(new_document)
-        output = {'Status': 'Successfully Inserted', 'Document_ID': str(response.inserted_id)}
+        output = {'Status': 'Successfully Inserted', 'Document_ID': str(new_document['idService'])}
         return output
 
     def update(self, filt, updated_data):
