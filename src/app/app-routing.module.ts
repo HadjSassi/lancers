@@ -6,7 +6,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'welcome', // TODO: Set this to ''
+    redirectTo: 'home', // TODO: Set this to ''
     pathMatch: 'full'
   },
   {
@@ -45,14 +45,15 @@ const routes: Routes = [
   {
     path: 'filterserv',
     loadChildren: () => import('./pages/searchservice/filterserv/filterserv.module').then( m => m.FilterservPageModule)
-  },  {
+  },
+  {
     path: 'searchlancer',
     loadChildren: () => import('./searchlancer/searchlancer.module').then( m => m.SearchlancerPageModule)
   },
 
 
 
-  
+
 ];
 @NgModule({
   imports: [

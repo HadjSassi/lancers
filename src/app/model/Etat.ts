@@ -1,8 +1,8 @@
 export enum Etat {
-  Attente,
-  EnCours,
-  Fini,
-  Retard,
-  Rejected,
-  Approved
+  Attente = "Attente",
+  EnCours = "En Cours",
+  Fini = "Fini",
+  Retard = "Retard",
+  Rejected = "Rejected",
+  Approved = "Approved"
 }

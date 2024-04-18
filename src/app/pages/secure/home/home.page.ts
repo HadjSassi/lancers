@@ -14,7 +14,7 @@ export class HomePage implements OnInit {
   constructor(
     private storage: Storage ,private authService: AuthService
   ) {
-    this.isUserLoggedIn = this.authService.isLoggedIn(); // Votre logique de vérification de la connexion ici
+    this.isUserLoggedIn = this.authService.isLoggedIn();
 
   }
 
@@ -22,7 +22,7 @@ export class HomePage implements OnInit {
 
     await this.storage.create();
     const storedEmail = await this.storage.get('mail');
-
+    this.isUserLoggedIn = storedEmail != null;
   }
 
 }

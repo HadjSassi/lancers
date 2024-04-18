@@ -37,8 +37,14 @@ export class SignupPage implements OnInit {
   ) {
   }
 
-  ngOnInit() {
-    // Setup form
+  async ngOnInit() {
+
+    await this.storage.create();
+    const storedEmail = await this.storage.get('mail');
+    if(storedEmail != null){
+      this.router.navigate(['/home']);
+    }
+
     this.signup_form = this.formBuilder.group({
       email: ['', Validators.compose([Validators.email, Validators.required])],
       password: ['', Validators.compose([Validators.minLength(4), Validators.required])],

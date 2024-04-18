@@ -115,6 +115,10 @@ def contract_read_all_():
 def get_contract_by_id_():
     return  get_contract_by_id()
 
+@app.route('/contract/requestee', methods=['GET'])
+def get_contracts_by_requestee_email_():
+    return get_contracts_by_requestee_email()
+
 @app.route('/contract/email', methods=['GET'])
 def get_contract_by_email_():
     return  get_contract_by_email()
@@ -126,6 +130,11 @@ def get_contract_by_email_and_date_():
 @app.route('/contract/email/etat', methods=['GET'])
 def get_contract_by_email_and_etat_():
     return  get_contract_by_email_and_etat()
+
+
+@app.route('/contract/service/id', methods=['GET'])
+def get_service_by_contract_id():
+  return get_service_By_contract_Id()
 
 @app.route('/contract/service', methods=['GET'])
 def get_contract_by_service_():

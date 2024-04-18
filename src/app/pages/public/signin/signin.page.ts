@@ -31,9 +31,14 @@ export class SigninPage implements OnInit {
     private storage: Storage
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
 
-    // Setup form
+    await this.storage.create();
+    const storedEmail = await this.storage.get('mail');
+    if(storedEmail != null){
+      this.router.navigate(['/home']);
+    }
+
     this.signin_form = this.formBuilder.group({
       email: ['', Validators.compose([Validators.email, Validators.required])],
       password: ['', Validators.compose([Validators.minLength(4), Validators.required])]

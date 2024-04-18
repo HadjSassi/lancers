@@ -1,11 +1,38 @@
 from flask import request, json, Response
 from services.ContractService import ContractService
+from services.ServicesService import ServicesService
 
 contract_service = ContractService()
+services_service = ServicesService()
 
 def contract_readall():
     response = contract_service.read_all()
     return Response(response=json.dumps(response), status=200, mimetype='application/json')
+
+def get_contracts_by_requestee_email():
+    requestee_email = request.args.get('email')
+    if requestee_email is None:
+        return Response(response=json.dumps({"Error": "Please provide a requestee email"}), status=400, mimetype='application/json')
+
+    # Find services owned by the requestee email
+    services_owned_by_requestee = services_service.get_services_by_owner_email(requestee_email)
+    if not services_owned_by_requestee:
+        return Response(response=json.dumps({"Error": "No services found for the requestee"}), status=400, mimetype='application/json')
+
+    # Get all contracts associated with the services
+    contracts = []
+    for service in services_owned_by_requestee:
+      service_id = service.get('idService')
+      service_contracts = contract_service.get_contracts_by_service_id(service_id)
+      for contract in service_contracts:
+        # Add service information to the contract
+        contract['service'] = service
+      contracts.extend(service_contracts)
+
+    if not contracts:
+        return Response(response=json.dumps({"Message": "No contracts found for the requestee"}), status=400, mimetype='application/json')
+
+    return Response(response=json.dumps(contracts), status=200, mimetype='application/json')
 
 def get_contract_by_email():
     email = request.args.get('email')
@@ -28,6 +55,24 @@ def get_contract_by_email_and_etat():
         return Response(response=json.dumps({"Error": "Please provide an email address and a state"}), status=400, mimetype='application/json')
     response = contract_service.get_contracts_by_demandeur_email_and_etat(email, etat)
     return Response(response=json.dumps(response), status=200, mimetype='application/json')
+
+def get_service_By_contract_Id():
+    contract_id = request.args.get('id')
+    contract = contract_service.get_contracts_by_demandeur_id(contract_id)
+    if not contract:
+      return Response(response=json.dumps({"Error": "Contract not found."}), status=404, mimetype='application/json')
+
+    service_id = contract.get('idService')
+    if not service_id:
+      return Response(response=json.dumps({"Error": "Service ID not found in the contract."}), status=400,
+                      mimetype='application/json')
+
+    # Assuming you have a method in your Service class to get service by ID
+    service = services_service.get_service_by_id(service_id)
+    if not service:
+      return Response(response=json.dumps({"Error": "Service not found."}), status=404, mimetype='application/json')
+
+    return Response(response=json.dumps(service), status=200, mimetype='application/json')
 
 def get_contract_by_email_and_date():
     email = request.args.get('email')

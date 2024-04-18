@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {Contracts} from "../../model/Contracts";
+import {Services} from "../../model/Services";
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,16 @@ export class ContractService {
     return this.http.get<Contracts[]>(`${this.apiUrl}/contract`);
   }
 
+  public get_service_by_contract_id(contractId:string):Observable<Services>{
+    return this.http.get<Services>(`${this.apiUrl}/contract/service/id?id=${contractId}`);
+  }
+
   public get_contract_by_id_(contractId: string): Observable<Contracts> {
     return this.http.get<Contracts>(`${this.apiUrl}/contract/id?id=${contractId}`);
+  }
+
+  public get_contract_by_requestee_email_(email: string): Observable<Contracts[]> {
+    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/requestee?email=${email}`);
   }
 
   public get_contract_by_email_(email: string): Observable<Contracts[]> {
@@ -63,13 +72,13 @@ export class ContractService {
     return this.http.post<Contracts>(`${this.apiUrl}/contract`, body);
   }
 
-  public contract_update_(id:number, contract: Contracts): Observable<Contracts> {
+  public contract_update_(id:number, contract: Contracts): Observable<any> {
     const body: Object = {
       "Filter": {"id":id},
       "DataToBeUpdated": contract
     };
     console.log(body);
-    return this.http.put<Contracts>(`${this.apiUrl}/contract`,  body);
+    return this.http.put<any>(`${this.apiUrl}/contract`,  body);
   }
 
   public contract_delete_(id: number): Observable<void> {

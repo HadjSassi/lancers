@@ -1,4 +1,5 @@
 import { Etat } from "./Etat";
+import { Services } from "./Services";
 
 export class Contracts {
 
@@ -9,9 +10,10 @@ export class Contracts {
   public dateLivraison!: Date;
   public prix!: number;
   public etat!: Etat;
+  public service: Services;
 
 
-  constructor(id: number, email: string, idService: number, dateDebut: Date, dateLivraison: Date, prix: number, etat: Etat) {
+  constructor(id: number, email: string, idService: number, dateDebut: Date, dateLivraison: Date, prix: number, etat: Etat, service: Services) {
     this.id = id;
     this.email = email;
     this.idService = idService;
@@ -19,6 +21,7 @@ export class Contracts {
     this.dateLivraison = dateLivraison;
     this.prix = prix;
     this.etat = etat;
+    this.service = service;
   }
 
 }

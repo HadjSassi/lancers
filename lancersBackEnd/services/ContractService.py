@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 from mongo_setup import URL
+from .ServicesService import ServicesService
 
 
 class ContractService:
@@ -8,21 +9,34 @@ class ContractService:
         self.database = self.client['Lancers']
         self.collection = self.database['Contract']
         self.id_collection = self.database['Indexes']
+        self.services_service = ServicesService()
 
     def get_next_id(self):
       doc = self.id_collection.find_one_and_update({}, {'$inc': {'contract_id': 1}}, upsert=True, return_document=True)
       return doc['contract_id']
 
     def read_all(self):
-        documents = self.collection.find()
-        output = [{item: data[item] for item in data if item != '_id'} for data in documents]
-        return output
+      documents = self.collection.find()
+      output = []
+      for data in documents:
+        contract_info = {item: data[item] for item in data if item != '_id'}
+        service_id = data.get('idService')
+        if service_id:
+          service_info = self.services_service.get_service_by_id(service_id)
+          contract_info['service'] = service_info  # Add service information to the contract
+        output.append(contract_info)
+      return output
 
     # Get contracts by id
     def get_contracts_by_demandeur_id(self, id):
+        id = int(id)
         document = self.collection.find_one({"id": id})
         if document:
             output = {item: document[item] for item in document if item != '_id'}
+            service_id = document.get('idService')
+            if service_id:
+              service_info = self.services_service.get_service_by_id(service_id)
+              output['service'] = service_info  # Add service information to the output
             return output
         else:
             return {'Status': 'Contract not found.'}
@@ -30,7 +44,14 @@ class ContractService:
     # Get contracts by email of demandeur
     def get_contracts_by_demandeur_email(self, email):
         documents = self.collection.find({"email": email})
-        output = [{item: data[item] for item in data if item != '_id'} for data in documents]
+        output = []
+        for data in documents:
+          contract_info = {item: data[item] for item in data if item != '_id'}
+          service_id = data.get('idService')
+          if service_id:
+            service_info = self.services_service.get_service_by_id(service_id)
+            contract_info['service'] = service_info  # Add service information to the contract
+          output.append(contract_info)
         return output
 
     # Get contracts by email of demandeur and etat
