@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Storage} from "@ionic/storage-angular";
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,12 @@ import {Storage} from "@ionic/storage-angular";
 export class HomePage implements OnInit {
 
   content_loaded: boolean = false;
-
+  isUserLoggedIn: boolean;
   constructor(
-    private storage: Storage
+    private storage: Storage ,private authService: AuthService
   ) {
+    this.isUserLoggedIn = this.authService.isLoggedIn(); // Votre logique de vérification de la connexion ici
+
   }
 
   async ngOnInit() {

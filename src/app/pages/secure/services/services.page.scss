@@ -30,18 +30,23 @@
 
    }
 
-  ion-row{
-    background-color: #1a1a1a;
-  }
-}
+  // ion-row{
+  //   //background-color: #ffff;
+  // }
+
 
 .filter-col {
   display: flex;
   align-items: center; /* Align items vertically */
+ // background-color: var(--ion-color-primary);
+ // --background: linear-gradient(0deg, var(--ion-color-dark), var(--ion-color-primary));
+
 }
 
 .filter-label {
+ // background-color: var(--ion-color-primary);
+ --background: linear-gradient(0deg, var(--ion-color-dark), var(--ion-color-primary));
   margin-right: 5px; /* Adjust the spacing between the label and the select options */
 }
 
-
+}

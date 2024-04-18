@@ -6,11 +6,13 @@ import { Router } from '@angular/router';
 })
 
 export class AuthService {
-
+  private isLoggedInFlag: boolean = false;
   constructor(
     private router: Router
   ) { }
-
+  isLoggedIn(): boolean {
+    return this.isLoggedInFlag;
+  }
   // Get user session
   async getSession() {
 
@@ -36,6 +38,7 @@ export class AuthService {
     }
 
     return sample_user;
+    this.isLoggedInFlag = true;
   }
 
   // Sign up
@@ -57,6 +60,7 @@ export class AuthService {
 
     // Navigate to sign-in
     this.router.navigateByUrl('/signin');
+    this.isLoggedInFlag = false;
   }
 //   async getSession() {
 //     // Utilisez une requête HTTP pour obtenir la session de l'utilisateur depuis Flask
