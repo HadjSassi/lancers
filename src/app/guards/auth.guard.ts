@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { CanActivate, Router } from '@angular/router'
 import { AuthService } from '../services/auth/auth.service';
+import {Storage} from "@ionic/storage-angular";
 
 @Injectable({
   providedIn: 'root',
@@ -8,16 +9,20 @@ import { AuthService } from '../services/auth/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(
     private readonly router: Router,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private storage: Storage
   ) { }
 
   async canActivate(): Promise<boolean> {
 
-    const is_signed_in = !!(await this.authService.getSession());
+    await this.storage.create();
+    const storedEmail = await this.storage.get('mail');
 
-    // If not signed in, redirect to welcome page
+    const is_signed_in = storedEmail != null;
+
+
     if (!is_signed_in) {
-      this.router.navigate(['/welcome']);
+      this.router.navigate(['/home']);
     }
 
     return is_signed_in;

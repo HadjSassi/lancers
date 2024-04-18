@@ -3,6 +3,7 @@ import {Contracts} from "../../../model/Contracts";
 import {LancerService} from "../../../services/Lancer/lancer.service";
 import {Storage} from "@ionic/storage-angular";
 import {ContractService} from "../../../services/Contract/contract.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-contracts',
@@ -19,7 +20,7 @@ export class ContractsPage implements OnInit {
   userMail: string = "";
 
   constructor(private service: LancerService, private storage: Storage,
-              private contractService: ContractService) { }
+              private contractService: ContractService,private router: Router) { }
 
   async ngOnInit() {
     await this.storage.create();
@@ -38,4 +39,7 @@ export class ContractsPage implements OnInit {
   }
 
 
+  consultContract(contract:Contracts) {
+    this.router.navigate([`contracts/consultation-contract/${contract.id}`],);
+  }
 }
