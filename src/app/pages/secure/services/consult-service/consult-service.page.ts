@@ -69,7 +69,8 @@ export class ConsultServicePage implements OnInit {
     new Date(),
     0,
     Etat.Attente,
-    this.currentService
+    this.currentService,
+    ""
   );
 
   constructor(private service: ServicesService, private router: Router, private route: ActivatedRoute,

@@ -10,10 +10,11 @@ export class Contracts {
   public dateLivraison!: Date;
   public prix!: number;
   public etat!: Etat;
+  public link!: string;
   public service: Services;
 
 
-  constructor(id: number, email: string, idService: number, dateDebut: Date, dateLivraison: Date, prix: number, etat: Etat, service: Services) {
+  constructor(id: number, email: string, idService: number, dateDebut: Date, dateLivraison: Date, prix: number, etat: Etat, service: Services, link:string) {
     this.id = id;
     this.email = email;
     this.idService = idService;
@@ -22,6 +23,7 @@ export class Contracts {
     this.prix = prix;
     this.etat = etat;
     this.service = service;
+    this.link = link;
   }
 
 }

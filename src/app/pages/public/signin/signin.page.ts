@@ -33,17 +33,20 @@ export class SigninPage implements OnInit {
 
   async ngOnInit() {
 
-    await this.storage.create();
-    const storedEmail = await this.storage.get('mail');
-    if(storedEmail != null){
-      this.router.navigate(['/home']);
-    }
+    // await this.storage.create();
+
 
     this.signin_form = this.formBuilder.group({
       email: ['', Validators.compose([Validators.email, Validators.required])],
       password: ['', Validators.compose([Validators.minLength(4), Validators.required])]
     });
     this.storage.create();
+    const storedEmail = await this.storage.get('mail');
+    if(storedEmail != null) {
+      this.router.navigate(['/home']);
+    }
+
+
   }
 
   // Sign in
@@ -64,32 +67,6 @@ export class SigninPage implements OnInit {
         spinner: 'crescent'
       });
       await loading.present();
-
-      // this.profileService.profile_write_(profile).subscribe(
-      //   (result: { Status: string }) => {
-      //     if (result.Status === 'Profile with this email already exists.') {
-      //       // Handle case where profile with this email already exists
-      //       this.toastService.presentToast('Error', 'A profile with this email already exists', 'top', 'danger', 4000);
-      //       loading.dismiss();
-      //     } else if (result.Status === 'Successfully Inserted.') {
-      //       this.lancerService.lancer_write_(lancer).subscribe(
-      //         (res) => {
-      //           // Handle case where profile is successfully created
-      //           this.toastService.presentToast('Success', 'YAAAY!!!, New Lancer Joined Us!', 'top', 'success', 2000);
-      //           this.router.navigate(['/home']);
-      //           loading.dismiss();
-      //         }
-      //       );
-      //
-      //     } else {
-      //       this.toastService.presentToast('Error', 'We\'re Sorry, there is an error happend!', 'top', 'danger', 4000);
-      //       loading.dismiss();
-      //     }
-      //
-      //   }, (error) => {
-      //     console.log(error);
-      //   }
-      // );
 
       this.profileService.profile_get_by_email_(this.signin_form.value.email).subscribe(
         (result) => {
@@ -116,15 +93,6 @@ export class SigninPage implements OnInit {
           loading.dismiss();
         }
       );
-
-
-      // // Fake timeout
-      // setTimeout(async () => {
-      //   // Sign in success
-      //   await this.router.navigate(['/home']);
-      //   loading.dismiss();
-      // }, 2000);
-      // loading.dismiss();
 
     }
   }

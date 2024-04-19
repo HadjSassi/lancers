@@ -21,7 +21,7 @@ export class ContractService {
     return this.http.get<Services>(`${this.apiUrl}/contract/service/id?id=${contractId}`);
   }
 
-  public get_contract_by_id_(contractId: string): Observable<Contracts> {
+  public get_contract_by_id_(contractId: number): Observable<Contracts> {
     return this.http.get<Contracts>(`${this.apiUrl}/contract/id?id=${contractId}`);
   }
 
@@ -66,16 +66,18 @@ export class ContractService {
   }
 
   public contract_write_(contract: Contracts): Observable<any> {
+    const { service, ...contractWithoutService } = contract;
     const body: Object = {
-      "Document": contract
+      "Document": contractWithoutService
     };
     return this.http.post<Contracts>(`${this.apiUrl}/contract`, body);
   }
 
   public contract_update_(id:number, contract: Contracts): Observable<any> {
+    const { service, ...contractWithoutService } = contract;
     const body: Object = {
       "Filter": {"id":id},
-      "DataToBeUpdated": contract
+      "DataToBeUpdated": contractWithoutService
     };
     console.log(body);
     return this.http.put<any>(`${this.apiUrl}/contract`,  body);
