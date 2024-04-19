@@ -11,7 +11,15 @@ const routes: Routes = [
   {
     path: 'consultation-contract/:id',
     loadChildren: () => import('./consultation-contract/consultation-contract.module').then( m => m.ConsultationContractPageModule)
+  },  {
+    path: 'lancer-contracts',
+    loadChildren: () => import('./lancer-contracts/lancer-contracts.module').then( m => m.LancerContractsPageModule)
+  },
+  {
+    path: 'buyer-contracts',
+    loadChildren: () => import('./buyer-contracts/buyer-contracts.module').then( m => m.BuyerContractsPageModule)
   }
+
 
 ];
 

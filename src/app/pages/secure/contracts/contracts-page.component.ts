@@ -25,13 +25,13 @@ export class ContractsPage implements OnInit {
   async ngOnInit() {
     await this.storage.create();
     this.userMail = await this.storage.get('mail');
-    console.log(this.userMail);
-    this.contractService.get_contract_by_email_(this.userMail).subscribe(
+    const currentDate = new Date();
+    this.contractService.get_contract_by_email_(this.userMail,currentDate.getFullYear(),currentDate.getMonth() + 1).subscribe(
       (result) =>{
         this.buyerContracts = result;
       }
     );
-    this.contractService.get_contract_by_requestee_email_(this.userMail).subscribe(
+    this.contractService.get_contract_by_requestee_email_(this.userMail,currentDate.getFullYear(),currentDate.getMonth() + 1).subscribe(
       (result) =>{
         this.lancerContracts = result;
       }
@@ -41,5 +41,13 @@ export class ContractsPage implements OnInit {
 
   consultContract(contract:Contracts) {
     this.router.navigate([`contracts/consultation-contract/${contract.id}`],);
+  }
+
+  sellAllLancerContracts() {
+    this.router.navigate([`contracts/lancer-contracts/`],);
+  }
+
+  sellAllBuyerContracts() {
+    this.router.navigate([`contracts/buyer-contracts/`],);
   }
 }

@@ -25,12 +25,12 @@ export class ContractService {
     return this.http.get<Contracts>(`${this.apiUrl}/contract/id?id=${contractId}`);
   }
 
-  public get_contract_by_requestee_email_(email: string): Observable<Contracts[]> {
-    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/requestee?email=${email}`);
+  public get_contract_by_requestee_email_(email: string,year:number,month:number): Observable<Contracts[]> {
+    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/requestee?email=${email}&year=${year}&month=${month}`);
   }
 
-  public get_contract_by_email_(email: string): Observable<Contracts[]> {
-    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/email?email=${email}`);
+  public get_contract_by_email_(email: string,year:number,month:number): Observable<Contracts[]> {
+    return this.http.get<Contracts[]>(`${this.apiUrl}/contract/email?email=${email}&year=${year}&month=${month}`);
   }
 
   public get_contract_by_email_and_date_(email: string, date: string): Observable<Contracts[]> {

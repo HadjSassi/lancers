@@ -1,0 +1,38 @@
+<ion-header collapse="fade" [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button color="secondary" text="Back" defaultHref="/home">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">
+      Become a Freelance Seller
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button color="secondary" routerLink="/settings">
+        <ion-icon slot="icon-only" name="cog"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding" *ngIf="lancerContracts.length !== 0">
+    <hr class="hr-medium">
+    <ion-card color="primary" (click)="consultContract(contract)" *ngFor="let contract of lancerContracts">
+      <ion-card-header>
+        <ion-card-title>{{contract.service.name}} ({{contract.etat}})</ion-card-title>
+        <ion-card-subtitle>Contract Crée le : {{contract.dateDebut|date}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        Prix : {{contract.prix}} TND
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

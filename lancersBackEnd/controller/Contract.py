@@ -1,6 +1,8 @@
 from flask import request, json, Response
 from services.ContractService import ContractService
 from services.ServicesService import ServicesService
+import datetime
+
 
 contract_service = ContractService()
 services_service = ServicesService()
@@ -9,36 +11,62 @@ def contract_readall():
     response = contract_service.read_all()
     return Response(response=json.dumps(response), status=200, mimetype='application/json')
 
+
 def get_contracts_by_requestee_email():
-    requestee_email = request.args.get('email')
-    if requestee_email is None:
-        return Response(response=json.dumps({"Error": "Please provide a requestee email"}), status=400, mimetype='application/json')
+  requestee_email = request.args.get('email')
+  current_year = int(request.args.get('year'))
+  current_month = int(request.args.get('month'))
 
-    # Find services owned by the requestee email
-    services_owned_by_requestee = services_service.get_services_by_owner_email(requestee_email)
-    if not services_owned_by_requestee:
-        return Response(response=json.dumps({"Error": "No services found for the requestee"}), status=400, mimetype='application/json')
+  if requestee_email is None:
+    return Response(response=json.dumps({"Error": "Please provide a requestee email"}), status=400,
+                    mimetype='application/json')
 
-    # Get all contracts associated with the services
-    contracts = []
-    for service in services_owned_by_requestee:
-      service_id = service.get('idService')
-      service_contracts = contract_service.get_contracts_by_service_id(service_id)
-      for contract in service_contracts:
-        # Add service information to the contract
-        contract['service'] = service
-      contracts.extend(service_contracts)
+  # Find services owned by the requestee email
+  services_owned_by_requestee = services_service.get_services_by_owner_email(requestee_email)
 
-    if not contracts:
-        return Response(response=json.dumps({"Message": "No contracts found for the requestee"}), status=400, mimetype='application/json')
+  if not services_owned_by_requestee:
+    return Response(response=json.dumps({"Error": "No services found for the requestee"}), status=400,
+                    mimetype='application/json')
 
-    return Response(response=json.dumps(contracts), status=200, mimetype='application/json')
+  # Get all contracts associated with the services
+  contracts = []
+
+  for service in services_owned_by_requestee:
+    service_id = service.get('idService')
+    service_contracts = contract_service.get_contracts_by_service_id(service_id)
+
+    for contract in service_contracts:
+      # Add service information to the contract
+      dateDebut = datetime.datetime.strptime(contract['dateDebut'], '%Y-%m-%dT%H:%M:%S.%fZ')
+      dateLivraison = datetime.datetime.strptime(contract['dateLivraison'], '%Y-%m-%dT%H:%M:%S.%fZ')
+
+      if current_month != 0:  # Fetch contracts for a specific month of the year
+        if dateDebut.month == current_month and dateDebut.year == current_year:
+          contract['service'] = service
+          contracts.append(contract)
+        elif dateLivraison.month == current_month and dateLivraison.year == current_year:
+          contract['service'] = service
+          contracts.append(contract)
+      else:  # Fetch all contracts for the specified year
+        if dateDebut.year == current_year:
+          contract['service'] = service
+          contracts.append(contract)
+        elif dateLivraison.year == current_year:
+          contract['service'] = service
+          contracts.append(contract)
+
+
+  return Response(response=json.dumps(contracts), status=200, mimetype='application/json')
+
 
 def get_contract_by_email():
     email = request.args.get('email')
+    year_ = int(request.args.get('year'))
+    month_ = int(request.args.get('month'))
     if email is None:
         return Response(response=json.dumps({"Error": "Please provide an email address"}), status=400, mimetype='application/json')
-    response = contract_service.get_contracts_by_demandeur_email(email)
+
+    response = contract_service.get_contracts_by_demandeur_email(email, year_, month_)
     return Response(response=json.dumps(response), status=200, mimetype='application/json')
 
 def get_contract_by_id():

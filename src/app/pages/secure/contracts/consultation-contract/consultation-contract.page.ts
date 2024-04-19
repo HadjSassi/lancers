@@ -47,43 +47,6 @@ export class ConsultationContractPage implements OnInit {
   userMail : string = "";
 
 
-
-  // lancer: Lancer = new Lancer(
-  //   "",
-  //   0,
-  //   [],
-  //   ""
-  // );
-
-  // profile: Profile = new Profile(
-  //   false,
-  //   "",
-  //   "",
-  //   "",
-  //   "",
-  //   0,
-  //   "",
-  //   "",
-  //   new Date(),
-  //   Sexe.Other,
-  //   "",
-  //   "",
-  //   "",
-  //   [],
-  //   ""
-  // );
-
-  // contrat: Contracts = new Contracts(
-  //   0,
-  //   "",
-  //   0,
-  //   new Date(),
-  //   new Date(),
-  //   0,
-  //   Etat.Attente,
-  //   this.currentService
-  // );
-
   constructor(private serviceService: ServicesService, private router: Router, private route: ActivatedRoute,
               private lancerService: LancerService, private profileService: ProfileService,
               private alertController: AlertController, private storage: Storage,

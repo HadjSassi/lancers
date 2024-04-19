@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from mongo_setup import URL
 from .ServicesService import ServicesService
-
+import datetime
 
 class ContractService:
     def __init__(self):
@@ -42,8 +42,18 @@ class ContractService:
             return {'Status': 'Contract not found.'}
 
     # Get contracts by email of demandeur
-    def get_contracts_by_demandeur_email(self, email):
-        documents = self.collection.find({"email": email})
+    def get_contracts_by_demandeur_email(self, email, current_year,current_month = 0):
+        query = {"email": email}
+        # If a specific month is provided, add conditions for month and year
+        if current_month != 0:
+          start_date = datetime.datetime(current_year, current_month, 1).strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+          end_date = datetime.datetime(current_year, current_month + 1, 1).strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+          query["dateDebut"] = {"$gte": start_date, "$lt": end_date}
+        else:
+          start_date = datetime.datetime(current_year, 1, 1).strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+          end_date = datetime.datetime(current_year + 1, 1, 1).strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+          query["dateDebut"] = {"$gte": start_date, "$lt": end_date}
+        documents = self.collection.find(query)
         output = []
         for data in documents:
           contract_info = {item: data[item] for item in data if item != '_id'}

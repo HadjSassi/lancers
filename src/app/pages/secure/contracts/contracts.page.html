@@ -18,7 +18,7 @@
       <h2>
         <ion-list-header>
           <ion-label color="tertiary"> <h1>Lancer Contracts this month</h1></ion-label>
-          <ion-button color="medium" >See All <ion-icon slot="end" name="arrow-forward"></ion-icon>
+          <ion-button color="medium" (click)="sellAllLancerContracts()" >See All <ion-icon slot="end" name="arrow-forward"></ion-icon>
           </ion-button>
         </ion-list-header>
       </h2>
@@ -37,7 +37,7 @@
   </div>
   <div class="ion-padding" *ngIf="lancerContracts.length === 0">
     <div style="display: flex; justify-content: center;">
-      <ion-button>See all the Lancer Contracts</ion-button>
+      <ion-button (click)="sellAllLancerContracts()">See all the Lancer Contracts</ion-button>
     </div>
   </div>
 
@@ -48,7 +48,7 @@
       <h2>
         <ion-list-header>
           <ion-label color="tertiary"> <h1>Buyer Contracts this month</h1></ion-label>
-          <ion-button color="medium" >See All <ion-icon slot="end" name="arrow-forward"></ion-icon>
+          <ion-button color="medium" (click)="sellAllBuyerContracts()" >See All <ion-icon slot="end" name="arrow-forward"></ion-icon>
           </ion-button>
         </ion-list-header>
       </h2>
@@ -67,7 +67,7 @@
   </div>
   <div class="ion-padding" *ngIf="buyerContracts.length === 0">
     <div style="display: flex; justify-content: center;">
-      <ion-button>See all the Buyer Contracts</ion-button>
+      <ion-button (click)="sellAllBuyerContracts()">See all the Buyer Contracts</ion-button>
     </div>
   </div>
 </ion-content>
