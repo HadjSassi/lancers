@@ -18,61 +18,121 @@
 <ion-content [fullscreen]="true">
   <ion-header>
     <ion-toolbar>
-      <ion-title>{{ currentService.name }}</ion-title>
+      <ion-title>{{ currentContract.service.name }}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div class="ion-padding">
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>Published on: {{ currentService.datePublication | date}}</ion-card-subtitle>
+        <ion-card-subtitle>Started on: {{ currentContract.dateDebut | date}}</ion-card-subtitle>
+        <ion-card-subtitle>Expected finish on: {{ currentContract.dateLivraison | date}}</ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
-        <ion-list lines="none">
+        <ion-list>
           <ion-item>
-            <ion-label>Scored:</ion-label>
-            <ion-label>{{ currentService.score }}</ion-label>
+            <ion-label>State:</ion-label>
+            <ion-label>{{ currentContract.etat }}</ion-label>
           </ion-item>
           <ion-item>
             <ion-label>Price:</ion-label>
-            <ion-label>{{ currentService.prix }} TND</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>Duration:</ion-label>
-            <ion-label>{{ currentService.durre }}</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>Description:</ion-label>
-            <ion-textarea auto-grow="true" readonly>{{ currentService.description }}</ion-textarea>
-          </ion-item>
-          <ion-item>
-            <ion-label>Service Owner:</ion-label>
-            <ion-label>{{ profile.prenom | uppercase }} {{ profile.nom | titlecase }} <br>(Score: {{ lancer.score }})</ion-label>
-            <ion-button *ngIf="isOwner" fill="clear" (click)="viewLancer()">View Your Account</ion-button>
-            <ion-button *ngIf="!isOwner" fill="clear" (click)="viewLancer()">View Lancer</ion-button>
+            <ion-label>{{ currentContract.prix }} TND</ion-label>
           </ion-item>
         </ion-list>
       </ion-card-content>
 
-      <ion-button *ngIf="!isOwner" (click)="requestService()" fill="clear">Request Service</ion-button>
-      <ion-button *ngIf="isOwner" (click)="editService()" fill="clear">Edit Service</ion-button>
-      <ion-button *ngIf="isOwner" (click)="deleteService()" style="color: red" fill="clear">Delete Service</ion-button>
+    </ion-card>
 
+    <ion-card *ngIf="isFreelancer">
+      <ion-card-header>
+        <ion-card-title>Your Space to manage!</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item [ngSwitch]="currentContract.etat">
+            <ion-label>Action :</ion-label>
+            <ion-label *ngSwitchCase="'Attente'">
+              <ion-button color="medium" (click)="EnCours()">Start Lancing
+                <ion-icon slot="end" name="arrow-forward"></ion-icon>
+              </ion-button>
+              <ion-button color="danger" (click)="Reject()">
+                <ion-icon slot="end" name="close-outline"></ion-icon>
+                Cancel Contract
+              </ion-button>
+            </ion-label>
+            <ion-label *ngSwitchCase="'En Cours'">
+              <ion-button color="medium" (click)="Fini()">Post Link
+                <ion-icon slot="end" name="arrow-forward"></ion-icon>
+              </ion-button>
+            </ion-label>
+            <ion-label *ngSwitchCase="'Fini'">
+              <ion-button disabled color="medium">Project is ended</ion-button>
+            </ion-label>
+            <ion-label *ngSwitchCase="'Retard'">
+              <ion-text color="danger">You're late by {{ calculateLateDays(currentContract.dateLivraison) }}</ion-text>
+              <ion-button color="danger" (click)="Fini()">Post Link
+                <ion-icon slot="end" name="arrow-forward"></ion-icon>
+              </ion-button>
+            </ion-label>
+            <ion-label *ngSwitchCase="'Rejected'">
+              <ion-button disabled color="danger">Project is rejected</ion-button>
+            </ion-label>
+            <ion-label *ngSwitchCase="'Approved'">
+              <ion-button disabled color="success">Project is approved</ion-button>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
     </ion-card>
 
     <ion-card *ngIf="isOwner">
+      <ion-card-header>
+        <ion-card-title>Your Space to decide!</ion-card-title>
+      </ion-card-header>
+
       <ion-card-content>
-        <ng-container *ngIf="currentService.approved; else notApproved">
-          <h1>Service Approved!</h1>
-        </ng-container>
-        <ng-template #notApproved>
-          <h1>Service not Approved!</h1>
-        </ng-template>
-        <ion-item>
-          <ion-label><h1>Hidden : </h1></ion-label>
-          <ion-toggle [(ngModel)]="currentService.hidden" [disabled]="true"></ion-toggle>
-        </ion-item>
+        <ion-list lines="none">
+          <ion-item [ngSwitch]="currentContract.etat">
+            <ion-label>Action :</ion-label>
+            <ion-label *ngSwitchCase="'Attente'">
+              <ion-button color="danger" (click)="Reject()">
+                <ion-icon slot="end" name="close-outline"></ion-icon>
+                Cancel Contract
+              </ion-button>
+            </ion-label>
+            <ion-label *ngSwitchCase="'En Cours'">
+              <ion-button color="medium" disabled>Waiting for the link
+                <ion-icon slot="end" name="arrow-forward"></ion-icon>
+              </ion-button>
+            </ion-label>
+            <ion-label *ngSwitchCase="'Fini'">
+              <ion-text><a href="{{this.currentContract.link}}">Link to Work</a></ion-text><br>
+              <ion-button color="success" (click)="Approve()">
+                <ion-icon slot="end" name="checkmark-outline"></ion-icon>
+                Approve Work
+              </ion-button>
+              <ion-button color="danger" (click)="Reject()">
+                <ion-icon slot="end" name="close-outline"></ion-icon>
+                Decline Work
+              </ion-button>
+            </ion-label>
+            <ion-label *ngSwitchCase="'Retard'">
+              <ion-text color="danger">work is late by {{ calculateLateDays(currentContract.dateLivraison) }}</ion-text>
+              <ion-button color="danger" (click)="Reject()">
+                <ion-icon slot="end" name="close-outline"></ion-icon>
+                Cancel Contract
+              </ion-button>
+            </ion-label>
+            <ion-label *ngSwitchCase="'Rejected'">
+              <ion-button disabled color="danger">Project is rejected</ion-button>
+            </ion-label>
+            <ion-label *ngSwitchCase="'Approved'">
+              <ion-button disabled color="success">Project is approved</ion-button>
+            </ion-label>
+          </ion-item>
+        </ion-list>
       </ion-card-content>
     </ion-card>
   </div>
