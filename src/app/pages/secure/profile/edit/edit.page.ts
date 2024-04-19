@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CameraResultType, CameraSource } from '@capacitor/camera';
+import { Plugins } from '@capacitor/core';
+import { Filesystem } from '@capacitor/filesystem';
 import { ActionSheetController, NavController } from '@ionic/angular';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
+
+const { Camera } = Plugins;
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.page.html',
@@ -16,12 +22,17 @@ export class EditPage implements OnInit {
   // @ts-ignore
   edit_profile_form: FormGroup;
   submit_attempt: boolean = false;
+  capturedImage: any;
+  defaultImage = '../../../../assets/card-media.png';
+  
 
   constructor(
     private formBuilder: FormBuilder,
     private toastService: ToastService,
     private navController: NavController,
-    private actionSheetController: ActionSheetController
+    private actionSheetController: ActionSheetController,
+    private sanitizer: DomSanitizer
+
   ) { }
 
   ngOnInit() {
@@ -42,7 +53,6 @@ export class EditPage implements OnInit {
 
   // Update profile picture
   async updateProfilePicture() {
-
     const actionSheet = await this.actionSheetController.create({
       header: 'Choose existing picture or take new',
       cssClass: 'custom-action-sheet',
@@ -50,25 +60,48 @@ export class EditPage implements OnInit {
         {
           text: 'Choose from gallery',
           icon: 'images',
-          handler: () => {
-            // Put in logic ...
+          handler: async () => {
+           
+              const image = await Camera['getPhoto']({
+                quality: 90,
+                allowEditing: false,
+                resultType: CameraResultType.Base64,
+                source: CameraSource.Photos // Utiliser la galerie
+              });
+              
+              const imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/jpeg;base64,${image.base64String}`);
+              this.capturedImage = imageUrl;
+          
+              
+           
           }
         },
         {
           text: 'Take picture',
           icon: 'camera',
-          handler: () => {
-            // Put in logic ...
+          handler: async () => {
+            const image = await Camera['getPhoto']({
+              quality: 90,
+              allowEditing: false,
+              resultType: CameraResultType.Uri
+            });
+  
+            // Utiliser l'URI de l'image capturée (image.webPath) comme bon vous semble
+  
+            // Par exemple, pour afficher l'image dans votre application :
+            this.capturedImage = image.webPath;
           }
-        }, {
+        },
+        {
           text: 'Cancel',
           icon: 'close',
           role: 'cancel'
-        }]
+        }
+      ]
     });
+  
     await actionSheet.present();
   }
-
   // Submit form
   submit() {
 
