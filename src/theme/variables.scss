@@ -249,3 +249,9 @@ html {
    */
   --ion-dynamic-font: var(--ion-default-dynamic-font);
 }
+@font-face {
+  font-family: 'Roboto';
+  src: url('../assets/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
