@@ -27,7 +27,7 @@ export class TabsPage {
           icon: 'search',
           handler: () => {
             // Put in logic ...
-            this.router.navigate(['/searchservice'], { queryParams: { search: 'service' } });
+            this.router.navigate(['/searchservice']);
 
           }
         },

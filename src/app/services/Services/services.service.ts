@@ -13,7 +13,12 @@ export class ServicesService {
   constructor(private http: HttpClient) { }
 
   public services_read_all_(): Observable<Services[]> {
-    return this.http.get<Services[]>(`${this.apiUrl}/services`);
+    return this.http.get<Services[]>(`${this.apiUrl}/services/all`);
+  }
+
+  public services_all_(year:number,month:number): Observable<Services[]>{
+    return this.http.get<Services[]>(`${this.apiUrl}/services?year=${year}&month=${month}`);
+
   }
 
   public get_services_by_id_(id:number): Observable<Services> {

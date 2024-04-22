@@ -313,9 +313,15 @@ def restriction_delete_():
 #-------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------
 
-@app.route('/services', methods=['GET'])
+@app.route('/services/all', methods=['GET'])
 def services_read_all_():
     return services_readall()
+
+
+@app.route('/services', methods=['GET'])
+def services_all_():
+    return services_all()
+
 
 @app.route('/services/id', methods=['GET'])
 def get_services_by_id_():

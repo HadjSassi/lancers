@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 from mongo_setup import URL
+import datetime
 
 
 class ServicesService:
@@ -12,6 +13,19 @@ class ServicesService:
     def get_next_id(self):
       doc = self.id_collection.find_one_and_update({}, {'$inc': {'service_id': 1}}, upsert=True, return_document=True)
       return doc['service_id']
+
+    def get_services_by_date(self, current_year, current_month=0):
+      if current_month != 0:
+        start_date = datetime.datetime(current_year, current_month, 1).strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+        end_date = datetime.datetime(current_year, current_month + 1, 1).strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+      else:
+        start_date = datetime.datetime(current_year, 1, 1).strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+        end_date = datetime.datetime(current_year + 1, 1, 1).strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+      query = {"datePublication": {"$gte": start_date, "$lt": end_date}}
+      documents = self.collection.find(query)
+      output = [{item: data[item] for item in data if item != '_id'} for data in documents]
+      return output
+
 
     def read_all(self):
         documents = self.collection.find()

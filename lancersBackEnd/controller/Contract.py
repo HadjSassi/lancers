@@ -58,7 +58,6 @@ def get_contracts_by_requestee_email():
 
   return Response(response=json.dumps(contracts), status=200, mimetype='application/json')
 
-
 def get_contract_by_email():
     email = request.args.get('email')
     year_ = int(request.args.get('year'))

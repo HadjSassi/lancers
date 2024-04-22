@@ -23,7 +23,7 @@ export class LancerContractsPage implements OnInit {
   async ngOnInit() {
     await this.storage.create();
     this.userMail = await this.storage.get('mail');
-    await this.loadMovies();
+    await this.loadContracts();
   }
 
 
@@ -31,7 +31,7 @@ export class LancerContractsPage implements OnInit {
     this.router.navigate([`contracts/consultation-contract/${contract.id}`],);
   }
 
-  async loadMovies(event?: any) {
+  async loadContracts(event?: any) {
     const loading = await this.loadingCtrl.create({
       message: 'Loading...',
       spinner: 'bubbles',
@@ -51,7 +51,7 @@ export class LancerContractsPage implements OnInit {
 
   async loadMore(event: any) {
     this.currentDate--; // Decrease currentDate to load older contracts
-    await this.loadMovies(event);
+    await this.loadContracts(event);
   }
 
 }

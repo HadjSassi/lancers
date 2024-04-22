@@ -40,15 +40,15 @@ const routes: Routes = [
   },
   {
     path: 'searchservice',
-    loadChildren: () => import('./pages/searchservice/nom-de-la-page.module').then( m => m.NomDeLaPagePageModule)
+    loadChildren: () => import('./pages/secure/lancer-services/lancer-services.module').then( m => m.LancerServicesPageModule)
   },
   {
     path: 'filterserv',
-    loadChildren: () => import('./pages/searchservice/filterserv/filterserv.module').then( m => m.FilterservPageModule)
+    loadChildren: () => import('./pages/secure/searchservice/filterserv/filterserv.module').then( m => m.FilterservPageModule)
   },
   {
     path: 'searchlancer',
-    loadChildren: () => import('./searchlancer/searchlancer.module').then( m => m.SearchlancerPageModule)
+    loadChildren: () => import('./pages/secure/searchlancer/searchlancer.module').then(m => m.SearchlancerPageModule)
   },
 
 
