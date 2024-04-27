@@ -1,45 +1,48 @@
-
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>search service</ion-title>
-  </ion-toolbar>
-  
-
-</ion-header> -->
 <ion-header collapse="fade" [translucent]="true">
   <ion-toolbar color="dark">
-    <ion-title color="light">
-      Search services
+    <ion-title color="dark">
+      Become a Freelance Seller
     </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button color="secondary" routerLink="/settings">
+        <ion-icon slot="icon-only" name="cog"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-buttons slot="start">
       <ion-back-button color="secondary" text="Back" defaultHref="/home">
       </ion-back-button>
     </ion-buttons>
-   
-    
-   <!-- <ion-buttons slot="primary">
-       <ion-button color="secondary" (click)="filter()"> -->
-        <!-- <ion-icon slot="icon-only" name="filter"></ion-icon>
-      </ion-button>  -->
-   
   </ion-toolbar>
 </ion-header>
+
 <ion-content [fullscreen]="true">
   <ion-header>
-    <ion-toolbar class="toolbar-search">
-      <ion-searchbar color="dark" showCancelButton="focus" placeholder="Company, category, expense ..."></ion-searchbar>
-    </ion-toolbar>
-  
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">searchlancer</ion-title>
+    <ion-toolbar class="toolbar-search"  (ionInput)="filterUsers()"  >
+      <ion-searchbar color="dark" showCancelButton="focus" placeholder="Search for your Lancer by name !"  [(ngModel)]="searchQuery"></ion-searchbar>
     </ion-toolbar>
   </ion-header>
-</ion-content>
-
-<ion-item>
-  <ion-label position="stacked">Score minimum :</ion-label>
-  <ion-input type="number" [(ngModel)]="minScore"  (ionChange)="onScoreChange()"></ion-input>
-</ion-item>
+  <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let term of searchHistory">
+        {{ term }}
+      </ion-item>
+    </ion-list>
+    <ion-button (click)="clearHistory()">Clear History</ion-button>
+  </ion-content>
+  
+  <!-- <ion-row class="filter-bar ion-padding ion-justify-content-center" >
+    <ion-col size="auto" class="filter-col">
+      <ion-label class="filter-label">Score:</ion-label>
+      <ion-select  interface="popover">
+        <ion-select-option value="highestScore">▲</ion-select-option>
+        <ion-select-option value="lowestScore">▼</ion-select-option>
+        <ion-select-option value="none">◆</ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row> -->
+<ion-infinite-scroll > 
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>

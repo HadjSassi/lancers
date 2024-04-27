@@ -1,4 +1,5 @@
 export class Skill {
+  [x: string]: any;
   private skill!: string;
 
   constructor(skill: string) {

@@ -63,31 +63,21 @@
     </ion-list> 
 
     <!-- <hr> -->
-
-         <ion-list-header>
-      <ion-label color="tertiary"> Featured Services</ion-label>
-      <ion-button color="medium" >See All
-        <ion-icon slot="end" name="arrow-forward"></ion-icon>
-      </ion-button>
-    </ion-list-header>
-    <ion-item>
+    <div class="services-carousel">
+      <div class="service-slide" *ngFor="let service of services">
+        <ion-card>
+          <ion-card-header>
+            {{ service.name }}
+          </ion-card-header>
+          <ion-card-content>
+            <p>Date: {{ service.date }}</p>
+            <p>Price: {{ service.price }}</p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    
       
-      <ion-select [(ngModel)]="selectedService">
-        <ion-select-option *ngFor="let service of services" [value]="service">{{ service.name }}</ion-select-option>
-      </ion-select>
-    </ion-item>
     
-    <ion-item *ngIf="selectedService">
-      <ion-label>Date</ion-label>
-      <ion-note>{{ selectedService.date }}</ion-note>
-    </ion-item>
-    
-    <ion-item *ngIf="selectedService">
-      <ion-label>Prix</ion-label>
-      <ion-note>{{ selectedService.price }}</ion-note>
-    </ion-item>
-    
-
     <!-- <ion-list class="list-custom animate__animated animate__fadeIn" lines="full" >
       <ion-item color="primary" *ngFor="let i of [].constructor(3);">
         <ion-label color="medium">

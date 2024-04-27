@@ -80,9 +80,9 @@
             "development": {
               "buildTarget": "app:build:development"
             },
-            "ci": {
-              "progress": false
-            }
+             "ci": {
+               "progress": false
+             }
           },
           "defaultConfiguration": "development"
         },
@@ -112,8 +112,13 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": []
+            "styles": ["src/theme/variables.scss",
+             "src/global.scss",
+             "node_modules/slick-carousel/slick/slick.scss",
+             "node_modules/slick-carousel/slick/slick-theme.scss"
+            ],
+            "scripts": ["node_modules/slick-carousel/slick/slick.min.js"
+          ,"node_modules/jquery/dist/jquery.min.js"]
           },
           "configurations": {
             "ci": {

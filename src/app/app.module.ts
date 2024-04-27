@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 // ReactiveForms
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 // NgCharts
 // import { NgChartsModule } from 'ng2-charts';
@@ -22,10 +23,15 @@ import {HttpClientModule} from "@angular/common/http";
     IonicStorageModule.forRoot(),
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SlickCarouselModule,
+    
     // NgChartsModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
+
+
+
