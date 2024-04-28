@@ -17,32 +17,29 @@
 
 <ion-content [fullscreen]="true">
   <ion-header>
-    <ion-toolbar class="toolbar-search"  (ionInput)="filterUsers()"  >
-      <ion-searchbar color="dark" showCancelButton="focus" placeholder="Search for your Lancer by name !"  [(ngModel)]="searchQuery"></ion-searchbar>
+    <ion-toolbar class="toolbar-search" (ionInput)="filterUsers()">
+      <ion-searchbar color="dark" showCancelButton="focus" placeholder="Search for your Lancer by name !"
+                     [(ngModel)]="searchQuery"></ion-searchbar>
     </ion-toolbar>
   </ion-header>
-  <ion-content>
-    <ion-list>
-      <ion-item *ngFor="let term of searchHistory">
-        {{ term }}
+  <div class="ion-padding">
+    <ion-list *ngIf="filterUsers().length !== 0">
+      <ion-item *ngFor="let user of filterUsers(); let i = index" (click)="consultLancer(user.lancer)">
+        <ion-label>
+          <h2>{{ user.profile.prenom }} {{ user.profile.nom }} (Score : {{ user.lancer.score }})</h2>
+          <p>{{user.profile.email}}</p>
+        </ion-label>
       </ion-item>
+
+
     </ion-list>
-    <ion-button (click)="clearHistory()">Clear History</ion-button>
-  </ion-content>
-  
-  <!-- <ion-row class="filter-bar ion-padding ion-justify-content-center" >
-    <ion-col size="auto" class="filter-col">
-      <ion-label class="filter-label">Score:</ion-label>
-      <ion-select  interface="popover">
-        <ion-select-option value="highestScore">▲</ion-select-option>
-        <ion-select-option value="lowestScore">▼</ion-select-option>
-        <ion-select-option value="none">◆</ion-select-option>
-      </ion-select>
-    </ion-col>
-  </ion-row> -->
-<ion-infinite-scroll > 
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+
+    <ion-card *ngIf="filterUsers().length === 0">
+      <ion-card-header class="ion-text-center">
+        <ion-card-title><h1>No Lancer found!</h1></ion-card-title>
+        <ion-card-subtitle><h4>Oupsy! There is no Lancer found!</h4></ion-card-subtitle>
+      </ion-card-header>
+
+    </ion-card>
+  </div>
+</ion-content>

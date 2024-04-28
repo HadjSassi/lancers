@@ -57,7 +57,7 @@
               <ion-button color="medium" (click)="EnCours()">Start Lancing
                 <ion-icon slot="end" name="arrow-forward"></ion-icon>
               </ion-button>
-              <ion-button color="danger" (click)="Reject()">
+              <ion-button color="danger" (click)="Reject('')">
                 <ion-icon slot="end" name="close-outline"></ion-icon>
                 Cancel Contract
               </ion-button>
@@ -97,7 +97,7 @@
           <ion-item [ngSwitch]="currentContract.etat">
             <ion-label>Action :</ion-label>
             <ion-label *ngSwitchCase="'Attente'">
-              <ion-button color="danger" (click)="Reject()">
+              <ion-button color="danger" (click)="Reject(currentContract.etat)">
                 <ion-icon slot="end" name="close-outline"></ion-icon>
                 Cancel Contract
               </ion-button>
@@ -113,14 +113,14 @@
                 <ion-icon slot="end" name="checkmark-outline"></ion-icon>
                 Approve Work
               </ion-button>
-              <ion-button color="danger" (click)="Reject()">
+              <ion-button color="danger" (click)="Reject(currentContract.etat)">
                 <ion-icon slot="end" name="close-outline"></ion-icon>
                 Decline Work
               </ion-button>
             </ion-label>
             <ion-label *ngSwitchCase="'Retard'">
               <ion-text color="danger">work is late by {{ calculateLateDays(currentContract.dateLivraison) }}</ion-text>
-              <ion-button color="danger" (click)="Reject()">
+              <ion-button color="danger" (click)="Reject(currentContract.etat)">
                 <ion-icon slot="end" name="close-outline"></ion-icon>
                 Cancel Contract
               </ion-button>

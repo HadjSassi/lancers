@@ -200,7 +200,7 @@ export class ConsultServicePage implements OnInit {
             this.contractService.contract_write_(this.contrat).subscribe(
               (result: { Status: string,Document_ID:string })=>{
                   console.log(result.Document_ID, result);
-                  //todo this will bring me to the contract to see it
+                  this.router.navigate([`contracts/consultation-contract/${result.Document_ID}`]);
               }
             );
           }

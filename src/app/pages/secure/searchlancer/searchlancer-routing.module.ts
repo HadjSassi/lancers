@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: SearchlancerPage
+  },
+  {
+    path: 'consult-lancer/:id',
+    loadChildren: () => import('./consult-lancer/consult-lancer.module').then( m => m.ConsultLancerPageModule)
   }
+
 ];
 
 @NgModule({

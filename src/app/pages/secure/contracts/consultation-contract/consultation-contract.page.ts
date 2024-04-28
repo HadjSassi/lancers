@@ -9,6 +9,7 @@ import {ProfileService} from "../../../../services/Profile/profile.service";
 import {AlertController} from "@ionic/angular";
 import {Storage} from "@ionic/storage-angular";
 import {ContractService} from "../../../../services/Contract/contract.service";
+import {Lancer} from "../../../../model/Lancer";
 
 @Component({
   selector: 'app-consultation-contract',
@@ -42,6 +43,13 @@ export class ConsultationContractPage implements OnInit {
     ""
   ) ;
 
+  ownerLancer: Lancer = new Lancer(
+    "",
+    0,
+    [],
+    ""
+  );
+
   isFreelancer: boolean = false;
   isOwner: boolean = false;
   userMail : string = "";
@@ -63,6 +71,12 @@ export class ConsultationContractPage implements OnInit {
           this.currentContract = result;
           this.isFreelancer = this.userMail === result.service.ownerEmail;
           this.isOwner = this.userMail === result.email;
+          this.currentService = result.service;
+          this.lancerService.get_lancer_by_email_(this.currentContract.service.ownerEmail).subscribe(
+            (resul) =>{
+              this.ownerLancer = resul;
+            }
+          );
         }
       );
     });
@@ -144,11 +158,22 @@ export class ConsultationContractPage implements OnInit {
   }
   Approve():void{
     this.currentContract.etat = Etat.Approved;
+    this.currentService.score += 10;this.ownerLancer.score += 10;
     this.contractService.contract_update_(this.currentContract.id,this.currentContract).subscribe();
+    this.serviceService.services_update_(this.currentService.idService,this.currentService).subscribe();
+    this.lancerService.lancer_update_(this.ownerLancer.email,this.ownerLancer).subscribe();
   }
-  Reject():void{
+  Reject(who:string):void{
     this.currentContract.etat = Etat.Rejected;
     this.contractService.contract_update_(this.currentContract.id,this.currentContract).subscribe();
+    switch (who){
+      case "Fini":this.currentService.score -=3;this.ownerLancer.score -=3;
+      break;
+      case "Retard":this.currentService.score-=5;this.ownerLancer.score-=5;
+      break
+    }
+    this.serviceService.services_update_(this.currentService.idService,this.currentService).subscribe();
+    this.lancerService.lancer_update_(this.ownerLancer.email,this.ownerLancer).subscribe();
   }
 
 
