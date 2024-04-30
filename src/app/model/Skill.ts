@@ -1,16 +1,16 @@
 export class Skill {
   [x: string]: any;
-  private skill!: string;
+  public skill!: string;
 
   constructor(skill: string) {
     this.skill = skill;
   }
 
-  get getSkill(): string {
+  public get getSkill(): string {
     return this.skill;
   }
 
-  set setSkill(value: string) {
+  public set setSkill(value: string) {
     this.skill = value;
   }
 }
