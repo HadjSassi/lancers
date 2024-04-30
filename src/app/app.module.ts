@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 // NgCharts
 // import { NgChartsModule } from 'ng2-charts';
@@ -25,10 +26,10 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     AppRoutingModule,
     HttpClientModule,
     SlickCarouselModule,
-    
     // NgChartsModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy } ,LocalNotifications
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

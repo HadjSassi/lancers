@@ -6,7 +6,9 @@ const config: CapacitorConfig = {
   webDir: 'www',
   server: {
     androidScheme: 'https'
-  }
-};
+  },
+  plugins: {
+    "capacitor-cordova-android-plugins": {}
+    }};
 
 export default config;

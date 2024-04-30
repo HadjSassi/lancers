@@ -3,6 +3,9 @@ import {Services} from "../../../../model/Services";
 import {ServicesService} from "../../../../services/Services/services.service";
 import {Router} from "@angular/router";
 import {Storage} from "@ionic/storage-angular";
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+
+
 
 @Component({
   selector: 'app-add-service',
@@ -27,7 +30,10 @@ export class AddServicePage implements OnInit {
   );
   dureeUnit : string = "days";
   dureeTime : number = 0 ;
-  constructor(private service:ServicesService,private router: Router, private storage: Storage) { }
+  constructor(private service:ServicesService,private router: Router, private storage: Storage,
+    private localNotifications: LocalNotifications
+   
+  ) { }
 
   async ngOnInit() {
     await this.storage.create();
@@ -41,7 +47,14 @@ export class AddServicePage implements OnInit {
       (result: { Status: string,Document_ID:string })=>{
         this.router.navigate([`services/consult-service/${result.Document_ID}`]);
       }
+      
     );
+   
+  
+  
   }
 
+
+ 
+  
 }

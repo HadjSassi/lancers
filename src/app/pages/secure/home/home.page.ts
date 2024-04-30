@@ -22,10 +22,10 @@ export class HomePage  implements OnInit {
   // @ViewChild('slick', { static: false }) slick: ElementRef | null = null ;
 
   services = [
-    { name: 'Angular', date: '09.04.2023', price: ' $7.50' },
-    { name: 'Graphic Designer', date: '06.03.2023', price: '$7500' },
-    { name: 'Python Programmer', date: '03.02.2023', price: ' $1800.00' },
-    { name: 'HTML Programmer', date: '03.02.2023', price: ' $1800.00' }
+    { name: 'Angular', date: '09.04.2023', price: ' $7.50' , image:'../assets/icon/angular.png'},
+    { name: 'Machine Learning', date: '06.03.2023', price: '$7500',image:"../assets/icon/ml.jpg" },
+    { name: 'Python Programmer', date: '03.02.2023', price: ' $1800.00' ,image:"../assets/icon/paython.jpg"},
+    { name: 'HTML Programmer', date: '03.02.2023', price: ' $1800.00',image:"../assets/icon/html.jpg" }
   ];
 //selectedService: { name: string; date: string; price: string; } | undefined;
   slideconfig={
