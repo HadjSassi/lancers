@@ -20,7 +20,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
+  <!-- Profile card -->
   <ion-card class="ion-no-margin profile-card">
     <ion-card-content>
       <ion-avatar>
@@ -28,17 +28,13 @@
         <ng-template #defaultImage>
           <img src="..\assets\icon\Profile-Transparent.png">
         </ng-template>
-        
-
       </ion-avatar>
 
       <h1>
-        <ion-text color="tertiary"><strong>John Doe</strong></ion-text>
+        <ion-text color="tertiary"><strong>{{ currentProfile.nom }} {{ currentProfile.prenom }}</strong></ion-text>
       </h1>
 
-      <p>
-<!--        <ion-text color="medium">john.doe@mail.com</ion-text>-->
-      </p>
+      <p></p>
 
       <ion-button class="ion-button-small" color="primary" (click)="updateProfilePicture()">
         Update profile picture
@@ -46,48 +42,138 @@
     </ion-card-content>
   </ion-card>
 
-
+  <!-- Profile form -->
   <div class="ion-padding">
     <form class="form-default" [formGroup]="edit_profile_form" (submit)="submit()">
-
+      <!-- First name -->
       <ion-item color="dark" class="animate__animated animate__fadeInUp">
         <ion-label position="floating">
           First name
         </ion-label>
-        <ion-input color="secondary" formControlName="name_first" placeholder="First name"></ion-input>
+        <ion-input color="secondary" formControlName="name_first" placeholder="First name" [(ngModel)]="currentProfile.nom"></ion-input>
       </ion-item>
 
+      <!-- Last name -->
       <ion-item color="dark" class="animate__animated animate__fadeInUp">
         <ion-label position="floating">
           Last name
         </ion-label>
-        <ion-input color="secondary" formControlName="name_last" placeholder="Last name"></ion-input>
+        <ion-input color="secondary" formControlName="name_last" placeholder="Last name" [(ngModel)]="currentProfile.prenom"></ion-input>
       </ion-item>
+
+
+      <!-- Sexe -->
+      <ion-item color="dark" class="animate__animated animate__fadeInUp">
+        <ion-label position="floating">Gender</ion-label>
+        <ion-select color="secondary" formControlName="gender" placeholder="Select Gender" [(ngModel)]="this.gender">
+          <ion-select-option value="Male">Male</ion-select-option>
+          <ion-select-option value="Female">Female</ion-select-option>
+          <ion-select-option value="Other">Other</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+<!--      &lt;!&ndash; DateOfBirth &ndash;&gt;-->
+<!--      <ion-item color="dark" class="animate__animated animate__fadeInUp">-->
+<!--        <ion-label position="floating">-->
+<!--          Date Of Birth-->
+<!--        </ion-label>-->
+<!--        <ion-input color="secondary" formControlName="dateOfBirth" placeholder="Date Of Birth" [(ngModel)]="currentProfile.birthday"></ion-input>-->
+<!--      </ion-item>-->
+
+      <!-- Fonction -->
+      <ion-item color="dark" class="animate__animated animate__fadeInUp">
+        <ion-label position="floating">
+          Fonction
+        </ion-label>
+        <ion-input color="secondary" formControlName="Fonction" placeholder="Fonction" [(ngModel)]="currentProfile.fonction"></ion-input>
+      </ion-item>
+
+      <!-- Email -->
       <ion-item color="dark" class="animate__animated animate__fadeInUp">
         <ion-label position="floating">
           Email
         </ion-label>
-        <ion-input color="secondary" formControlName="email" placeholder="email"></ion-input>
+        <ion-input color="secondary" formControlName="email" placeholder="Email" [(ngModel)]="currentProfile.email"></ion-input>
       </ion-item>
 
+      <!-- Phone -->
+      <ion-item color="dark" class="animate__animated animate__fadeInUp">
+        <ion-label position="floating">
+          Phone
+        </ion-label>
+        <ion-input color="secondary" formControlName="phone" placeholder="Phone" [(ngModel)]="currentProfile.phone"></ion-input>
+      </ion-item>
+
+
+      <!-- Address -->
+      <ion-item color="dark" class="animate__animated animate__fadeInUp">
+        <ion-label position="floating">
+          Address
+        </ion-label>
+        <ion-input color="secondary" formControlName="address" placeholder="Adresse" [(ngModel)]="currentProfile.adresse"></ion-input>
+      </ion-item>
+
+      <!-- Facebook -->
+      <ion-item color="dark" class="animate__animated animate__fadeInUp">
+        <ion-label position="floating">
+          Facebook
+        </ion-label>
+        <ion-input color="secondary" formControlName="Facebook" placeholder="Facebook Link" [(ngModel)]="currentProfile.facebook"></ion-input>
+      </ion-item>
+
+      <!-- LinkedIn -->
+      <ion-item color="dark" class="animate__animated animate__fadeInUp">
+        <ion-label position="floating">
+          LinkedIn
+        </ion-label>
+        <ion-input color="secondary" formControlName="LinkedIn" placeholder="LinkedIn Link" [(ngModel)]="currentProfile.linkedin"></ion-input>
+      </ion-item>
+
+      <!-- GitHub -->
+      <ion-item color="dark" class="animate__animated animate__fadeInUp">
+        <ion-label position="floating">
+          GitHub
+        </ion-label>
+        <ion-input color="secondary" formControlName="GitHub" placeholder="GitHub Link" [(ngModel)]="currentProfile.github"></ion-input>
+      </ion-item>
     </form>
   </div>
+
+  <!-- Skills -->
   <ion-toolbar color="primary">
     <ion-title>Skills</ion-title>
   </ion-toolbar>
-      <ion-list>
-        <ion-item *ngFor="let skill of skills">
-          <ion-label>{{ skill }}</ion-label>
-        </ion-item>
-      </ion-list>
-      <ion-toolbar color="primary">
-        <ion-title>Portfolio</ion-title>
-      </ion-toolbar>
-          <ion-list>
-            <ion-item *ngFor="let porotfolio of porotfolios">
-              <ion-label>{{ porotfolio }}</ion-label>
-            </ion-item>
-          </ion-list>
-      
+  <ion-list>
+    <!-- Display existing links -->
+    <ion-item *ngFor="let skill of currentLancer.skills" class="animate__animated animate__fadeInUp">
+      <ion-button slot="start" color="danger" (click)="deleteSkill(skill)">Delete</ion-button>
+      <ion-label>{{ skill.skill }}</ion-label>
+    </ion-item>
 
+    <!-- Add new link -->
+    <ion-item class="animate__animated animate__fadeInUp">
+      <ion-label position="floating">Add a Skill</ion-label>
+      <ion-input color="secondary" placeholder="A new Skill" [(ngModel)]="newSkill"></ion-input>
+      <ion-button color="secondary" (click)="addNewSkill()">Add</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Links -->
+  <ion-toolbar color="primary">
+    <ion-title>Links</ion-title>
+  </ion-toolbar>
+  <ion-list>
+    <!-- Display existing links -->
+    <ion-item *ngFor="let portfolio of currentProfile.liens" class="animate__animated animate__fadeInUp">
+      <ion-button slot="start" color="danger" (click)="deleteLink(portfolio)">Delete</ion-button>
+      <ion-label><a target="_blank" href="{{portfolio}}">{{ portfolio }}</a></ion-label>
+    </ion-item>
+
+    <!-- Add new link -->
+    <ion-item class="animate__animated animate__fadeInUp">
+      <ion-label position="floating">Add a Link</ion-label>
+      <ion-input color="secondary" placeholder="A new Link" [(ngModel)]="newLink"></ion-input>
+      <ion-button color="secondary" (click)="addNewLink()">Add</ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
