@@ -1,11 +1,11 @@
 :host {
-  body {
-    background-color: var(--ion-color-dark);
-  }
+  // body {
+  //   background-color: var(--ion-color-dark);
+  // }
 
-  ion-content {
+   ion-content {
 
-    --background: linear-gradient(0deg, var(--ion-color-dark), var(--ion-color-primary));
+     --background: linear-gradient(0deg, var(--ion-color-dark), var(--ion-color-primary));
 
   }
 
@@ -34,7 +34,24 @@
   //   //background-color: #ffff;
   // }
 
+    ion-select {
+      --padding-start: 0;
+      --padding-end: 0;
+      color: #ffffff;
 
+      &::placeholder {
+        color: #ffffff;
+      }
+    }
+    .filter-panel {
+      background-color: #f8f9fa; /* Couleur de fond */
+      border: 1px solid #ddd; /* Bordure */
+      border-radius: 8px; /* Coins arrondis */
+      padding: 16px; /* Espacement intérieur */
+      margin-bottom: 16px; /* Marge en bas */
+    }
+  
+    
 .filter-col {
   display: flex;
   align-items: center; /* Align items vertically */
@@ -47,6 +64,84 @@
  // background-color: var(--ion-color-primary);
  --background: linear-gradient(0deg, var(--ion-color-dark), var(--ion-color-primary));
   margin-right: 5px; /* Adjust the spacing between the label and the select options */
+  font-weight: bold; /* Texte en gras */
+      margin-bottom: 8px; /* Marge en bas */
+}
+ion-card {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f2ebfb;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px #f2ebfb(0, 0, 0, 0.1);
 }
 
+ion-card-header {
+  background-color: #f2ebfb;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
 }
+
+ion-card-content {
+  text-align: center;
+}
+
+ion-button {
+  margin-top: 20px;
+}
+
+
+}
+
+
+
+// .filter-bar {
+//   ion-col {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     margin: 0 10px;
+
+//     ion-label {
+//       margin-right: 5px;
+//       color: #ffffff;
+//       font-weight: bold;
+//     }
+
+//     ion-select {
+//       --padding-start: 0;
+//       --padding-end: 0;
+//       color: #ffffff;
+
+//       &::placeholder {
+//         color: #ffffff;
+//       }
+//     }
+//   }
+// }
+
+// ion-item {
+//   ion-label {
+//     h2 {
+//       margin-bottom: 5px;
+//       font-size: 1.2em;
+//       color: #333333;
+//     }
+
+//     p {
+//       font-size: 0.8em;
+//       color: #666666;
+//     }
+//   }
+// }
+
+// ion-card {
+//   ion-card-header,
+//   ion-card-content {
+//     ion-button {
+//       margin-top: 10px;
+//       --color: #ffffff;
+//       --background: #222222;
+//     }
+//   }
+// }

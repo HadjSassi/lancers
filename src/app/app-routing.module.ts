@@ -51,7 +51,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/secure/searchlancer/searchlancer.module').then(m => m.SearchlancerPageModule)
   },
 
-
+ 
 
 
 ];

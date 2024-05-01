@@ -1,0 +1,81 @@
+
+
+  <ion-grid class="filter-panel">
+    <ion-row class="filter-bar ion-padding ion-justify-content-center" (ionChange)="filterServices()">
+      <ion-col size="auto" class="filter-col">
+        <ion-label class="filter-label">Date:</ion-label>
+        <ion-select [(ngModel)]="dateFilter" interface="popover">
+          <ion-select-option value="recent">▼</ion-select-option>
+          <ion-select-option value="oldest">▲</ion-select-option>
+          <ion-select-option value="none">◆</ion-select-option>
+        </ion-select>
+      </ion-col>
+
+      <ion-col size="auto" class="filter-col">
+        <ion-label class="filter-label">Score:</ion-label>
+        <ion-select [(ngModel)]="scoreFilter" interface="popover">
+          <ion-select-option value="highestScore">▲</ion-select-option>
+          <ion-select-option value="lowestScore">▼</ion-select-option>
+          <ion-select-option value="none">◆</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="auto" class="filter-col">
+        <ion-label class="filter-label">Price:</ion-label>
+        <ion-select [(ngModel)]="priceFilter" interface="popover" >
+          <ion-select-option value="highestPrice">▲</ion-select-option>
+          <ion-select-option value="lowestPrice">▼</ion-select-option>
+          <ion-select-option value="none">◆</ion-select-option>
+        </ion-select>
+      </ion-col>
+    
+    
+      <ion-col size="auto" class="filter-col">
+        <ion-label class="filter-label">Duration:</ion-label>
+        <ion-select [(ngModel)]="durationFilter" interface="popover">
+          <ion-select-option value="highestDuration">▲</ion-select-option>
+          <ion-select-option value="lowestDuration">▼</ion-select-option>
+          <ion-select-option value="none">◆</ion-select-option>
+        </ion-select>
+      </ion-col>
+    
+      <ion-col size="auto" class="filter-col">
+        <ion-label class="filter-label">Approval:</ion-label>
+        <ion-select [(ngModel)]="approvalFilter" interface="popover">
+          <ion-select-option value="true">✓</ion-select-option>
+          <ion-select-option value="false">✕</ion-select-option>
+          <ion-select-option value="none">◯</ion-select-option>
+        </ion-select>
+      </ion-col>
+    
+    
+      <ion-col size="auto" class="filter-col">
+        <ion-label class="filter-label">Hidden:</ion-label>
+        <ion-select [(ngModel)]="hiddenFilter" interface="popover">
+          <ion-select-option value="true">✓</ion-select-option>
+          <ion-select-option value="false">✕</ion-select-option>
+          <ion-select-option value="both">◯</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    
+      <!-- Autres colonnes de filtre ici -->
+    </ion-row>
+  
+    <ion-row>
+      <ion-col size="12">
+        <div class="ion-padding">
+          <ion-list *ngIf="filterServices().length !== 0">
+            <ion-item *ngFor="let service of filterServices(); let i = index" (click)="consultService(service)">
+              <ion-label>
+                <h2>{{ service.name }} (Score : {{ service.score }})</h2>
+                <p>Approved: {{ service.approved ? 'Yes' : 'No' }} | Hidden: {{ service.hidden ? 'Yes' : 'No' }}</p>
+                <p *ngIf="service.prix !== 0"> Price : {{ service.prix }} TND | Duration : {{service.durre}}</p>
+                <p *ngIf="service.prix === 0">FREE | Duration : {{service.durre}}</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  

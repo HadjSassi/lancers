@@ -14,16 +14,22 @@
 <ion-content [fullscreen]="true">
   <ion-header>
     <ion-toolbar class="toolbar-search"  (ionInput)="filterServices()">
-      <ion-searchbar color="dark" showCancelButton="focus" placeholder="Search for your service by name !" [(ngModel)]="searchQuery"></ion-searchbar>
+      <ion-searchbar color="dark" showCancelButton="focus" placeholder="Search for your service by name !" [(ngModel)]="searchQuery" ></ion-searchbar>
       <ion-buttons slot="end">
         <ion-button color="secondary" (click)="addService()">
           <ion-icon slot="icon-only" name="add"></ion-icon>
         </ion-button>
       </ion-buttons>
+      <ion-buttons slot="primary">
+        <ion-button color="secondary" routerLink="/settings">
+          <ion-icon  slot="icon-only" name="filter-circle-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
-  <ion-row class="filter-bar ion-padding ion-justify-content-center"  (ionChange)="filterServices()">
+
+  <ion-row  class="filter-panel" class="filter-bar ion-padding ion-justify-content-center"  (ionChange)="filterServices()">
 
     <ion-col size="auto" class="filter-col">
       <ion-label class="filter-label">Date:</ion-label>
@@ -85,6 +91,7 @@
   </ion-row>
 
   <div class="ion-padding">
+   
     <ion-list *ngIf="filterServices().length !== 0">
       <ion-item *ngFor="let service of filterServices(); let i = index" (click)="consultService(service)">
         <ion-label>
@@ -109,4 +116,4 @@
       </ion-card-content>
     </ion-card>
   </div>
-</ion-content>
+ </ion-content> 
