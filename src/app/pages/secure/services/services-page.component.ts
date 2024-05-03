@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HelperService} from 'src/app/services/helper/helper.service';
-import {AlertController} from '@ionic/angular';
+import {AlertController, ModalController} from '@ionic/angular';
 import {Services} from "../../../model/Services";
 import {ServicesService} from "../../../services/Services/services.service";
 import {NavigationEnd, Router} from "@angular/router";
@@ -39,7 +39,7 @@ export class ServicesPage implements OnInit {
   searchQuery: any = "";
 
   constructor(private helperService: HelperService, private alertController: AlertController,
-              private service: ServicesService, private router: Router, private storage: Storage) {
+              private service: ServicesService, private router: Router, private modalController: ModalController,private storage: Storage) {
   }
 
   async ngOnInit() {
@@ -55,7 +55,7 @@ export class ServicesPage implements OnInit {
       }
     });
   }
-
+ 
   initialiseService() {
     this.service.get_services_by_email_(this.ownerMail).subscribe(
       (result) => {

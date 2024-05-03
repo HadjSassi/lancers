@@ -3,7 +3,7 @@ import {Storage} from "@ionic/storage-angular";
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { IonicSlides } from '@ionic/angular';
+import { IonicSlides, Platform } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import {  AfterViewInit, ViewChild, ElementRef } from '@angular/core';
@@ -20,7 +20,7 @@ import {  AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class HomePage  implements OnInit {
   // @ViewChild('slick', { static: false }) slick: ElementRef | null = null ;
-
+ 
   services = [
     { name: 'Angular', date: '09.04.2023', price: '$7.50', image: '../assets/icon/angular.png', description: 'Framework JavaScript open-source, libre et basé sur TypeScript développé par Google.' },
     { name: 'Machine Learning', date: '06.03.2023', price: '$7500', image: '../assets/icon/ml.jpg', description: 'Domaine de l\'intelligence artificielle qui permet à des systèmes d\'apprendre à partir de données.' },
@@ -38,6 +38,8 @@ export class HomePage  implements OnInit {
   isUserLoggedIn: boolean;
   constructor(
     private storage: Storage ,private authService: AuthService ,private elementRef: ElementRef
+ 
+   
   ) {
     this.isUserLoggedIn = this.authService.isLoggedIn();
 
@@ -49,6 +51,8 @@ export class HomePage  implements OnInit {
     const storedEmail = await this.storage.get('mail');
     this.isUserLoggedIn = storedEmail != null;
   }
+
+
   // ngAfterViewInit() {
   //   $(this.elementRef.nativeElement).find('.slick-carousel').slick({
   //     slidesToShow: 3, // Afficher 3 images à la fois

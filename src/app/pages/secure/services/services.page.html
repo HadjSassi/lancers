@@ -21,13 +21,28 @@
         </ion-button>
       </ion-buttons>
       <ion-buttons slot="primary">
-        <ion-button color="secondary" routerLink="/settings">
+        <ion-button color="secondary" >
           <ion-icon  slot="icon-only" name="filter-circle-outline"></ion-icon>
           </ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-
+  <!-- <ion-modal [isOpen]="isFilterModalOpen">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Filter Services</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeFilterModal()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      Your filter panel content here -->
+      <!-- <ion-grid class="filter-panel"> -->
+        <!-- Your existing filter panel code here -->
+      <!-- </ion-grid>
+    </ion-content>
+  </ion-modal> -->
 
   <ion-row  class="filter-panel" class="filter-bar ion-padding ion-justify-content-center"  (ionChange)="filterServices()">
 
@@ -105,6 +120,7 @@
 
     <ion-card *ngIf="filterServices().length === 0">
       <ion-card-header class="ion-text-center">
+        <img src="./assets/icon/Hire-Freelancer.jpg" >
         <ion-card-title><h1>No Service Yet!</h1></ion-card-title>
         <ion-card-subtitle><h4>You haven't published any services yet!</h4></ion-card-subtitle>
       </ion-card-header>
