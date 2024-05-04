@@ -1,0 +1,53 @@
+{
+    "root": {
+      "greeting": "Hello!",
+      "home": {
+        "welcome": "Welcome to our website.",
+        "description": "We provide the best products and services."
+      },
+      "menu": {
+        "home": "Home",
+        "about": "About",
+        "contact": "Contact"
+      },
+      "footer": {
+        "rights": "All rights reserved."
+      },
+      "button": {
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "close": "Close"
+      },
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "address": "Address",
+        "phone": "Phone",
+        "message": "Message"
+      },
+      "error": {
+        "required": "This field is required.",
+        "invalidEmail": "Invalid email address.",
+        "passwordMismatch": "Passwords do not match.",
+        "minLength": "Minimum length is {length}.",
+        "maxLength": "Maximum length is {length}."
+      },
+      "success": {
+        "saved": "Saved successfully.",
+        "updated": "Updated successfully.",
+        "deleted": "Deleted successfully."
+      },
+      "validation": {
+        "email": "Please enter a valid email address.",
+        "password": "Password must contain at least 8 characters."
+      },
+      "currency": {
+        "usd": "USD",
+        "eur": "EUR",
+        "gbp": "GBP"
+      }
+    }
+  }
+  

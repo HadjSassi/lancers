@@ -1,7 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {AuthService} from 'src/app/services/auth/auth.service';
 import {Storage} from "@ionic/storage-angular";
 import {Router} from "@angular/router";
+import { TranslateService } from '@ngx-translate/core';
+import { AlertController, IonSelect } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-settings',
@@ -9,11 +12,30 @@ import {Router} from "@angular/router";
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage {
+  @ViewChild('languageSelect')
+  languageSelect!: IonSelect;
+
   dark = true;
+  selectedLanguage=" string";
 
-  constructor(private authService: AuthService, private router: Router, private storage: Storage) {
+  constructor(private authService: AuthService, private router: Router, private storage: Storage,
+    private translate: TranslateService, private alertController: AlertController) {
+      this.selectedLanguage = 'en';
+  
   }
+  openLanguageSelect() {
+    this.languageSelect.open();  }
 
+  async languageChanged() {
+    // Change the language and display a confirmation alert
+    this.translate.use(this.selectedLanguage);
+    const alert = await this.alertController.create({
+      header: 'Language Changed',
+      message: 'The language has been changed. Please restart the app to apply the changes.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
   toggleDarkMode($event: { detail: { checked: any; }; }) {
     if ($event.detail.checked) {
       document.documentElement.style.setProperty('--ion-background-color', 'var(--ion-background-color-dark)');
