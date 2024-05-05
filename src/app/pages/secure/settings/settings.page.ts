@@ -1,9 +1,14 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from 'src/app/services/auth/auth.service';
 import {Storage} from "@ionic/storage-angular";
 import {Router} from "@angular/router";
-import { TranslateService } from '@ngx-translate/core';
-import { AlertController, IonSelect } from '@ionic/angular';
+import {TranslateService} from '@ngx-translate/core';
+import {AlertController, IonSelect} from '@ionic/angular';
+import {ProfileService} from "../../../services/Profile/profile.service";
+import {LancerService} from "../../../services/Lancer/lancer.service";
+import {Profile} from "../../../model/Profile";
+import {Sexe} from "../../../model/Sexe";
+import {Lancer} from "../../../model/Lancer";
 
 
 @Component({
@@ -11,20 +16,53 @@ import { AlertController, IonSelect } from '@ionic/angular';
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
 })
-export class SettingsPage {
+export class SettingsPage implements OnInit{
   @ViewChild('languageSelect')
   languageSelect!: IonSelect;
-
+  gender: string = "";
   dark = true;
-  selectedLanguage=" string";
+  selectedLanguage = " string";
+  capturedImage: any;
+  currentProfile: Profile = new Profile(
+    false,
+    "",
+    "",
+    "",
+    "",
+    0,
+    "",
+    "",
+    new Date(),
+    Sexe.Other,
+    "",
+    "",
+    "",
+    [],
+    ""
+  );
 
-  constructor(private authService: AuthService, private router: Router, private storage: Storage,
-    private translate: TranslateService, private alertController: AlertController) {
-      this.selectedLanguage = 'en';
-  
+  currentLancer: Lancer =  new Lancer(
+    "",
+    0,
+    [],
+    ""
+  );
+
+  constructor(private authService: AuthService,
+              private router: Router,
+              private storage: Storage,
+              private translate: TranslateService,
+              private alertController: AlertController,
+              private profileService: ProfileService,
+              private lancerService: LancerService
+              ) {
+    this.selectedLanguage = 'en';
+
   }
+
   openLanguageSelect() {
-    this.languageSelect.open();  }
+    this.languageSelect.open();
+  }
 
   async languageChanged() {
     // Change the language and display a confirmation alert
@@ -36,6 +74,7 @@ export class SettingsPage {
     });
     await alert.present();
   }
+
   toggleDarkMode($event: { detail: { checked: any; }; }) {
     if ($event.detail.checked) {
       document.documentElement.style.setProperty('--ion-background-color', 'var(--ion-background-color-dark)');
@@ -54,6 +93,31 @@ export class SettingsPage {
     }
   }
 
+  async ngOnInit(){
+    this.storage.create();
+    const storedEmail = await this.storage.get('mail');
+    this.profileService.profile_get_by_email_(storedEmail).subscribe(
+      (result) => {
+        this.currentProfile = result;
+        if (result.photoProfile != "") {
+          const imageUrl = `data:image/jpeg;base64,${result.photoProfile}`;
+          this.capturedImage = imageUrl;
+        }
+        if(this.currentProfile.sexe == 2){
+          this.gender = "Male";
+        } else if(this.currentProfile.sexe == 1){
+          this.gender = "Female";
+        } else {
+          this.gender = "Other";
+        }
+        this.lancerService.get_lancer_by_email_(result.email).subscribe(
+          (res) => {
+            this.currentLancer = res;
+          }
+        );
+      }
+    );
+  }
 
   // Sign out
   async signOut() {

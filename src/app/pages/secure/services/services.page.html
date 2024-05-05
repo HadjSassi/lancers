@@ -23,29 +23,8 @@
           <ion-icon slot="icon-only" name="add"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <ion-buttons slot="primary">
-        <ion-button color="secondary" >
-          <ion-icon  slot="icon-only" name="filter-circle-outline"></ion-icon>
-          </ion-button>
-      </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  <!-- <ion-modal [isOpen]="isFilterModalOpen">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Filter Services</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="closeFilterModal()">Close</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      Your filter panel content here -->
-      <!-- <ion-grid class="filter-panel"> -->
-        <!-- Your existing filter panel code here -->
-      <!-- </ion-grid>
-    </ion-content>
-  </ion-modal> -->
 
   <ion-row  class="filter-panel" class="filter-bar ion-padding ion-justify-content-center"  (ionChange)="filterServices()">
 
@@ -109,7 +88,7 @@
   </ion-row>
 
   <div class="ion-padding">
-   
+
     <ion-list *ngIf="filterServices().length !== 0">
       <ion-item *ngFor="let service of filterServices(); let i = index" (click)="consultService(service)">
         <ion-label>
@@ -135,4 +114,4 @@
       </ion-card-content>
     </ion-card>
   </div>
- </ion-content> 
+ </ion-content>

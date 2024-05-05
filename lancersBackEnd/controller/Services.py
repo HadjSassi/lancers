@@ -13,8 +13,16 @@ def services_all():
   year_ = int(request.args.get('year'))
   month_ = int(request.args.get('month'))
   response = services_service.get_services_by_date(year_, month_)
-  return Response(response=json.dumps(response), status=200, mimetype='application/json')
-
+  if len(response) > 5 :
+    return Response(response=json.dumps(response), status=200, mimetype='application/json')
+  else :
+    year_ = int(request.args.get('year'))
+    month_ = int(request.args.get('month'))-1
+    if month_ == 0:
+      year_ -=1
+      month_ = 11
+    response.extend(services_service.get_services_by_date(year_, month_))
+    return Response(response=json.dumps(response), status=200, mimetype='application/json')
 
 def get_Service_By_Id():
   id = request.args.get('id')

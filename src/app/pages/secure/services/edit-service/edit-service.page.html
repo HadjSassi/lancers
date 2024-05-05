@@ -4,7 +4,7 @@
       <ion-back-button color="secondary" text="Back" defaultHref="/home">
       </ion-back-button>
     </ion-buttons>
-    <ion-title color="light">
+    <ion-title color="primary">
       Become a Freelance Seller
     </ion-title>
     <ion-buttons slot="primary">
@@ -57,6 +57,12 @@
         <ion-label>Hidden</ion-label>
         <ion-checkbox [(ngModel)]="updateService.hidden" name="hidden" required></ion-checkbox>
       </ion-item>
+
+      <ion-item *ngIf="profile.isAdmin">
+        <ion-label>Approved</ion-label>
+        <ion-checkbox [(ngModel)]="updateService.approved" name="approve" required></ion-checkbox>
+      </ion-item>
+
 
       <ion-button expand="block" [disabled]="!serviceForm.valid" (click)="submitForm()" color="secondary">Submit</ion-button>
     </form>

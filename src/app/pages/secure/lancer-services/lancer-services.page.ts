@@ -122,7 +122,7 @@ export class LancerServicesPage implements OnInit {
     }
 
 
-    // console.log(filteredServices);
+    console.log(filteredServices);
     // Return the filtered services
     return filteredServices;
   }

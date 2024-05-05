@@ -4,7 +4,7 @@
       <ion-back-button color="secondary" text="Back" defaultHref="/home">
       </ion-back-button>
     </ion-buttons>
-    <ion-title color="light">
+    <ion-title color="primary">
       Become a Freelance Seller
     </ion-title>
     <ion-buttons slot="primary">
@@ -55,13 +55,13 @@
         </ion-list>
       </ion-card-content>
 
-        <ion-button *ngIf="!isOwner" (click)="requestService()" fill="clear">Request Service</ion-button>
-        <ion-button *ngIf="isOwner" (click)="editService()" fill="clear">Edit Service</ion-button>
-        <ion-button *ngIf="isOwner" (click)="deleteService()" style="color: red" fill="clear">Delete Service</ion-button>
+        <ion-button *ngIf="!isOwner " (click)="requestService()" fill="clear">Request Service</ion-button>
+        <ion-button *ngIf="isOwner || profile.isAdmin" (click)="editService()" fill="clear">Edit Service</ion-button>
+        <ion-button *ngIf="isOwner || profile.isAdmin" (click)="deleteService()" style="color: red" fill="clear">Delete Service</ion-button>
 
     </ion-card>
 
-    <ion-card *ngIf="isOwner">
+    <ion-card *ngIf="isOwner || profile.isAdmin">
       <ion-card-content>
         <ng-container *ngIf="currentService.approved; else notApproved">
           <h1>Service Approved!</h1>

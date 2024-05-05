@@ -104,7 +104,8 @@ export class ConsultServicePage implements OnInit {
   }
 
   viewLancer() {
-    this.router.navigate([`Lancers/${this.lancer.email}`]);
+    this.router.navigate([`searchlancer/consult-lancer/${this.lancer.email}`],);
+
   }
 
   editService(){

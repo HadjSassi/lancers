@@ -14,7 +14,8 @@ import {LancerService} from "../../../../services/Lancer/lancer.service";
 import {Skill} from "../../../../model/Skill";
 
 
-const { Camera } = Plugins;
+const {Camera} = Plugins;
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.page.html',
@@ -26,8 +27,8 @@ export class EditPage implements OnInit {
   submit_attempt: boolean = false;
   capturedImage: any;
   defaultImage = '../../../../assets/card-media.png';
-  newLink :string = "";
-  newSkill :string = "";
+  newLink: string = "";
+  newSkill: string = "";
   gender: string = "";
 
   currentProfile: Profile = new Profile(
@@ -48,7 +49,7 @@ export class EditPage implements OnInit {
     ""
   );
 
-  currentLancer: Lancer =  new Lancer(
+  currentLancer: Lancer = new Lancer(
     "",
     0,
     [],
@@ -64,7 +65,8 @@ export class EditPage implements OnInit {
     private profileService: ProfileService,
     private lancerService: LancerService,
     private storage: Storage
-  ) { }
+  ) {
+  }
 
   async ngOnInit() {
 
@@ -87,19 +89,23 @@ export class EditPage implements OnInit {
     const storedEmail = await this.storage.get('mail');
     this.profileService.profile_get_by_email_(storedEmail).subscribe(
       (result) => {
-          this.currentProfile = result;
-        if(this.currentProfile.sexe == 2){
+        this.currentProfile = result;
+        if (result.photoProfile != "") {
+          const imageUrl = `data:image/jpeg;base64,${result.photoProfile}`;
+          this.capturedImage = imageUrl;
+        }
+        if (this.currentProfile.sexe == 2) {
           this.gender = "Male";
-        } else if(this.currentProfile.sexe == 1){
+        } else if (this.currentProfile.sexe == 1) {
           this.gender = "Female";
         } else {
           this.gender = "Other";
         }
-          this.lancerService.get_lancer_by_email_(result.email).subscribe(
-            (res) => {
-              this.currentLancer = res;
-            }
-          );
+        this.lancerService.get_lancer_by_email_(result.email).subscribe(
+          (res) => {
+            this.currentLancer = res;
+          }
+        );
       }
     );
   }
@@ -115,16 +121,16 @@ export class EditPage implements OnInit {
           icon: 'images',
           handler: async () => {
 
-              const image = await Camera['getPhoto']({
-                quality: 90,
-                allowEditing: false,
-                resultType: CameraResultType.Base64,
-                source: CameraSource.Photos // Utiliser la galerie
-              });
+            const image = await Camera['getPhoto']({
+              quality: 90,
+              allowEditing: false,
+              resultType: CameraResultType.Base64,
+              source: CameraSource.Photos // Utiliser la galerie
+            });
 
-              const imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/jpeg;base64,${image.base64String}`);
-              this.capturedImage = imageUrl;
-
+            const imageUrl = `data:image/jpeg;base64,${image.base64String}`;
+            this.currentProfile.photoProfile = image.base64String;
+            this.capturedImage= imageUrl;
 
 
           }
@@ -136,13 +142,17 @@ export class EditPage implements OnInit {
             const image = await Camera['getPhoto']({
               quality: 90,
               allowEditing: false,
-              resultType: CameraResultType.Uri
+              resultType: CameraResultType.Base64,
+              source: CameraSource.Camera
             });
 
             // Utiliser l'URI de l'image capturée (image.webPath) comme bon vous semble
 
             // Par exemple, pour afficher l'image dans votre application :
-            this.capturedImage = image.webPath;
+            const imageUrl = `data:image/jpeg;base64,${image.base64String}`;
+            this.currentProfile.photoProfile = image.base64String;
+            this.capturedImage = imageUrl;
+
           }
         },
         {
@@ -155,6 +165,7 @@ export class EditPage implements OnInit {
 
     await actionSheet.present();
   }
+
   // Submit form
   submit() {
 
@@ -172,18 +183,18 @@ export class EditPage implements OnInit {
     if (this.edit_profile_form.valid) {
 
       // Save form ...
-      this.lancerService.lancer_update_(this.currentProfile.email,this.currentLancer).subscribe(
+      this.lancerService.lancer_update_(this.currentProfile.email, this.currentLancer).subscribe(
         (re) => {
-          this.profileService.profile_update_(this.currentLancer.email,this.currentProfile).subscribe(
-            (ree) =>{
+          this.profileService.profile_update_(this.currentLancer.email, this.currentProfile).subscribe(
+            (ree) => {
               // Display success message and go back
               this.toastService.presentToast('Success', 'Profile saved', 'top', 'success', 2000);
               this.navController.back();
-            },error => {
+            }, error => {
               this.toastService.presentToast('Error', 'There is an error in our servers!', 'top', 'danger', 2000);
             }
           );
-        },error => {
+        }, error => {
           this.toastService.presentToast('Error', 'There is an error in our servers!', 'top', 'danger', 2000);
         }
       )
@@ -204,7 +215,7 @@ export class EditPage implements OnInit {
   }
 
 
-  deleteLink(link:string) {
+  deleteLink(link: string) {
     const index = this.currentProfile.liens.indexOf(link);
     if (index !== -1) {
       this.currentProfile.liens.splice(index, 1);
@@ -220,10 +231,12 @@ export class EditPage implements OnInit {
   }
 
 
-  deleteSkill(skill:Skill) {
+  deleteSkill(skill: Skill) {
     const index = this.currentLancer.skills.indexOf(skill)
     if (index !== -1) {
       this.currentLancer.skills.splice(index, 1);
     }
   }
+
+
 }
