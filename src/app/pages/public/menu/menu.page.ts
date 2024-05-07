@@ -16,4 +16,4 @@ export class MenuPage implements OnInit {
     setTimeout(() => {
       this.content_loaded = true;
     }, 2000);
-}}
+  }}

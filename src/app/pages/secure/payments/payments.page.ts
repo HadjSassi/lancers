@@ -9,11 +9,11 @@ import { FilterPage } from './filter/filter.page';
 })
 export class PaymentsPage implements OnInit {
   messages: { text: string; type: string; sender: string }[] = [
-   // { text: 'Bonjour !', type: 'received', sender: 'Alice' },
-   // { text: 'Salut ! Ça va ?', type: 'sent', sender: 'John' },
+    // { text: 'Bonjour !', type: 'received', sender: 'Alice' },
+    // { text: 'Salut ! Ça va ?', type: 'sent', sender: 'John' },
   ]
   newMessage: string = '';
-  selectedContact: string = 'John Doe'; 
+  selectedContact: string = 'John Doe';
   contacts: string[] = ['Alice', 'Bob', 'Charlie'];
   content_loaded: boolean = false;
 
@@ -56,8 +56,8 @@ export class PaymentsPage implements OnInit {
       }, 2000);
     }
   }
-  
- 
+
+
 
   sendMessage() {
     if (this.newMessage.trim() !== '') {
@@ -70,7 +70,7 @@ export class PaymentsPage implements OnInit {
   selectContact(event: CustomEvent) {
     this.selectedContact = event.detail.value;
     this.loadMessagesForContact(this.selectedContact);
-   
+
   }
 
   loadMessagesForContact(contact: string) {

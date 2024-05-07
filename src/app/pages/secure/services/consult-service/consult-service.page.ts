@@ -200,8 +200,8 @@ export class ConsultServicePage implements OnInit {
             this.contrat.prix = this.currentService.prix;
             this.contractService.contract_write_(this.contrat).subscribe(
               (result: { Status: string,Document_ID:string })=>{
-                  console.log(result.Document_ID, result);
-                  this.router.navigate([`contracts/consultation-contract/${result.Document_ID}`]);
+                console.log(result.Document_ID, result);
+                this.router.navigate([`contracts/consultation-contract/${result.Document_ID}`]);
               }
             );
           }

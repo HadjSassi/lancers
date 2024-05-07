@@ -20,13 +20,13 @@ import {  AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class HomePage  implements OnInit {
   // @ViewChild('slick', { static: false }) slick: ElementRef | null = null ;
- 
+
   services = [
     { name: 'Angular', date: '09.04.2023', price: '$7.50', image: '../assets/icon/angular.png', description: 'Framework JavaScript open-source, libre et basé sur TypeScript développé par Google.' },
     { name: 'Machine Learning', date: '06.03.2023', price: '$7500', image: '../assets/icon/ml.jpg', description: 'Domaine de l\'intelligence artificielle qui permet à des systèmes d\'apprendre à partir de données.' },
     { name: 'Python Programmer', date: '03.02.2023', price: '$1800.00', image: '../assets/icon/paython.jpg', description: 'Langage de programmation interprété, multi-paradigme et multiplateformes.' },
     { name: 'HTML Programmer', date: '03.02.2023', price: '$1800.00', image: '../assets/icon/html.jpg', description: 'Langage de balisage conçu pour représenter les pages web.' }
-];
+  ];
 
 //selectedService: { name: string; date: string; price: string; } | undefined;
   slideconfig={
@@ -38,8 +38,8 @@ export class HomePage  implements OnInit {
   isUserLoggedIn: boolean;
   constructor(
     private storage: Storage ,private authService: AuthService ,private elementRef: ElementRef
- 
-   
+
+
   ) {
     this.isUserLoggedIn = this.authService.isLoggedIn();
 

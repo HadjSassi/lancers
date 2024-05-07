@@ -55,9 +55,9 @@
         </ion-list>
       </ion-card-content>
 
-        <ion-button *ngIf="!isOwner " (click)="requestService()" fill="clear">Request Service</ion-button>
-        <ion-button *ngIf="isOwner || profile.isAdmin" (click)="editService()" fill="clear">Edit Service</ion-button>
-        <ion-button *ngIf="isOwner || profile.isAdmin" (click)="deleteService()" style="color: red" fill="clear">Delete Service</ion-button>
+      <ion-button *ngIf="!isOwner " (click)="requestService()" fill="clear">Request Service</ion-button>
+      <ion-button *ngIf="isOwner || profile.isAdmin" (click)="editService()" fill="clear">Edit Service</ion-button>
+      <ion-button *ngIf="isOwner || profile.isAdmin" (click)="deleteService()" style="color: red" fill="clear">Delete Service</ion-button>
 
     </ion-card>
 

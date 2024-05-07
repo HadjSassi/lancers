@@ -2,7 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from 'src/app/services/auth/auth.service';
 import {Storage} from "@ionic/storage-angular";
 import {Router} from "@angular/router";
-import {TranslateService} from '@ngx-translate/core';
 import {AlertController, IonSelect} from '@ionic/angular';
 import {ProfileService} from "../../../services/Profile/profile.service";
 import {LancerService} from "../../../services/Lancer/lancer.service";
@@ -51,11 +50,10 @@ export class SettingsPage implements OnInit{
   constructor(private authService: AuthService,
               private router: Router,
               private storage: Storage,
-              private translate: TranslateService,
               private alertController: AlertController,
               private profileService: ProfileService,
               private lancerService: LancerService
-              ) {
+  ) {
     this.selectedLanguage = 'en';
 
   }
@@ -66,13 +64,7 @@ export class SettingsPage implements OnInit{
 
   async languageChanged() {
     // Change the language and display a confirmation alert
-    this.translate.use(this.selectedLanguage);
-    const alert = await this.alertController.create({
-      header: 'Language Changed',
-      message: 'The language has been changed. Please restart the app to apply the changes.',
-      buttons: ['OK']
-    });
-    await alert.present();
+    console.log("No yet implemented")
   }
 
   toggleDarkMode($event: { detail: { checked: any; }; }) {

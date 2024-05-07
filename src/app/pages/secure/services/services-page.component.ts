@@ -55,7 +55,7 @@ export class ServicesPage implements OnInit {
       }
     });
   }
- 
+
   initialiseService() {
     this.service.get_services_by_email_(this.ownerMail).subscribe(
       (result) => {

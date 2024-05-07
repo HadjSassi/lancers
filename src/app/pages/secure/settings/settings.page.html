@@ -14,22 +14,22 @@
 
 
 
-      <ion-buttons slot="end">
-        <ion-toggle [(ngModel)]="dark" (ionChange)="toggleDarkMode($event)"></ion-toggle>
-        <ion-icon name="moon-outline"></ion-icon>
-      </ion-buttons>
-      <ion-buttons slot="end">
-        <ion-button (click)="openLanguageSelect()">
-          <ion-icon name="globe"></ion-icon>
-        </ion-button>
-        <ion-select [(ngModel)]="selectedLanguage" (ionChange)="languageChanged()" #languageSelect>
-          <ion-select-option value="en">English</ion-select-option>
-          <ion-select-option value="fr">French</ion-select-option>
-          <!-- Add more language options as needed -->
-        </ion-select>
-      </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-toggle [(ngModel)]="dark" (ionChange)="toggleDarkMode($event)"></ion-toggle>
+      <ion-icon name="moon-outline"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="openLanguageSelect()">
+        <ion-icon name="globe"></ion-icon>
+      </ion-button>
+      <ion-select [(ngModel)]="selectedLanguage" (ionChange)="languageChanged()" #languageSelect>
+        <ion-select-option value="en">English</ion-select-option>
+        <ion-select-option value="fr">French</ion-select-option>
+        <!-- Add more language options as needed -->
+      </ion-select>
+    </ion-buttons>
 
-    </ion-toolbar>
+  </ion-toolbar>
 
 </ion-header>
 
@@ -48,7 +48,7 @@
       </h1>
 
       <p>
-<!--       <ion-text color="medium">john.doe@mail.com</ion-text>-->
+        <!--       <ion-text color="medium">john.doe@mail.com</ion-text>-->
       </p>
     </ion-card-content>
   </ion-card>

@@ -168,9 +168,9 @@ export class ConsultationContractPage implements OnInit {
     this.contractService.contract_update_(this.currentContract.id,this.currentContract).subscribe();
     switch (who){
       case "Fini":this.currentService.score -=3;this.ownerLancer.score -=3;
-      break;
+        break;
       case "Retard":this.currentService.score-=5;this.ownerLancer.score-=5;
-      break
+        break
     }
     this.serviceService.services_update_(this.currentService.idService,this.currentService).subscribe();
     this.lancerService.lancer_update_(this.ownerLancer.email,this.ownerLancer).subscribe();

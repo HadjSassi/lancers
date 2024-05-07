@@ -1,4 +1,4 @@
- <ion-header collapse="fade" [translucent]="true">
+<ion-header collapse="fade" [translucent]="true">
   <ion-toolbar color="dark">
     <ion-title color="secondary">
       Chats
@@ -6,7 +6,7 @@
     <ion-avatar slot="start">
       <img src="./assets/icon/LOGOPRO.PNG" alt="Logo">
     </ion-avatar>
-   <ion-buttons slot="primary">
+    <ion-buttons slot="primary">
       <ion-button color="secondary" (click)="filter()">
         <ion-icon slot="icon-only" name="filter"></ion-icon>
       </ion-button>
@@ -20,9 +20,9 @@
       <ion-searchbar color="dark" showCancelButton="focus" placeholder="Company, category, expense ..."></ion-searchbar>
     </ion-toolbar>
   </ion-header> -->
-<!-- 
+<!--
   <div class="ion-padding">
-   
+
     <ng-container *ngIf="!content_loaded">
 
       <ion-list-header class="ion-list-header-small">
@@ -150,11 +150,11 @@
     <ion-button slot="end" (click)="sendMessage()">Envoyer</ion-button>
   </ion-toolbar>
   <ion-list lines="none">
-   <ion-item *ngFor="let message of messages" [class]="message.type">
+    <ion-item *ngFor="let message of messages" [class]="message.type">
       <div class="message">{{ message.text }}</div>
-    </ion-item> 
+    </ion-item>
   </ion-list>
 </ion-content>
 
 
- 
+

@@ -5,7 +5,7 @@
   ion-slides {
     height: 300px; /* Set the height of the carousel */
   }
-  
+
   ion-slide {
     display: flex;
     flex-direction: column;
@@ -16,46 +16,46 @@
     max-width: 100px; /* Largeur maximale de 100px */
     max-height: 100px; /* Hauteur maximale de 100px */
     float: right; /* Alignement à droite */
-  margin-right: 20px; 
-  margin-top: 10px;
+    margin-right: 20px;
+    margin-top: 10px;
   }
-.logo-1-kce {
+  .logo-1-kce {
     width: 150%;
     height: 150%;
-    position: absolute; 
+    position: absolute;
     object-fit: contain;
     right: 6rem; /* Ajustez cette valeur pour positionner l'image à droite */
-    top: -auto; 
-}
-.p{
-  // width: 150%;
-  //   height: 150%;
-  // object-fit: contain;
-  // position: absolute; 
-  //  z-index: 1; 
-  //  top: -auto; 
-  margin-left: 500%;
-text-align: center;
-font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
+    top: -auto;
+  }
+  .p{
+    // width: 150%;
+    //   height: 150%;
+    // object-fit: contain;
+    // position: absolute;
+    //  z-index: 1;
+    //  top: -auto;
+    margin-left: 500%;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
 
-.vector-ft2 {
+  .vector-ft2 {
     width: 200%;
     height:200%;
     object-fit: contain;
-    position: absolute; 
-    //z-index: 1; 
+    position: absolute;
+    //z-index: 1;
     right: 1rem; /* Ajustez cette valeur pour positionner l'image à droite */
     top: -auto; }
 
-    .service-slide {
-      transition: transform 0.3s; /* Add a smooth transition effect */
-      transform: scale(1); /* Set the initial scale */
-      
-      &:hover, &:focus, &:active {
-          transform: scale(1.2); /* Grow the element by 20% on hover, focus, or click */
-      }
+  .service-slide {
+    transition: transform 0.3s; /* Add a smooth transition effect */
+    transform: scale(1); /* Set the initial scale */
+
+    &:hover, &:focus, &:active {
+      transform: scale(1.2); /* Grow the element by 20% on hover, focus, or click */
+    }
   }
-  
+
 
 }
