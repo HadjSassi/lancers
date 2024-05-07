@@ -5,7 +5,11 @@ const config: CapacitorConfig = {
   appName: 'lancers',
   webDir: 'www',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'http',
+    cleartext: true
+  },
+  android : {
+    allowMixedContent: true
   }
 };
 
